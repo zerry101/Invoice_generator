@@ -5,7 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from '../components/header/header.component';
 import { BillingFormComponent } from 'src/components/billing-form/billing-form.component';
+import{ReactiveFormsModule} from '@angular/forms'
 @NgModule({
+
   declarations: [
     AppComponent,
     HeaderComponent,
@@ -15,7 +17,8 @@ import { BillingFormComponent } from 'src/components/billing-form/billing-form.c
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

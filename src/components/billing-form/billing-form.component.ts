@@ -7,7 +7,7 @@ import { FormBuilder,FormGroup} from '@angular/forms';
 })
 export class BillingFormComponent  implements OnInit{
 
-  userForm: FormGroup=new FormGroup({});
+  userForm: FormGroup=new FormGroup('');
 
   constructor(private fb:FormBuilder){
   }
@@ -22,6 +22,7 @@ export class BillingFormComponent  implements OnInit{
       Name:[""],
       Address:[""],
       GSTNO:[""],
+      productData:[""]
 
 
 
