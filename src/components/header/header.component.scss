@@ -1,186 +1,159 @@
-*{
-  margin: 0;
+html, body {
+  overflow-x: hidden
+}
+.side-menu{
+  background-color: #FFFFFF;
+background-image: linear-gradient(180deg, #FFFFFF 0%, #6284FF 50%, #213287 100%);
+
+}
+header{
+  border-top-left-radius: 1rem;
+}
+body {
   padding: 0;
-  color: #f2f5f7;
-  font-family: sans-serif;
-  letter-spacing: 1px;
-  font-weight: 300;
+  margin: 0;
+  font-family: sans-serif
 }
-.logo-text{
-  padding: 10px;
+.top-item {
+  margin-top: 100px;
 }
-body{
-  overflow-x: hidden;
-}
-nav{
-  height: 6rem;
-  width: 100vw;
-  background-color: #131418;
-  box-shadow: 0 3px 20px rgba(0, 0, 0, 0.2);
-  display: flex;
+header {
+  margin: 0;
+  width: 100%;
+  box-shadow: 0px 0px 5px 0px #ddd;
   position: fixed;
-  z-index: 10;
-}
+  height: 90px!important;
+  z-index: 20;
+  background: #0f0c29;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
-/*Styling logo*/
-.logo{
-  padding:1vh 1vw;
-  text-align: center;
 }
-.logo img {
-  height: 5rem;
-  width: 5rem;
+nav {
+  height: 100%;
+  position: fixed;
+  left: 0;
+  width: 320px;
+  margin-top: 90px;
+  transform: translateX(-320px);
+  transition: transform 260ms ease-in-out;
+  background-color: white;
+  border-left: 1px solid #eee;
 }
-
-/*Styling Links*/
-.nav-links{
-  display: flex;
+nav ul {
+  margin:0;
+  padding:0;
+  border-top: 1px solid #eee;
+}
+nav ul>li {
   list-style: none;
-  width: 88vw;
-  padding: 0 0.7vw;
-  justify-content: space-evenly;
-  align-items: center;
+  color: #fff;
   text-transform: uppercase;
+  font-weight: bold;
+  padding: 20px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+  transition: .25s
 }
-.nav-links li a{
-  text-decoration: none;
-  margin: 0 0.7vw;
-}
-.nav-links li a:hover {
-  color: #61DAFB;
-}
-.nav-links li {
-  position: relative;
-}
-.nav-links li a::before {
-  content: "";
+nav ul>li span {
   display: block;
-  height: 3px;
-  width: 0%;
-  background-color: #61DAFB;
-  position: absolute;
-  transition: all ease-in-out 250ms;
-  margin: 0 0 0 10%;
+  font-size: 14px;
+  color: #353535;
 }
-.nav-links li a:hover::before{
-  width: 80%;
-}
-
-/*Styling Buttons*/
-.login-button{
-  background-color: transparent;
-  border: 1.5px solid #f2f5f7;
-  border-radius: 2em;
-  padding: 0.6rem 0.8rem;
-  margin-left: 2vw;
-  font-size: 1rem;
+nav ul>li a {
+  color: #353535;
+  text-transform: uppercase;
+  font-weight: bold;
   cursor: pointer;
-
+  text-decoration: none;
 }
-.login-button:hover {
-  color: #131418;
-  background-color: #f2f5f7;
-  border:1.5px solid #f2f5f7;
-  transition: all ease-in-out 350ms;
+nav ul>li:hover {
+  background-color: #dddddd;
 }
-.join-button{
-  color: #131418;
-  background-color: #61DAFB;
-  border: 1.5px solid #61DAFB;
-  border-radius: 2em;
-  padding: 0.6rem 0.8rem;
-  font-size: 1rem;
-  cursor: pointer;
+nav li#nav-signup {
+  list-style: none;
+  background-color: #00B2D3;
 }
-.join-button:hover {
-  color: #f2f5f7;
-  background-color: transparent;
-  border:1.5px solid #f2f5f7;
-  transition: all ease-in-out 350ms;
+nav ul>li#nav-signup span {
+  color: #00B2D3;
 }
-
-/*Styling Hamburger Icon*/
-.hamburger div{
-  width: 30px;
-  height:3px;
-  background: #f2f5f7;
-  margin: 5px;
-  transition: all 0.3s ease;
+nav ul>li#nav-signup a {
+  color: #ffffff;
 }
-.hamburger{
+nav ul>li#nav-signup:hover {
+  background-color: #006375;
+}
+input[type="checkbox"]:checked ~ nav {
+  transform: translateX(0);
+  z-index: 40;
+}
+input[type=checkbox] {
+  box-sizing: border-box;
   display: none;
+  transition: all 0.25s;
 }
-
-/*Stying for small screens*/
-@media screen and (max-width: 800px){
-  nav{
-      position: fixed;
-      z-index: 3;
-  }
-  .hamburger{
-      display:block;
-      position: absolute;
-      cursor: pointer;
-      right: 5%;
-      top: 50%;
-      transform: translate(-5%, -50%);
-      z-index: 2;
-      transition: all 0.7s ease;
-  }
-  .nav-links{
-      position: fixed;
-      background: #131418;
-      height: 100vh;
-      width: 100%;
-      flex-direction: column;
-      clip-path: circle(50px at 90% -20%);
-      -webkit-clip-path: circle(50px at 90% -10%);
-      transition: all 1s ease-out;
-      pointer-events: none;
-  }
-  .nav-links.open{
-      clip-path: circle(1000px at 90% -10%);
-      -webkit-clip-path: circle(1000px at 90% -10%);
-      pointer-events: all;
-  }
-  .nav-links li{
-      opacity: 0;
-  }
-  .nav-links li:nth-child(1){
-      transition: all 0.5s ease 0.2s;
-  }
-  .nav-links li:nth-child(2){
-      transition: all 0.5s ease 0.4s;
-  }
-  .nav-links li:nth-child(3){
-      transition: all 0.5s ease 0.6s;
-  }
-  .nav-links li:nth-child(4){
-      transition: all 0.5s ease 0.7s;
-  }
-  .nav-links li:nth-child(5){
-      transition: all 0.5s ease 0.8s;
-  }
-  .nav-links li:nth-child(6){
-      transition: all 0.5s ease 0.9s;
-      margin: 0;
-  }
-  .nav-links li:nth-child(7){
-      transition: all 0.5s ease 1s;
-      margin: 0;
-  }
-  li.fade{
-      opacity: 1;
-  }
+.menuIconToggle {
+  box-sizing: border-box;
+  cursor: pointer;
+  position: fixed;
+  z-index: 40;
+  height: 100%;
+  width: 100%;
+  top: 35px;
+  left: 30px;
+  height: 22px;
+  width: 22px;
+  transition: all 0.3s;
 }
-/*Animating Hamburger Icon on Click*/
-.toggle .line1{
-  transform: rotate(-45deg) translate(-5px,6px);
+.hamb-line {
+  box-sizing: border-box;
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  background-color: #444;
+  transition: all 0.25s;
 }
-.toggle .line2{
-  transition: all 0.7s ease;
-  width:0;
+.hor {
+  transition: all 0.3s;
+  box-sizing: border-box;
+  position: relative;
+  float: left;
+  margin-top: 3px;
 }
-.toggle .line3{
-  transform: rotate(45deg) translate(-5px,-6px);
+.dia.part-1 {
+  position: relative;
+  box-sizing: border-box;
+  float: left;
+  transition: all .25s;
+}
+.dia.part-2 {
+  box-sizing: border-box;
+  position: relative;
+  float: left;
+  margin-top: 3px;
+  transition: all .25s;
+}
+input[type=checkbox]:checked ~ .menuIconToggle > .hor {
+  box-sizing: border-box;
+  opacity: 0;
+  transition: all .25s;
+}
+input[type=checkbox]:checked ~ .menuIconToggle > .dia.part-1 {
+  box-sizing: border-box;
+  transform: rotate(135deg);
+  margin-top: 8px;
+  transition: all .25s;
+}
+input[type=checkbox]:checked ~ .menuIconToggle > .dia.part-2 {
+  box-sizing: border-box;
+  transform: rotate(-135deg);
+  margin-top: -9px;
+  transition: all .25s;
+}
+@media screen and (max-width: 640px) {
+ nav {
+    height: 100%;
+    width: 100%;
+    transform: translateX(100%);
+  }
 }

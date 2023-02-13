@@ -1,32 +1,27 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="header.component.scss"/>
-    <title>Responsive Animated Navbar</title>
-</head>
-<body>
-    <nav>
-        <div class="logo">
-            <h3 class="logo-text">KIZHAR</h3>
-        </div>
-        <div class="hamburger">
-            <div class="line1"></div>
-            <div class="line2"></div>
-            <div class="line3"></div>
-        </div>
-        <ul class="nav-links">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Solutions</a></li>
-            <li><a href="#">Products</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Contact Us</a></li>
-            <li><button class="login-button" href="#">Login</button></li>
-            <li><button class="join-button" href="#">Join</button></li>
-        </ul>
-    </nav>
-    <script src="nav.js"></script>
-</body>
-</html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="header.component.scss" />
+  </head>
 
+  <header>
+  <div class="nav-container">
+    <input type="checkbox" id="openSideMenu" class="openSideMenu" />
+    <label for="openSideMenu" class="menuIconToggle">
+      <div class="hamb-line dia part-1 ham1"></div>
+      <div class="hamb-line hor ham1"></div>
+      <div class="hamb-line dia part-2 ham1"></div>
+    </label>
+    <nav class="side-menu">
+      <ul>
+        <li><a href="#">Customers</a></li>
+        <li><a href="#">Menu Item 2</a></li>
+        <li><a href="#">Menu Item 3</a></li>
+        <li><a href="#">Menu Item 4</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+</html>
