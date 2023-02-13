@@ -1,18 +1,26 @@
-html, body {
-  overflow-x: hidden
+html,
+body {
+  overflow-x: hidden;
 }
-.side-menu{
-  background-color: #FFFFFF;
-background-image: linear-gradient(180deg, #FFFFFF 0%, #6284FF 50%, #213287 100%);
-
+.side-menu {
+  background-color: #ffffff;
+  background-image: linear-gradient(
+    180deg,
+    #474fbd 0%,
+    #1d284f 50%,
+    #0b1132 100%
+  );
 }
-header{
+header {
   border-top-left-radius: 1rem;
+}
+a{
+  color: #ffffff;
 }
 body {
   padding: 0;
   margin: 0;
-  font-family: sans-serif
+  font-family: sans-serif;
 }
 .top-item {
   margin-top: 100px;
@@ -22,12 +30,21 @@ header {
   width: 100%;
   box-shadow: 0px 0px 5px 0px #ddd;
   position: fixed;
-  height: 90px!important;
+  height: 90px !important;
   z-index: 20;
-  background: #0f0c29;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+  background: #0f0c29; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #24243e,
+    #302b63,
+    #0f0c29
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #24243e,
+    #302b63,
+    #0f0c29
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 nav {
   height: 100%;
@@ -41,11 +58,11 @@ nav {
   border-left: 1px solid #eee;
 }
 nav ul {
-  margin:0;
-  padding:0;
+  margin: 0;
+  padding: 0;
   border-top: 1px solid #eee;
 }
-nav ul>li {
+nav ul > li {
   list-style: none;
   color: #fff;
   text-transform: uppercase;
@@ -53,41 +70,41 @@ nav ul>li {
   padding: 20px;
   cursor: pointer;
   border-bottom: 1px solid #eee;
-  transition: .25s
+  transition: 0.25s;
 }
-nav ul>li span {
+nav ul > li span {
   display: block;
   font-size: 14px;
   color: #353535;
 }
-nav ul>li a {
-  color: #353535;
+nav ul > li a {
+  color: #ffffff;
   text-transform: uppercase;
   font-weight: bold;
   cursor: pointer;
   text-decoration: none;
 }
-nav ul>li:hover {
+nav ul > li:hover {
   background-color: #dddddd;
 }
 nav li#nav-signup {
   list-style: none;
-  background-color: #00B2D3;
+  background-color: #00b2d3;
 }
-nav ul>li#nav-signup span {
-  color: #00B2D3;
+nav ul > li#nav-signup span {
+  color: #00b2d3;
 }
-nav ul>li#nav-signup a {
+nav ul > li#nav-signup a {
   color: #ffffff;
 }
-nav ul>li#nav-signup:hover {
+nav ul > li#nav-signup:hover {
   background-color: #006375;
 }
 input[type="checkbox"]:checked ~ nav {
   transform: translateX(0);
   z-index: 40;
 }
-input[type=checkbox] {
+input[type="checkbox"] {
   box-sizing: border-box;
   display: none;
   transition: all 0.25s;
@@ -124,34 +141,34 @@ input[type=checkbox] {
   position: relative;
   box-sizing: border-box;
   float: left;
-  transition: all .25s;
+  transition: all 0.25s;
 }
 .dia.part-2 {
   box-sizing: border-box;
   position: relative;
   float: left;
   margin-top: 3px;
-  transition: all .25s;
+  transition: all 0.25s;
 }
-input[type=checkbox]:checked ~ .menuIconToggle > .hor {
+input[type="checkbox"]:checked ~ .menuIconToggle > .hor {
   box-sizing: border-box;
   opacity: 0;
-  transition: all .25s;
+  transition: all 0.25s;
 }
-input[type=checkbox]:checked ~ .menuIconToggle > .dia.part-1 {
+input[type="checkbox"]:checked ~ .menuIconToggle > .dia.part-1 {
   box-sizing: border-box;
   transform: rotate(135deg);
   margin-top: 8px;
-  transition: all .25s;
+  transition: all 0.25s;
 }
-input[type=checkbox]:checked ~ .menuIconToggle > .dia.part-2 {
+input[type="checkbox"]:checked ~ .menuIconToggle > .dia.part-2 {
   box-sizing: border-box;
   transform: rotate(-135deg);
   margin-top: -9px;
-  transition: all .25s;
+  transition: all 0.25s;
 }
 @media screen and (max-width: 640px) {
- nav {
+  nav {
     height: 100%;
     width: 100%;
     transform: translateX(100%);
