@@ -13,6 +13,9 @@ import { RouterModule } from '@angular/router';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 
+import { HomeDComponent } from './home-d/home-d.component';
+
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -20,10 +23,9 @@ import {MatIconModule} from '@angular/material/icon';
   declarations: [
     AppComponent,
     HeaderComponent,
-    BillingFormComponent
-
-
-  ],
+    BillingFormComponent,
+    HomeDComponent
+ ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -33,7 +35,8 @@ import {MatIconModule} from '@angular/material/icon';
     MatTableModule,
     RouterModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
