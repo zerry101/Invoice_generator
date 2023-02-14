@@ -38,7 +38,7 @@ export class BillingFormComponent implements OnInit {
     return this.fb.group({
       index: [""],
       Description: [""],
-      HSN: ["",[Validators.required,Validators.minLength(4),Validators.maxLength(6)]],
+      HSN: ["", [Validators.required, Validators.minLength(4), Validators.maxLength(6)]],
       Quantity: [""],
       Rate: [""]
     })
@@ -59,18 +59,51 @@ export class BillingFormComponent implements OnInit {
 
 
 
-  getItemRows(){
+  getItemRows() {
     return (this.userForm.get('productData') as FormArray).controls;
   }
 
 
 
 
-  submitForm(){
+  submitForm() {
     console.log(this.userForm.value);
 
   }
 
+
+  get GSTNO() {
+    return this.userForm.get('GSTNO');
+  }
+
+  // get HSN(){
+  //   return this.userForm.get('HSN');
+  // }
+
+  get Name(){
+    return this.userForm.get('Name');
+  }
+
+  get Address(){
+    return this.userForm.get('Address');
+  }
+  get productData(){
+return this.userForm.get('productData');
+  }
+  get HSN(){
+    return this.productData?.get('HSN');
+  }
+
+  get Description(){
+    return this.productData?.get('Description');
+  }
+  get Quantity(){
+    return this.productData?.get('Quantity');
+  }
+
+  get Rate(){
+    return this.productData?.get('Rate');
+  }
 
 }
 

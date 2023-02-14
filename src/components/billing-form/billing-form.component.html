@@ -1,20 +1,27 @@
 <div class="container">
 
-  <form class="form-group" [formGroup]="userForm" (ngSubmit)="submitForm()">
+  <form class="form-group" [formGroup]="userForm"  (ngSubmit)="submitForm()">
     <div class="mb-3">
       <label for="Name" class="form-label">Name</label>
-      <input formControlName="Name" type="text" class="form-control" placeholder="Enter Name">
+      <input formControlName="Name"
+      [ngClass]="{'is-invalid':Name?.untouched}"
+      type="text" class="form-control" placeholder="Enter Name">
       <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
     </div>
     <div class="mb-3">
       <label for="Address" class="form-label">Address</label>
-      <input formControlName="Address" type="text" class="form-control" placeholder="Enter Address">
+      <input formControlName="Address"
+      [ngClass]="{'is-invalid':Address?.untouched}"
+       type="text" class="form-control" placeholder="Enter Address">
     </div>
     <div class="mb-3">
       <label for="GSTNO" class="form-label">GSTNO</label>
-      <input formControlName="GSTNO" type="text" class="form-control" placeholder="Enter GSTNO">
-    </div>
+      <input formControlName="GSTNO"
+      [ngClass]="[{'is-invalid':GSTNO?.touched && GSTNO?.invalid},{'red-box':GSTNO?.untouched}]"
 
+
+       type="text" class="form-control" placeholder="Enter GSTNO">
+    </div>
 
 
     <div class="row">
@@ -35,23 +42,33 @@
             <tr *ngFor="let itemrow of getItemRows(); let i=index" [formGroupName]="i">
 
               <td>
-                {{i}}
+                {{i+1}}
               </td>
               <td>
-                <input type="text" formControlName="Description" placeholder="Enter Description">
+                <input type="text"
+                [ngClass]="{'is-invalid':Description?.untouched}"
+                 formControlName="Description" placeholder="Enter Description">
               </td>
               <td>
-                <input type="text" formControlName="HSN" placeholder="HSN">
+                <input type="text"
+                [ngClass]="{'is-invalid':HSN?.untouched}"
+                formControlName="HSN" placeholder="HSN">
               </td>
               <td>
-                <input type="number" formControlName="Quantity" placeholder="QTY">
+                <input type="number"
+                [ngClass]="{'is-invalid':Quantity?.untouched}"
+                formControlName="Quantity" placeholder="QTY">
+              </td>
+
+              <td>
+                <input type="number"
+                [ngClass]="{'is-invalid':Rate?.untouched}"
+                 formControlName="Rate" placeholder="Rate">
               </td>
               <td>
-                <input type="number" formControlName="Rate" placeholder="Rate">
+                <button mat-mini-fab color="warn" (click)="deleteRow(i)">-</button>
               </td>
             </tr>
-
-
           </tbody>
 
 
@@ -61,7 +78,7 @@
 
         </table>
         <div class="btn-add  ">
-          <button mat-mini-fab color="warn" (click)="addNewRow()"><i class="bi bi-plus-circle"></i></button>
+          <button mat-mini-fab color="warn" (click)="addNewRow()"><strong>+1</strong></button>
         </div>
 
       </div>
