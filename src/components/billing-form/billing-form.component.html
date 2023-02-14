@@ -35,23 +35,18 @@
             <tr *ngFor="let itemrow of getItemRows(); let i=index" [formGroupName]="i">
 
               <td>
-                <!-- <label for="index">Index</label> -->
                 {{i}}
               </td>
               <td>
-                <label for="Description">Description</label>
-                <input type="text" formControlName="Description" placeholder="Enter Descriptio">
+                <input type="text" formControlName="Description" placeholder="Enter Description">
               </td>
               <td>
-                <label for="HSN">HSN</label>
                 <input type="text" formControlName="HSN" placeholder="HSN">
               </td>
               <td>
-                <label for="Quantity">Quantity</label>
                 <input type="number" formControlName="Quantity" placeholder="QTY">
               </td>
               <td>
-                <label for="Rate">Rate</label>
                 <input type="number" formControlName="Rate" placeholder="Rate">
               </td>
             </tr>
@@ -66,18 +61,14 @@
 
         </table>
         <div class="btn-add  ">
-          <button  mat-mini-fab color="primary" (click)="addNewRow()">+</button>
+          <button mat-mini-fab color="primary" (click)="addNewRow()">+</button>
         </div>
 
       </div>
     </div>
-
-
-    <div class="example-button-container" >
-      <button type="submit" mat-mini-fab color="primary" >SUBMIT</button>
-
+    <div class="example-button-container">
+      <button type="submit" mat-flat-button color="primary">SUBMIT</button>
     </div>
-
   </form>
 
 

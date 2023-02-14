@@ -18,10 +18,11 @@
     margin: auto;
   }
 
-  .btn-add{
+  .btn-add>button{
     // display: flex;
-    justify-content: center;
-    width: 120px;
+    // justify-content: center;
+    // width: 120px;
+    box-shadow:none;
     float: right !important;
     // float: right !important;
   }
