@@ -9,6 +9,8 @@ import{ReactiveFormsModule} from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatTableModule} from '@angular/material/table';
+import { RouterModule } from '@angular/router';
+
 
 @NgModule({
 
@@ -25,7 +27,8 @@ import {MatTableModule} from '@angular/material/table';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatBadgeModule,
-    MatTableModule
+    MatTableModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
