@@ -6,6 +6,25 @@ nav-menu{
   border-radius: 1rem;
     margin-left: 5px;
 }
+.default-home{
+  margin-left: 70rem;
+
+  button{
+     padding: 5px;
+     font-weight: bold;
+     font-size: 1rem;
+     color: wheat;
+     border: transparent;
+     background-color: transparent;
+  }
+  button:hover{
+    font-weight: bolder;
+    font-size: 1.1rem;
+    transition:0.5s;
+    transition-duration: 0.5s;
+  }
+
+}
 .side-menu {
   background-color: #ffffff;
   background-image: linear-gradient(

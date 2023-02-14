@@ -10,6 +10,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatTableModule} from '@angular/material/table';
 import { RouterModule } from '@angular/router';
+import { HomeDComponent } from './home-d/home-d.component';
+
+
 
 
 @NgModule({
@@ -17,7 +20,10 @@ import { RouterModule } from '@angular/router';
   declarations: [
     AppComponent,
     HeaderComponent,
-    BillingFormComponent
+    BillingFormComponent,
+    HomeDComponent,
+
+
 
 
   ],
