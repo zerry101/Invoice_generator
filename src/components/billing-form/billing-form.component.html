@@ -1,22 +1,44 @@
-
 <div class="container">
 
-<form class="form-group" [formGroup]="userForm">
-  <div class="mb-3">
-    <label for="Name" class="form-label" >Name</label>
-    <input formControlName="Name" type="text" class="form-control"  placeholder="Enter Name">
-    <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
-  </div>
-  <div class="mb-3">
-    <label for="Address" class="form-label">Address</label>
-    <input formControlName="Address" type="text" class="form-control" placeholder="Enter Address">
-  </div>
-  <div class="mb-3">
-    <label for="GSTNO" class="form-label">GSTNO</label>
-    <input formControlName="GSTNO" type="text" class="form-control" placeholder="Enter GSTNO">
-  </div>
+  <form class="form-group" [formGroup]="userForm">
+    <div class="mb-3">
+      <label for="Name" class="form-label">Name</label>
+      <input formControlName="Name" type="text" class="form-control" placeholder="Enter Name">
+      <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+    </div>
+    <div class="mb-3">
+      <label for="Address" class="form-label">Address</label>
+      <input formControlName="Address" type="text" class="form-control" placeholder="Enter Address">
+    </div>
+    <div class="mb-3">
+      <label for="GSTNO" class="form-label">GSTNO</label>
+      <input formControlName="GSTNO" type="text" class="form-control" placeholder="Enter GSTNO">
+    </div>
 
-</form>
+
+
+    <div class="row">
+      <div class="col-sl-12 table-responsive" formArrayName="productData">
+        <table class="table">
+          <thead>
+            <tr>
+              <th style="white-space: nowrap;padding-right: 4em;float: center;">
+                Index
+              </th>
+              <th style="white-space: nowrap;padding-right: 4em;float: center;">Description</th>
+              <th style="white-space: nowrap;padding-right: 4em;float: center;">HSN</th>
+              <th style="white-space: nowrap;padding-right: 4em;float: center;">Quantity</th>
+              <th style="white-space: nowrap;padding-right: 4em;float: center;">Rate</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let itemrow of formarr.controls; let i=index" [formGroupName]="i"></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </form>
 
 
 </div>
