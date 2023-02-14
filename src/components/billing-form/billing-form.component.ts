@@ -38,7 +38,7 @@ export class BillingFormComponent implements OnInit {
     return this.fb.group({
       index: [""],
       Description: [""],
-      HSN: [""],
+      HSN: ["",[Validators.required,Validators.minLength(4),Validators.maxLength(6)]],
       Quantity: [""],
       Rate: [""]
     })
