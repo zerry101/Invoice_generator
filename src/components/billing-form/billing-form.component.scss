@@ -10,5 +10,32 @@
 
 
 
+  .example-button-container {
+    display: flex;
+    justify-content: center;
+    width: 120px;
+    text-align: center;
+    margin: auto;
+  }
 
+  .btn-add{
+    // display: flex;
+    justify-content: center;
+    width: 120px;
+    float: right !important;
+    // float: right !important;
+  }
+
+
+
+  .row::-webkit-scrollbar{
+    overflow: auto;
+    ;
+    display: none;
+
+  }
 // }
+
+.table-responsive{
+overflow: hidden;
+}

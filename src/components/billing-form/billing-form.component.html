@@ -1,6 +1,6 @@
 <div class="container">
 
-  <form class="form-group" [formGroup]="userForm">
+  <form class="form-group" [formGroup]="userForm" (ngSubmit)="submitForm()">
     <div class="mb-3">
       <label for="Name" class="form-label">Name</label>
       <input formControlName="Name" type="text" class="form-control" placeholder="Enter Name">
@@ -32,10 +32,50 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let itemrow of formarr.controls; let i=index" [formGroupName]="i"></tr>
+            <tr *ngFor="let itemrow of getItemRows(); let i=index" [formGroupName]="i">
+
+              <td>
+                <!-- <label for="index">Index</label> -->
+                {{i+1}}
+              </td>
+              <td>
+                <label for="Description">Description</label>
+                <input type="text" formControlName="Description" placeholder="Enter Descriptio">
+              </td>
+              <td>
+                <label for="HSN">HSN</label>
+                <input type="text" formControlName="HSN" placeholder="HSN">
+              </td>
+              <td>
+                <label for="Quantity">Quantity</label>
+                <input type="number" formControlName="Quantity" placeholder="QTY">
+              </td>
+              <td>
+                <label for="Rate">Rate</label>
+                <input type="number" formControlName="Rate" placeholder="Rate">
+              </td>
+            </tr>
+
+
           </tbody>
+
+
+          <!-- <div class="text-center"> -->
+
+          <!-- </div> -->
+
         </table>
+        <div class="btn-add  ">
+          <button  mat-mini-fab color="primary" (click)="addNewRow()">+</button>
+        </div>
+
       </div>
+    </div>
+
+
+    <div class="example-button-container" >
+      <button type="submit" mat-mini-fab color="primary" >SUBMIT</button>
+
     </div>
 
   </form>

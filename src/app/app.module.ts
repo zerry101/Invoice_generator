@@ -10,6 +10,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatTableModule} from '@angular/material/table';
 import { RouterModule } from '@angular/router';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+
 
 
 @NgModule({
@@ -28,7 +31,9 @@ import { RouterModule } from '@angular/router';
     BrowserAnimationsModule,
     MatBadgeModule,
     MatTableModule,
-    RouterModule
+    RouterModule,
+    MatButtonModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
