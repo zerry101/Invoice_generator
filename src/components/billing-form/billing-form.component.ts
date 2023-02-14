@@ -72,7 +72,7 @@ export class BillingFormComponent implements OnInit {
   }
 
 
-  get GSTNO() {
+  get GSTNOcontrol() {
     return this.userForm.get('GSTNO');
   }
 
@@ -80,30 +80,31 @@ export class BillingFormComponent implements OnInit {
   //   return this.userForm.get('HSN');
   // }
 
-  get Name(){
+  get Namecontrol(){
     return this.userForm.get('Name');
   }
 
-  get Address(){
+  get Addresscontrol(){
     return this.userForm.get('Address');
   }
-  get productData(){
-return this.userForm.get('productData');
-  }
-  get HSN(){
-    return this.productData?.get('HSN');
-  }
+//   get productDatacontrol(){
+// return this.userForm.get('productData');
+//   }
 
-  get Description(){
-    return this.productData?.get('Description');
-  }
-  get Quantity(){
-    return this.productData?.get('Quantity');
-  }
+//   get HSNcontrol(){
+//     return this.productDatacontrol?.get('HSN');
+//   }
 
-  get Rate(){
-    return this.productData?.get('Rate');
-  }
+//   get Descriptioncontrol(){
+//     return this.productDatacontrol?.get('Description');
+//   }
+//   get Quantitycontrol(){
+//     return this.productDatacontrol?.get('Quantity');
+//   }
+
+//   get Ratecontrol(){
+//     return this.productDatacontrol?.get('Rate');
+//   }
 
 }
 
