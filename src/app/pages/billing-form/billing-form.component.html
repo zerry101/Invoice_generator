@@ -1,27 +1,19 @@
 <div class="container">
 
-  <form class="form-group" [formGroup]="userForm"  (ngSubmit)="submitForm()">
+  <form class="form-group" [formGroup]="userForm" (ngSubmit)="submitForm()">
     <div class="mb-3">
       <label for="Name" class="form-label">Name</label>
-      <input formControlName="Name"
-      type="text" class="form-control" placeholder="Enter Name">
+      <input formControlName="Name" type="text" class="form-control" placeholder="Enter Name">
       <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
     </div>
     <div class="mb-3">
       <label for="Address" class="form-label">Address</label>
-      <input formControlName="Address"
-       type="text" class="form-control" placeholder="Enter Address">
+      <input formControlName="Address" type="text" class="form-control" placeholder="Enter Address">
     </div>
     <div class="mb-3">
       <label for="GSTNO" class="form-label">GSTNO</label>
-      <input formControlName="GSTNO"
-
-
-
-       type="text" class="form-control" placeholder="Enter GSTNO">
+      <input formControlName="GSTNO" type="text" class="form-control" placeholder="Enter GSTNO">
     </div>
-
-
 
     <div class="row">
       <div class="col-sl-12 table-responsive" formArrayName="productData">
@@ -49,22 +41,17 @@
                 {{i+1}}
               </td>
               <td>
-                <input type="text"
-                 formControlName="Description" placeholder="Enter Description">
+                <input type="text" class="form-control" formControlName="Description" placeholder="Enter Description">
               </td>
               <td>
-                <input type="text"
-                formControlName="HSN" placeholder="HSN">
+                <input type="text" class="form-control" formControlName="HSN" placeholder="HSN">
               </td>
               <td>
-                <input type="number"
-                formControlName="Quantity" placeholder="QTY">
+                <input type="number" class="form-control" formControlName="Quantity" placeholder="QTY">
               </td>
 
               <td>
-                <input type="number"
-
-                 formControlName="Rate" placeholder="Rate">
+                <input type="number" class="form-control" formControlName="Rate" placeholder="Rate">
               </td>
               <td>
                 <button mat-mini-fab color="warn" (click)="deleteRow(i)">-</button>
@@ -85,7 +72,6 @@
     <div class="example-button-container">
       <button type="submit" mat-flat-button color="primary">SUBMIT</button>
     </div>
-    <app-dialog-button></app-dialog-button>
   </form>
 
 
