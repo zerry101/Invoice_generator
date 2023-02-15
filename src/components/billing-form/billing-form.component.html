@@ -22,6 +22,7 @@
     </div>
 
 
+
     <div class="row">
       <div class="col-sl-12 table-responsive" formArrayName="productData">
         <table class="table">
@@ -34,6 +35,11 @@
               <th style="white-space: nowrap;padding-right: 4em;float: center;">HSN</th>
               <th style="white-space: nowrap;padding-right: 4em;float: center;">Quantity</th>
               <th style="white-space: nowrap;padding-right: 4em;float: center;">Rate</th>
+              <th>
+                <div class="btn-add">
+                  <button mat-mini-fab color="warn" (click)="addNewRow()"><strong>+</strong></button>
+                </div>
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -72,16 +78,17 @@
           <!-- </div> -->
 
         </table>
-        <div class="btn-add">
-          <button mat-mini-fab color="warn" (click)="addNewRow()"><strong>+1</strong></button>
-        </div>
+
 
       </div>
     </div>
     <div class="example-button-container">
       <button type="submit" mat-flat-button color="primary">SUBMIT</button>
     </div>
+    <app-dialog-button></app-dialog-button>
   </form>
+
+
 
 
 </div>

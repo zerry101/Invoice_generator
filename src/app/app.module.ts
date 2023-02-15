@@ -12,11 +12,16 @@ import {MatTableModule} from '@angular/material/table';
 import { RouterModule } from '@angular/router';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
+
 
 import { HomeDComponent } from './home-d/home-d.component';
 
 import { FormsModule } from '@angular/forms';
-
+import { DialogButtonComponent } from 'src/components/billing-form/dialog-button/dialog-button.component';
+// import { DialogButtonComponent } from './dialog-button/dialog-button.component';
+import {DialogContentExampleDialog} from 'src/components/billing-form/dialog-button/dialog-button.component'
 
 @NgModule({
 
@@ -24,7 +29,11 @@ import { FormsModule } from '@angular/forms';
     AppComponent,
     HeaderComponent,
     BillingFormComponent,
-    HomeDComponent
+    HomeDComponent,
+    DialogButtonComponent,
+    DialogContentExampleDialog
+
+
  ],
   imports: [
     BrowserModule,
@@ -36,9 +45,13 @@ import { FormsModule } from '@angular/forms';
     RouterModule,
     MatButtonModule,
     MatIconModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule,
+
+
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  // entryComponents:[MatDialogModule]
 })
 export class AppModule { }
