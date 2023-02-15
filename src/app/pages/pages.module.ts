@@ -12,12 +12,14 @@ import { MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
 import { PagesComponent } from './pages.component';
 import { ComponentsModule } from '../components/components.module';
+import { CustomerInvoiceComponent } from './customer-invoice/customer-invoice.component';
 
 @NgModule({
   declarations: [
     BillingFormComponent,
     DashboardComponent,
     PagesComponent,
+    CustomerInvoiceComponent
   ],
   imports: [
     PagesRoutingModule,

@@ -1,0 +1,49 @@
+<form>
+  <fieldset>
+    <legend>Customer Details</legend>
+    <p>
+      <label for="first-name">Client Name</label>
+      <input type="text" id="first-name" name="first-name" placeholder="Name" />
+    </p>
+    <p id="gender-selector">
+      <span id="gender">Gender</span>
+      <input type="radio" id="male" name="gender" value="Male" />
+      <label for="male">Male</label>
+      <input type="radio" id="female" name="gender" value="Female" />
+      <label for="female">Female</label>
+    </p>
+    <p>
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="your@email.com" />
+    </p>
+    <p>
+      <label for="phone">Phone</label>
+      <input type="text" id="phone" name="phone" placeholder="+91" required="digits" />
+    </p>
+    <p>
+      <label for="phone">GSTNO</label>
+      <input type="text" id="phone" name="phone" placeholder="GSTNO" required="digits" />
+    </p>
+    <p>
+      <label for="town">Town</label>
+      <select name="town" id="town">
+        <option value="varna">Ahmedabad</option>
+        <option value="varna">Kheda</option>
+        <option value="varna">Sarkhej</option>
+        <!-- <option value="varna"></option> -->
+      </select>
+    </p>
+    <p></p>
+    <p id="message-area">
+      <label for="message">Address</label>
+      <textarea id="message" name="message" cols="35" rows="5" placeholder="More information..."></textarea>
+    </p>
+    <!-- <p id="checkbox">
+            <input type="checkbox" id="agree" name="agree">
+            <label for="agree">I agree the Terms and Conditions</label>
+         </p> -->
+    <p>
+      <input type="submit" value="Send" />
+    </p>
+  </fieldset>
+</form>
