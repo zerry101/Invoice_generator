@@ -1,30 +1,41 @@
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="header.component.scss" />
-  </head>
-
-  <header>
-  <div class="nav-container">
-    <input type="checkbox" id="openSideMenu" class="openSideMenu" />
-    <label for="openSideMenu" class="menuIconToggle">
-      <div class="hamb-line dia part-1 ham1"></div>
-      <div class="hamb-line hor ham1"></div>
-      <div class="hamb-line dia part-2 ham1"></div>
-      <div class="default-home"><button  routerLink="app-home-d">Home</button></div>
-
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive navbar with HTML & CSS</title>
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+  <nav>
+    <input type="checkbox" id="check">
+    <label for="check" class="checkbtn">
+      <i class='bx bx-grid-alt'></i>
     </label>
-    <nav class="side-menu">
+
+    <label for="" class="logo">Invoice GenX</label>
+    <ul>
+      <li><a class="active" routerLink="app-home-d">Home</a></li>
+      <li><a routerLink="app-billing-form">Sales</a></li>
+      <li><a href="#">Customer Invoice</a></li>
+    </ul>
+  </nav>
+  <section></section>
+</body>
+</html>
+
+<router-outlet></router-outlet>
+
+
+
+
+<!-- <div class="default-home"><button  routerLink="app-home-d">Home</button></div> -->
+<!-- <nav class="side-menu">
       <ul>
         <li routerLink="app-billing-form"><a class="nav-lists" >Generate Invoice</a></li>
         <li><a class="nav-lists" href="#">Invoice</a></li>
         <li><a class="nav-lists" href="#"></a></li>
         <li><a class="nav-lists" href="#"></a></li>
       </ul>
-    </nav>
-  </div>
-</header>
-</html>
-<router-outlet></router-outlet>
+    </nav> -->

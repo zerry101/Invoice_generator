@@ -46,9 +46,7 @@ import {DialogContentExampleDialog} from 'src/components/billing-form/dialog-but
     MatButtonModule,
     MatIconModule,
     FormsModule,
-    MatDialogModule,
-
-
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent],
