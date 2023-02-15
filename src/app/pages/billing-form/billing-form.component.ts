@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { globalConstants } from '../../shared/constants';
+
 @Component({
   selector: 'igx-billing-form',
   templateUrl: './billing-form.component.html',
@@ -20,14 +22,13 @@ export class BillingFormComponent implements OnInit {
     this.userForm = this.fb.group({
       Name: [""],
       Address: [""],
-      GSTNO: ["", [Validators.required, Validators.pattern('^([0][1-9]|[1-2][0-9]|[3][0-7])([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$')]],
+      GSTNO: ["", [Validators.required, Validators.pattern(globalConstants.GST_PATTERN)]],
       productData: this.fb.array([this.initItemRows()]),
     })
   }
 
   initItemRows(): FormGroup {
     return this.fb.group({
-      index: [""],
       Description: [""],
       HSN: ["", [Validators.required, Validators.minLength(4), Validators.maxLength(6)]],
       Quantity: [""],

@@ -10,11 +10,14 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
+import { PagesComponent } from './pages.component';
+import { ComponentsModule } from '../components/components.module';
 
 @NgModule({
   declarations: [
     BillingFormComponent,
     DashboardComponent,
+    PagesComponent,
   ],
   imports: [
     PagesRoutingModule,
@@ -27,6 +30,7 @@ import { RouterModule } from '@angular/router';
     MatIconModule,
     FormsModule,
     MatDialogModule,
+    ComponentsModule
   ]
 })
 export class PagesModule { }

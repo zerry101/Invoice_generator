@@ -1,44 +1,25 @@
-.form{
-  position: absolute;
-  // margin-top: 4%;
+.example-button-container {
+  display: flex;
+  justify-content: center;
+  width: 120px;
+  text-align: center;
+  margin: auto;
 }
 
-.container{
-  margin-top: 10%;
+.btn-add > button {
+  box-shadow: none;
+  float: right !important;
 }
-// .form{
 
-
-
-  .example-button-container {
-    display: flex;
-    justify-content: center;
-    width: 120px;
-    text-align: center;
-    margin: auto;
-  }
-
-  .btn-add>button{
-    // display: flex;
-    // justify-content: center;
-    // width: 120px;
-    box-shadow:none;
-    float: right !important;
-    // float: right !important;
-  }
-
-.red-box{
+.red-box {
   border-color: red;
 }
 
-  .row::-webkit-scrollbar{
-    overflow: auto;
-    ;
-    display: none;
+.row::-webkit-scrollbar {
+  overflow: auto;
+  display: none;
+}
 
-  }
-// }
-
-.table-responsive{
-overflow: hidden;
+.table-responsive {
+  overflow: hidden;
 }

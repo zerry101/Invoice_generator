@@ -1,10 +1,9 @@
-<div class="container">
+<div class="container mt-3">
 
   <form class="form-group" [formGroup]="userForm" (ngSubmit)="submitForm()">
     <div class="mb-3">
       <label for="Name" class="form-label">Name</label>
       <input formControlName="Name" type="text" class="form-control" placeholder="Enter Name">
-      <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
     </div>
     <div class="mb-3">
       <label for="Address" class="form-label">Address</label>
@@ -16,9 +15,9 @@
     </div>
 
     <div class="row">
-      <div class="col-sl-12 table-responsive" formArrayName="productData">
-        <table class="table">
-          <thead>
+      <div class="col-sl-12" formArrayName="productData">
+        <table class="table table-responsive table-hover">
+          <thead class="thead-dark">
             <tr>
               <th style="white-space: nowrap;padding-right: 4em;float: center;">
                 Index
@@ -36,7 +35,6 @@
           </thead>
           <tbody>
             <tr *ngFor="let itemrow of getItemRows(); let i=index" [formGroupName]="i">
-
               <td>
                 {{i+1}}
               </td>
@@ -58,23 +56,11 @@
               </td>
             </tr>
           </tbody>
-
-
-          <!-- <div class="text-center"> -->
-
-          <!-- </div> -->
-
         </table>
-
-
       </div>
     </div>
     <div class="example-button-container">
       <button type="submit" mat-flat-button color="primary">SUBMIT</button>
     </div>
   </form>
-
-
-
-
 </div>
