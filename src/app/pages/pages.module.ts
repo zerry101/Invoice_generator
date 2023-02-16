@@ -13,6 +13,7 @@ import { RouterModule } from '@angular/router';
 import { PagesComponent } from './pages.component';
 import { ComponentsModule } from '../components/components.module';
 import { CustomerInvoiceComponent } from './customer-invoice/customer-invoice.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,9 @@ import { CustomerInvoiceComponent } from './customer-invoice/customer-invoice.co
     MatIconModule,
     FormsModule,
     MatDialogModule,
-    ComponentsModule
+    ComponentsModule,
+    MatFormFieldModule
+
   ]
 })
 export class PagesModule { }

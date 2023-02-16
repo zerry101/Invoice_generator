@@ -29,8 +29,8 @@ export class BillingFormComponent implements OnInit {
 
   initItemRows(): FormGroup {
     return this.fb.group({
-      Description: [""],
-      HSN: ["", [Validators.required, Validators.minLength(4), Validators.maxLength(6)]],
+      Description: ["",[Validators.required,Validators.maxLength(4)]],
+      HSN: ["", [Validators.required, Validators.pattern('[0-9]{4,8}$')]],
       Quantity: [""],
       Rate: [""]
     })
@@ -45,7 +45,10 @@ export class BillingFormComponent implements OnInit {
   }
 
   deleteRow(index: number) {
-    this.formarr.removeAt(index);
+    if((this.userForm.get('productData') as FormArray).controls.length>1)
+    {
+      this.formarr.removeAt(index);
+    }
   }
 
   getItemRows() {
@@ -54,6 +57,9 @@ export class BillingFormComponent implements OnInit {
 
   submitForm() {
     console.log(this.userForm.value);
+    this.userForm.markAllAsTouched();
+    this.userForm.markAsDirty();
+    // this.userForm.mas
   }
 
 
@@ -65,17 +71,19 @@ export class BillingFormComponent implements OnInit {
   get Namecontrol() { return this.userForm.get('Name'); }
   get Addresscontrol() { return this.userForm.get('Address'); }
 
-  //   get productDatacontrol(){
-  // return this.userForm.get('productData');
-  //   }
+    get productDatacontrol(){
+  return (this.userForm.get('productData') as FormArray);
+    }
 
-  //   get HSNcontrol(){
-  //     return this.productDatacontrol?.get('HSN');
-  //   }
+      HSNcontrol(i:number){
+      return this.productDatacontrol.controls[i].get('HSN');
+    }
 
-  //   get Descriptioncontrol(){
-  //     return this.productDatacontrol?.get('Description');
-  //   }
+     Descriptioncontrol(i:number){
+      return  this.productDatacontrol.controls[i].get('Description');
+
+    }
+
   //   get Quantitycontrol(){
   //     return this.productDatacontrol?.get('Quantity');
   //   }
@@ -87,4 +95,8 @@ export class BillingFormComponent implements OnInit {
 }
 
 
+
+// function data(value: AbstractControl<any, any>, index: number, array: AbstractControl<any, any>[]): void {
+//   throw new Error('Function not implemented.');
+// }
 
