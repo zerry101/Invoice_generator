@@ -31,8 +31,8 @@ export class BillingFormComponent implements OnInit {
     return this.fb.group({
       Description: ["",[Validators.required,Validators.maxLength(4)]],
       HSN: ["", [Validators.required, Validators.pattern('[0-9]{4,8}$')]],
-      Quantity: [""],
-      Rate: [""]
+      Quantity: ["",[Validators.required]],
+      Rate: ["",[Validators.required]]
     })
   }
 
@@ -84,13 +84,13 @@ export class BillingFormComponent implements OnInit {
 
     }
 
-  //   get Quantitycontrol(){
-  //     return this.productDatacontrol?.get('Quantity');
-  //   }
+     Quantitycontrol(i:number){
+      return this.productDatacontrol?.controls[i].get('Quantity');
+    }
 
-  //   get Ratecontrol(){
-  //     return this.productDatacontrol?.get('Rate');
-  //   }
+     Ratecontrol(i:number){
+      return this.productDatacontrol?.controls[i].get('Rate');
+    }
 
 }
 

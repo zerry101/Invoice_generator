@@ -47,22 +47,29 @@
               </td>
               <td>
                 <input type="text" class="form-control" formControlName="Description" placeholder="Enter Description">
-                <mat-error *ngIf="Descriptioncontrol(i)?.hasError('maxLength')">Desc is required</mat-error>
+                <mat-error *ngIf="Descriptioncontrol(i)?.hasError('required')">Description is required</mat-error>
               </td>
               <td>
                 <input  type="number"
                 [ngClass]="{'is-invalid':HSNcontrol(i)?.hasError('pattern')}"
                  class="form-control" formControlName="HSN" placeholder="HSN">
                 <mat-error *ngIf="HSNcontrol(i)?.hasError('pattern')">length must be between 4 to 8 </mat-error>
+                <mat-error *ngIf="HSNcontrol(i)?.hasError('required')">HSN is required </mat-error>
+
 
 
               </td>
               <td>
-                <input type="number" class="form-control" formControlName="Quantity" placeholder="QTY">
+                <input type="number"
+                value="{{Quantitycontrol|currency:'INR'}}"
+
+                 class="form-control" formControlName="Quantity" placeholder="QTY">
+                <mat-error *ngIf="Quantitycontrol(i)?.hasError('required')">Quantity is required</mat-error>
               </td>
 
               <td>
                 <input type="number" class="form-control" formControlName="Rate" placeholder="Rate">
+                <mat-error *ngIf="Ratecontrol(i)?.hasError('required')">Rate is required</mat-error>
               </td>
               <td>
 
