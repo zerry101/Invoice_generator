@@ -1,84 +1,92 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 
 form {
-  background-color: rgb(144, 231, 179);
-  width: 100vh;
-  height: auto;
-  margin: 2em auto;
-  padding: 2em 3em;
-  border-radius: 0.5em;
-}
+      background-color: rgb(144, 231, 179);
+      width: 100vh;
+      height: auto;
+      margin: 2em auto;
+      padding: 2em 3em;
+      border-radius: 0.5em;
+      }
 
 fieldset {
-  background-color: inherit;
-  border: none;
-  height: auto;
-}
+      background-color: inherit;
+      border: none;
+      height: auto;
+      }
 
 legend {
-  font-family: Georgia, serif;
-  font-size: 2.2rem;
-  margin: 0 auto 1em auto;
-}
+      font-family: Georgia, serif;
+      font-size: 2.2rem;
+      margin: 0 auto 1em auto;
+      }
 
 p {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 1em auto;
-}
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 1em auto
+      }
 
 #message-area {
-  align-items: flex-start;
-}
+      align-items: flex-start;
+      }
 
-fieldset label,
-#gender {
-  width: 7em;
-}
+fieldset label, #gender {
+      width: 7em;
+      }
 
 #gender-selector label {
-  width: 4em;
-}
+      width: 4em;
+      }
 
-#gender-selector input {
-  margin-right: 0.4em;
-}
+#gender-selector input{
+      margin-right: 0.4em;
+      }
+
+// #gender-selector{
+//   margin-left: 39px;
+// }
 
 fieldset label[for="agree"] {
-  width: 18em;
-}
+      width: 18em;
+      }
 
 #checkbox,
 #gender-selector {
-  justify-content: flex-start;
-}
+      justify-content: flex-start;
+      }
 
 input[type="text"],
 input[type="number"],
 input[type="email"],
 textarea,
 select {
-  width: 18em;
-  margin-right: 6.95em;
-  padding: 0.4em 0.7em;
-}
+      width: 18em;
+      margin-right: 6.95em;
+      padding: 0.4em 0.7em;
+      }
 
 textarea {
-  max-width: 18em;
-}
+      max-width: 18em;
+      }
 
 input[type="checkbox"] {
-  margin-right: 0.5em;
-}
+      margin-right: 0.5em;
+      }
 
 input[type="submit"] {
-  font-weight: bold;
-  letter-spacing: 0.06em;
-  background-color: #23446566;
-  color: #ffffff;
-  border: none;
-  border-radius: 0.4em;
-  padding: 1.2em 3.2em;
-  margin: 1em auto 0 auto;
+      font-weight: bold;
+      letter-spacing: 0.06em;
+      background-color: #23446566;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 0.4em;
+      padding: 1.2em 3.2em;
+      margin: 1em auto 0 auto;
+      }
+
+.heading{
+  font-weight: 100;
+  margin-top: 5px;
 }
