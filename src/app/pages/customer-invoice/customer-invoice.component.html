@@ -2,9 +2,12 @@
   <fieldset>
     <legend>Customer Details</legend>
 
-      <!-- <label for="first-name">Client Name</label> -->
-      <h1 class="heading">Client Name</h1>
-      <input type="text" id="first-name" name="first-name" placeholder="Name" />
+    <!-- <label for="first-name">Client Name</label> -->
+    <!-- <h1 class="heading">Client Name</h1> -->
+    <mat-form-field appearance="outline">
+      <mat-label>Client Name</mat-label>
+      <input matInput type="text" id="first-name" name="first-name" placeholder="Name" />
+    </mat-form-field>
 
     <h3 id="gender-selector">
       <h1 class="heading">Gender</h1>
@@ -14,28 +17,28 @@
       <label for="female">Female</label>
     </h3>
 
-      <h1 class="heading">Email</h1>
-      <input type="email" id="email" name="email" placeholder="your@email.com" />
+    <h1 class="heading">Email</h1>
+    <input type="email" id="email" name="email" placeholder="your@email.com" />
 
 
-      <h1 class="heading">Phone</h1>
-      <input type="text" id="phone" name="phone" placeholder="+91" required="digits" />
+    <h1 class="heading">Phone</h1>
+    <input type="text" id="phone" name="phone" placeholder="+91" required="digits" />
 
 
-      <h1 class="heading">GST NUMBER</h1>
-      <input type="text" id="phone" name="phone" placeholder="GSTNO" required="digits" />
+    <h1 class="heading">GST NUMBER</h1>
+    <input type="text" id="phone" name="phone" placeholder="GSTNO" required="digits" />
 
-      <h1 class="heading">Town</h1>
-      <select name="town" id="town">
-        <option value="varna">Ahmedabad</option>
-        <option value="varna">Kheda</option>
-        <option value="varna">Sarkhej</option>
-      </select>
+    <h1 class="heading">Town</h1>
+    <select name="town" id="town">
+      <option value="varna">Ahmedabad</option>
+      <option value="varna">Kheda</option>
+      <option value="varna">Sarkhej</option>
+    </select>
 
     <h1 id="message-area">
       <h1 class="heading">Address</h1>
       <textarea id="message" name="message" cols="35" rows="5" placeholder="More information..."></textarea>
-</h1>
+    </h1>
     <button mat-flat-button color="primary">Primary</button>
   </fieldset>
 </form>

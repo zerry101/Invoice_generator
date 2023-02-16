@@ -57,15 +57,15 @@ fieldset label[for="agree"] {
       justify-content: flex-start;
       }
 
-input[type="text"],
-input[type="number"],
-input[type="email"],
-textarea,
-select {
-      width: 18em;
-      margin-right: 6.95em;
-      padding: 0.4em 0.7em;
-      }
+// input[type="text"],
+// input[type="number"],
+// input[type="email"],
+// textarea,
+// select {
+//       width: 18em;
+//       margin-right: 6.95em;
+//       padding: 0.4em 0.7em;
+//       }
 
 textarea {
       max-width: 18em;
@@ -90,3 +90,10 @@ input[type="submit"] {
   font-weight: 100;
   margin-top: 5px;
 }
+
+
+form::-webkit-scrollbar{
+  display: none;
+  // overflow-y: hidden;
+}
+
