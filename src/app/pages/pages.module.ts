@@ -10,8 +10,8 @@ import { ComponentsModule } from '../components/components.module';
 import { CustomerInvoiceComponent } from './customer-invoice/customer-invoice.component';
 
 
-// import {MatCheckboxModule} from '@angular/material';
-// import {MatButtonModule} from '@angular/material';
+
+import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatDatepickerModule} from '@angular/material/datepicker';
@@ -43,9 +43,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 
 const ALlMaterials=[
   MatAutocompleteModule,
-  // MatCheckboxModule,
+
   MatDatepickerModule,
-  // MatNativeDateModule,
   MatFormFieldModule,
   MatInputModule,
   MatRadioModule,
@@ -56,22 +55,17 @@ const ALlMaterials=[
   MatSidenavModule,
   MatToolbarModule,
   MatCardModule,
-  // MatDividerModule,
   MatExpansionModule,
   MatGridListModule,
   MatListModule,
   MatStepperModule,
   MatTabsModule,
-  // MatTreeModule,
-  // MatButtonModule,
+  MatButtonModule,
   MatButtonToggleModule,
-  // MatBadgeModule,
   MatChipsModule,
   MatIconModule,
   MatProgressSpinnerModule,
   MatProgressBarModule,
-  // MatRippleModule,
-  // MatBottomSheetModule,
   MatDialogModule,
   MatSnackBarModule,
   MatTooltipModule,
@@ -95,9 +89,9 @@ const ALlMaterials=[
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-
-
-
-  ]
+ ],
+ exports:[
+  ALlMaterials
+ ]
 })
 export class PagesModule { }
