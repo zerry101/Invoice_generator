@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { globalConstants } from '../../shared/constants';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'igx-billing-form',
@@ -23,6 +24,11 @@ export class BillingFormComponent implements OnInit {
       Name: [""],
       Address: [""],
       GSTNO: ["", [Validators.required, Validators.pattern(globalConstants.GST_PATTERN)]],
+      TransportationMode:[""],
+      VehicleNumber:["",Validators.pattern('^[A-Z]{2}[ -][0-9]{1,2}(?: [A-Z])?(?: [A-Z]*)? [0-9]{4}$')],
+      DateOfSupply:[""],
+      PlaceOfSupply:[""],
+      ShippedTo:[""],
       productData: this.fb.array([this.initItemRows()]),
     })
   }
@@ -55,17 +61,22 @@ export class BillingFormComponent implements OnInit {
     return (this.userForm.get('productData') as FormArray).controls;
   }
 
+
+
+  totalPrice(){
+    return this.productDatacontrol?.controls.reduce((acc:any,data:any) => {
+      return acc+data.get('Rate').value;
+    },0);
+  }
+
   submitForm() {
     console.log(this.userForm.value);
+    // console.log(this.productDatacontrol?.controls[0].get('Rate')?.value);
     this.userForm.markAllAsTouched();
     this.userForm.markAsDirty();
-    // this.userForm.mas
   }
 
 
-  // get HSN(){
-  //   return this.userForm.get('HSN');
-  // }
 
   get GSTNOcontrol() { return this.userForm.get('GSTNO'); }
   get Namecontrol() { return this.userForm.get('Name'); }

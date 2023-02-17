@@ -12,14 +12,44 @@
     </div>
     <div class="mb-3">
 
-      <label for="GSTNO" class="form-label">GSTNO</label>
-      <input formControlName="GSTNO" type="text" class="form-control" placeholder="Enter GSTNO">
-      <!-- <mat-error *ngIf="GSTNOcontrol?.touched ">You must enter GST
-      </mat-error> -->
-      <mat-error *ngIf="GSTNOcontrol?.hasError('pattern')">Enter proper GST number </mat-error>
-      <!-- <mat-error *ngIf="GSTNOcontrol" >GST is required </mat-error> -->
+      <label for="GST NO." class="form-label">GST NO.</label>
+      <input formControlName="GSTNO" type="text" class="form-control" placeholder="Enter GST NO.  ">
+      <!-- <mat-error *ngIf="GSTNOcontrol?.hasError('pattern')">Enter proper GST number </mat-error> -->
 
     </div>
+
+    <div class="mb-3">
+
+      <label for="Vehicle Number" class="form-label">Vehicle Number</label>
+      <input formControlName="VehicleNumber" type="text" class="form-control" placeholder="Enter Vehicle Number  ">
+      <!-- <mat-error *ngIf="GSTNOcontrol?.hasError('pattern')">Enter proper GST number </mat-error> -->
+    </div>
+    <div class="mb-3">
+
+      <!-- <label for="DateOfSupply" class="form-label">Date Of Supply</label> -->
+      <mat-form-field appearance="fill">
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="DateOfSupply">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+           <!-- <mat-error *ngIf="GSTNOcontrol?.hasError('pattern')">Enter proper GST number </mat-error> -->
+    </div>
+    <div class="mb-3">
+
+      <label for="PlaceOfSupply" class="form-label">Place Of Supply</label>
+      <input formControlName="Place Of Supply" type="text" class="form-control" placeholder="Enter Place Of Supply  ">
+      <!-- <mat-error *ngIf="GSTNOcontrol?.hasError('pattern')">Enter proper GST number </mat-error> -->
+
+    </div>
+    <div class="mb-3">
+
+      <label for="ShippedTo" class="form-label">Shipping Address</label>
+      <input formControlName="ShippedTo" type="text" class="form-control" placeholder="Enter Shipping Address">
+      <!-- <mat-error *ngIf="GSTNOcontrol?.hasError('pattern')">Enter proper GST number </mat-error> -->
+    </div>
+
 
     <div class="row">
       <div class="col-sl-12" formArrayName="productData">
@@ -34,7 +64,8 @@
               <th style="white-space: nowrap;padding-right: 4em;float: center;">Quantity</th>
               <th style="white-space: nowrap;padding-right: 4em;float: center;">Rate</th>
               <th>
-                  <button mat-mini-fab color="warn" (click)="addNewRow()"><strong>+</strong></button>
+                <button style="height: 35px !important;width: 35px;" mat-mini-fab color="warn"
+                  (click)="addNewRow()"><strong>+</strong></button>
               </th>
             </tr>
           </thead>
@@ -48,9 +79,8 @@
                 <mat-error *ngIf="Descriptioncontrol(i)?.hasError('required')">Description is required</mat-error>
               </td>
               <td>
-                <input  type="number"
-                [ngClass]="{'is-invalid':HSNcontrol(i)?.hasError('pattern')}"
-                 class="form-control" formControlName="HSN" placeholder="HSN">
+                <input type="number" [ngClass]="{'is-invalid':HSNcontrol(i)?.hasError('pattern')}" class="form-control"
+                  formControlName="HSN" placeholder="HSN">
                 <mat-error *ngIf="HSNcontrol(i)?.hasError('pattern')">length must be between 4 to 8 </mat-error>
                 <mat-error *ngIf="HSNcontrol(i)?.hasError('required')">HSN is required </mat-error>
 
@@ -58,9 +88,7 @@
 
               </td>
               <td>
-                <input type="number"
-
-                 class="form-control" formControlName="Quantity" placeholder="QTY">
+                <input type="number" class="form-control" formControlName="Quantity" placeholder="QTY">
                 <mat-error *ngIf="Quantitycontrol(i)?.hasError('required')">Quantity is required</mat-error>
               </td>
 
@@ -70,8 +98,17 @@
               </td>
               <td>
 
-                <button    mat-mini-fab color="warn" (click)="deleteRow(i)"><i class="bi bi-trash3-fill"></i></button>
+                <button style="height: 35px !important;width: 35px;" mat-mini-fab color="warn" (click)="deleteRow(i)"><i
+                    class="bi bi-trash3-fill"></i></button>
               </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td><strong>Total:{{totalPrice()|currency:'INR'}}</strong></td>
+
             </tr>
           </tbody>
         </table>
