@@ -49,10 +49,10 @@
               <th style="white-space: nowrap;padding-right: 4em;float: center;">HSN</th>
               <th style="white-space: nowrap;padding-right: 4em;float: center;">Quantity</th>
               <th style="white-space: nowrap;padding-right: 4em;float: center;">Rate</th>
-              <th>
+              <!-- <th>
                 <button style="height: 35px !important;width: 35px;" mat-mini-fab color="warn"
                   (click)="addNewRow()"><strong>+</strong></button>
-              </th>
+              </th> -->
             </tr>
           </thead>
           <tbody>
@@ -79,12 +79,23 @@
               <td>
                 <input type="number" class="form-control" formControlName="Rate" placeholder="Rate">
                 <mat-error *ngIf="Ratecontrol(i)?.hasError('required')">Rate is required</mat-error>
-              </td>
-              <td>
 
-                <button style="height: 35px !important;width: 35px;" mat-mini-fab color="warn" (click)="deleteRow(i)"><i
+                <!-- COnfirm this button -->
+
+              </td>
+              <td >
+                <button style="height: 35px !important;width: 35px;"  mat-mini-fab color="warn" (click)="deleteRow(i)"><i
                     class="bi bi-trash3-fill"></i></button>
               </td>
+
+
+
+                <td class="showhim">
+                  <button   style="height: 30px !important;width: 30px;" class="showme" mat-mini-fab color="warn"
+                    (click)="addNewRow()"><strong>+</strong></button>
+                </td>
+
+
             </tr>
             <tr>
               <td></td>
