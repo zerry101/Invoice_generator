@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as moment from 'moment';
 import { globalConstants } from '../../shared/constants';
-import { DatePipe } from '@angular/common';
+// import { DatePipe } from '@angular/common';
 // import { formatDate } from '@angular/common';
 
 @Component({
@@ -17,7 +17,15 @@ export class BillingFormComponent implements OnInit {
 
   constructor(private fb: FormBuilder) {
     this.todaydate.setDate(this.todaydate.getDate());
+    // this.time=new DatePipe('en-US').transform(this.todaydate,'dd-mm-yyyy');
+// console.log(time);
+
+
   }
+
+  time:any;
+
+
 
   ngOnInit(): void {
     this.setupForm();

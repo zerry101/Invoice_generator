@@ -42,6 +42,9 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatMomentDateModule} from '@angular/material-moment-adapter';
+import { DatePipe } from '@angular/common';
+
+
 
 const ALlMaterials=[
   MatAutocompleteModule,
@@ -93,6 +96,7 @@ const ALlMaterials=[
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
+    DatePipe
  ],
  exports:[
   ALlMaterials
