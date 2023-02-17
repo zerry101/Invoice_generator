@@ -3,4 +3,5 @@ export const globalConstants = {
   HSN_PATTERN : '',
   MOBILE_PATTERN :'',
   EMAIL_PATTERN : '',
+  VEHICLENO_PATTERN:'^[A-Z]{2}[ -][0-9]{1,2}(?: [A-Z])?(?: [A-Z]*)? [0-9]{4}$'
 }

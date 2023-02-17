@@ -1,55 +1,41 @@
 <div class="container mt-3">
 
   <form class="form-group" [formGroup]="userForm" (ngSubmit)="submitForm()">
+
     <div class="mb-3">
       <label for="Name" class="form-label">Name</label>
       <input formControlName="Name" type="text" class="form-control" placeholder="Enter Name">
     </div>
+
     <div class="mb-3">
       <label for="Address" class="form-label">Address</label>
       <input formControlName="Address" type="text" class="form-control" placeholder="Enter Address">
       <mat-error *ngIf="Addresscontrol?.hasError('pattern')">more than 4</mat-error>
     </div>
-    <div class="mb-3">
-
-      <label for="GST NO." class="form-label">GST NO.</label>
-      <input formControlName="GSTNO" type="text" class="form-control" placeholder="Enter GST NO.  ">
-      <!-- <mat-error *ngIf="GSTNOcontrol?.hasError('pattern')">Enter proper GST number </mat-error> -->
-
-    </div>
 
     <div class="mb-3">
-
       <label for="Vehicle Number" class="form-label">Vehicle Number</label>
       <input formControlName="VehicleNumber" type="text" class="form-control" placeholder="Enter Vehicle Number  ">
-      <!-- <mat-error *ngIf="GSTNOcontrol?.hasError('pattern')">Enter proper GST number </mat-error> -->
+      <mat-error *ngIf="VehicleNumbercontrol?.hasError('pattern')">Enter proper Vehicle Number</mat-error>
     </div>
-    <div class="mb-3">
 
-      <!-- <label for="DateOfSupply" class="form-label">Date Of Supply</label> -->
-      <mat-form-field appearance="fill">
-        <mat-label>Choose a date</mat-label>
-        <input matInput  [matDatepicker]="picker" formControlName="DateOfSupply" [ngModel]="todaydate">
-        <mat-hint>DD/MM/YYYY</mat-hint>
-        <mat-datepicker-toggle   matIconSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker [startAt]="todaydate" #picker></mat-datepicker>
-      </mat-form-field>
-           <!-- <mat-error *ngIf="GSTNOcontrol?.hasError('pattern')">Enter proper GST number </mat-error> -->
-    </div>
     <div class="mb-3">
-
       <label for="PlaceOfSupply" class="form-label">Place Of Supply</label>
       <input formControlName="PlaceOfSupply" type="text" class="form-control" placeholder="Enter Place Of Supply  ">
-      <!-- <mat-error *ngIf="GSTNOcontrol?.hasError('pattern')">Enter proper GST number </mat-error> -->
-
     </div>
-    <div class="mb-3">
 
+    <div class="mb-3">
       <label for="ShippedTo" class="form-label">Shipping Address</label>
       <input formControlName="ShippedTo" type="text" class="form-control" placeholder="Enter Shipping Address">
-      <!-- <mat-error *ngIf="GSTNOcontrol?.hasError('pattern')">Enter proper GST number </mat-error> -->
     </div>
 
+    <mat-form-field appearance="fill">
+      <mat-label>Shipping Date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="DateOfSupply" [ngModel]="todaydate">
+      <mat-hint>DD/MM/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker [startAt]="todaydate" #picker></mat-datepicker>
+    </mat-form-field>
 
     <div class="row">
       <div class="col-sl-12" formArrayName="productData">
@@ -83,10 +69,8 @@
                   formControlName="HSN" placeholder="HSN">
                 <mat-error *ngIf="HSNcontrol(i)?.hasError('pattern')">length must be between 4 to 8 </mat-error>
                 <mat-error *ngIf="HSNcontrol(i)?.hasError('required')">HSN is required </mat-error>
-
-
-
               </td>
+
               <td>
                 <input type="number" class="form-control" formControlName="Quantity" placeholder="QTY">
                 <mat-error *ngIf="Quantitycontrol(i)?.hasError('required')">Quantity is required</mat-error>
