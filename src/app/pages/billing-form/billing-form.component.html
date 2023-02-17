@@ -29,17 +29,17 @@
       <!-- <label for="DateOfSupply" class="form-label">Date Of Supply</label> -->
       <mat-form-field appearance="fill">
         <mat-label>Choose a date</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="DateOfSupply">
+        <input matInput  [matDatepicker]="picker" formControlName="DateOfSupply" [ngModel]="todaydate">
         <mat-hint>MM/DD/YYYY</mat-hint>
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
+        <mat-datepicker-toggle   matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker [startAt]="todaydate" #picker></mat-datepicker>
       </mat-form-field>
            <!-- <mat-error *ngIf="GSTNOcontrol?.hasError('pattern')">Enter proper GST number </mat-error> -->
     </div>
     <div class="mb-3">
 
       <label for="PlaceOfSupply" class="form-label">Place Of Supply</label>
-      <input formControlName="Place Of Supply" type="text" class="form-control" placeholder="Enter Place Of Supply  ">
+      <input formControlName="PlaceOfSupply" type="text" class="form-control" placeholder="Enter Place Of Supply  ">
       <!-- <mat-error *ngIf="GSTNOcontrol?.hasError('pattern')">Enter proper GST number </mat-error> -->
 
     </div>

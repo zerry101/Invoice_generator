@@ -1,7 +1,10 @@
+import { CurrencyPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import * as moment from 'moment';
 import { globalConstants } from '../../shared/constants';
-import { formatDate } from '@angular/common';
+import { DatePipe } from '@angular/common';
+// import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'igx-billing-form',
@@ -13,10 +16,15 @@ export class BillingFormComponent implements OnInit {
   userForm: FormGroup = new FormGroup({});
 
   constructor(private fb: FormBuilder) {
+    this.todaydate.setDate(this.todaydate.getDate());
   }
 
   ngOnInit(): void {
     this.setupForm();
+    this.userForm.controls['DateOfSupply'].patchValue(this.todaysDate());
+    console.log(this.DateOfSupplycontrol?.value);
+    // console.log(this.todaysDate());
+
   }
 
   setupForm() {
@@ -26,12 +34,14 @@ export class BillingFormComponent implements OnInit {
       GSTNO: ["", [Validators.required, Validators.pattern(globalConstants.GST_PATTERN)]],
       TransportationMode:[""],
       VehicleNumber:["",Validators.pattern('^[A-Z]{2}[ -][0-9]{1,2}(?: [A-Z])?(?: [A-Z]*)? [0-9]{4}$')],
-      DateOfSupply:[""],
+      DateOfSupply:[] ,
       PlaceOfSupply:[""],
       ShippedTo:[""],
       productData: this.fb.array([this.initItemRows()]),
     })
   }
+
+  // selectedDate=this.datePipe.transform
 
   initItemRows(): FormGroup {
     return this.fb.group({
@@ -57,6 +67,8 @@ export class BillingFormComponent implements OnInit {
     }
   }
 
+
+
   getItemRows() {
     return (this.userForm.get('productData') as FormArray).controls;
   }
@@ -69,13 +81,37 @@ export class BillingFormComponent implements OnInit {
     },0);
   }
 
+  todaysDate(){
+    const currentDate=new Date();
+    const day=currentDate.getDate();
+    const month=currentDate.getMonth()+1;
+    const year=currentDate.getFullYear();
+    return day+'/'+month+'/'+year;
+
+  }
+
+  todaydate=new Date();
+  // this.todaydate=this.todaydate.getDate()+1
+
+  // this.currentDate.setValue
+
   submitForm() {
     console.log(this.userForm.value);
     // console.log(this.productDatacontrol?.controls[0].get('Rate')?.value);
+
     this.userForm.markAllAsTouched();
     this.userForm.markAsDirty();
+
   }
 
+
+
+  // this.userForm.get('DateOfSupply').patchValue('')
+  get DateOfSupplycontrol(){
+    return this.userForm.get('DateOfSupply');
+  }
+
+  // this.DateOfSupplycontrol
 
 
   get GSTNOcontrol() { return this.userForm.get('GSTNO'); }
