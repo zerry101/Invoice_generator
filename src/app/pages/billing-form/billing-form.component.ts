@@ -56,7 +56,7 @@ export class BillingFormComponent implements OnInit {
       Description: ["",[Validators.required,Validators.maxLength(4)]],
       HSN: ["", [Validators.required, Validators.pattern('[0-9]{4,8}$')]],
       Quantity: ["",[Validators.required]],
-      Rate: ["",[Validators.required]]
+      Rate: [null,[Validators.required]]
     })
   }
 
@@ -84,9 +84,11 @@ export class BillingFormComponent implements OnInit {
 
 
   totalPrice(){
-    return this.productDatacontrol?.controls.reduce((acc:any,data:any) => {
+    return this.productDatacontrol?.controls.reduce((acc:number,data:any) => {
       return acc+data.get('Rate').value;
     },0);
+
+
   }
 
   todaysDate(){
