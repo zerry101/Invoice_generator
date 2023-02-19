@@ -1,12 +1,7 @@
-import { CurrencyPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import * as moment from 'moment';
-import { from } from 'rxjs';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { globalConstants } from '../../shared/constants';
-import {DateAdapter,MAT_DATE_LOCALE,MAT_DATE_FORMATS} from"@angular/material/core";
-// import { DatePipe } from '@angular/common';
-// import { formatDate } from '@angular/common';
+import {MAT_DATE_FORMATS} from"@angular/material/core";
 
 
 @Component({
@@ -36,13 +31,10 @@ export class BillingFormComponent implements OnInit {
 
   constructor(private fb: FormBuilder) {
     this.todaydate.setDate(this.todaydate.getDate());
-    // this.time=new DatePipe('en-US').transform(this.todaydate,'dd-mm-yyyy');
-    // console.log(time);
 
 
   }
 
-  time: any;
 
 
 
@@ -103,6 +95,7 @@ export class BillingFormComponent implements OnInit {
 
   totalPrice() {
     return this.productDatacontrol?.controls.reduce((acc: number, data: any) => {
+      console.log(typeof(data),data)
       return acc + data.get('Rate').value;
     }, 0);
 
