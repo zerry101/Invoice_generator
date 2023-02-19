@@ -45,6 +45,9 @@ export class BillingFormComponent implements OnInit {
     // console.log(this.todaysDate());
   }
 
+
+
+
   setupForm() {
     this.userForm = this.fb.group({
       Name: [""],
@@ -66,7 +69,9 @@ export class BillingFormComponent implements OnInit {
       Description: ["", [Validators.required, Validators.maxLength(4)]],
       HSN: ["", [Validators.required, Validators.pattern('[0-9]{4,8}$')]],
       Quantity: ["", [Validators.required]],
-      Rate: [null, [Validators.required]]
+      Rate: ["", [Validators.required]],
+      Per: ["", [Validators.required]],
+      Amount: [null, [Validators.required]]
     })
   }
 
@@ -84,6 +89,16 @@ export class BillingFormComponent implements OnInit {
     }
   }
 
+  onEnter(value: string) {
+    const numberOfRowsToInsert = parseInt(value, 10) - 1;
+
+    // console.log();
+    for (let i = 0; i < numberOfRowsToInsert; i++) {
+      this.formarr?.push(this.initItemRows());
+    }
+
+    return
+  }
 
 
   getItemRows() {
@@ -94,7 +109,7 @@ export class BillingFormComponent implements OnInit {
 
   totalPrice() {
     return this.productDatacontrol?.controls.reduce((acc: number, data: any) => {
-      return acc + data.get('Rate').value;
+      return acc + data.get('Amount').value;
     }, 0);
 
 
@@ -152,6 +167,16 @@ export class BillingFormComponent implements OnInit {
 
   Ratecontrol(i: number) {
     return this.productDatacontrol?.controls[i].get('Rate');
+  }
+
+  Percontrol(i: number) {
+    return this.productDatacontrol?.controls[i].get('Per');
+  }
+
+
+
+  Amountcontrol(i: number) {
+    return this.productDatacontrol?.controls[i].get('Amount');
   }
 
 }
