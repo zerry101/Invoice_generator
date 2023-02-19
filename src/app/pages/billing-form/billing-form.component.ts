@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { globalConstants } from '../../shared/constants';
-import {MAT_DATE_FORMATS} from"@angular/material/core";
+import { MAT_DATE_FORMATS } from "@angular/material/core";
 
 
 @Component({
   selector: 'igx-billing-form',
   templateUrl: './billing-form.component.html',
   styleUrls: ['./billing-form.component.scss'],
-  providers:[
+  providers: [
     {
       provide: MAT_DATE_FORMATS,
       useValue: {
@@ -41,9 +41,8 @@ export class BillingFormComponent implements OnInit {
   ngOnInit(): void {
     this.setupForm();
     this.userForm.controls['DateOfSupply'].patchValue(this.todaysDate());
-    console.log(this.DateOfSupplycontrol?.value);
+    // console.log(this.DateOfSupplycontrol?.value);
     // console.log(this.todaysDate());
-
   }
 
   setupForm() {
@@ -95,7 +94,6 @@ export class BillingFormComponent implements OnInit {
 
   totalPrice() {
     return this.productDatacontrol?.controls.reduce((acc: number, data: any) => {
-      console.log(typeof(data),data)
       return acc + data.get('Rate').value;
     }, 0);
 
@@ -130,7 +128,7 @@ export class BillingFormComponent implements OnInit {
   }
 
 
-  get VehicleNumbercontrol(){return this.userForm.controls['VehicleNumber'];}
+  get VehicleNumbercontrol() { return this.userForm.controls['VehicleNumber']; }
   get GSTNOcontrol() { return this.userForm.get('GSTNO'); }
   get Namecontrol() { return this.userForm.get('Name'); }
   get Addresscontrol() { return this.userForm.get('Address'); }

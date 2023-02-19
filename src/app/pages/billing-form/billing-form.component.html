@@ -37,8 +37,24 @@
       <mat-datepicker [startAt]="todaydate" #picker></mat-datepicker>
     </mat-form-field>
 
-    <div class="row">
+<!-- <p> -->
+  <!-- <p > --><div style="right: 3.25em; position: absolute;">
+    <mat-label>Enter number of rows to add:</mat-label>
+    <mat-form-field  appearance="outline">
+      <input type="number" matInput placeholder="Placeholder">
+      <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+      <!-- <mat-hint>Hint</mat-hint> -->
+    </mat-form-field>
+
+  </div>
+
+
+  <!-- </p> -->
+<!-- </p> -->
+
+    <div class="row" style="margin-top: 5em;" >
       <div class="col-sl-12" formArrayName="productData">
+
         <table class="table table-responsive table-hover">
           <thead class="thead-dark">
             <tr>
