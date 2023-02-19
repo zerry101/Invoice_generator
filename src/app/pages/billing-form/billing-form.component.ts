@@ -89,6 +89,11 @@ export class BillingFormComponent implements OnInit {
     }
   }
 
+  deleteAllRows(){
+    console.log(this.userForm.controls['productData'].get('Amount'))
+    // this.formarr.splice(0,this.formarr.length);
+  }
+
   onEnter(value: string) {
     const numberOfRowsToInsert = parseInt(value, 10) - 1;
 
@@ -172,8 +177,6 @@ export class BillingFormComponent implements OnInit {
   Percontrol(i: number) {
     return this.productDatacontrol?.controls[i].get('Per');
   }
-
-
 
   Amountcontrol(i: number) {
     return this.productDatacontrol?.controls[i].get('Amount');

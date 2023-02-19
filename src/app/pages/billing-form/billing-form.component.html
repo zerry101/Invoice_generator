@@ -40,8 +40,9 @@
     <div>
       <mat-form-field style="right: 3.25em; position: absolute;" appearance="outline">
         <mat-label>Add Rows to insert</mat-label>
-        <input #box type="number" matInput placeholder="" (keyup.enter)="onEnter(box.value)" >
+        <input #box type="number" matInput placeholder="" (keyup.enter)="onEnter(box.value)">
       </mat-form-field>
+      <button style="margin-top: 1em;" mat-flat-button color="warn">Delete All Rows</button>
     </div>
 
     <div class="row" style="margin-top: 5em;">
