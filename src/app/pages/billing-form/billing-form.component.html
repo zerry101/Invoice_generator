@@ -14,6 +14,12 @@
     </div>
 
     <div class="mb-3">
+      <label for="TransportationMode" class="form-label">Transportation Mode</label>
+      <input formControlName="TransportationMode" type="text" class="form-control" placeholder="Enter Transportation Mode  ">
+      <!-- <mat-error *ngIf="VehicleNumbercontrol?.hasError('pattern')">Enter proper Transportation Mode</mat-error> -->
+    </div>
+
+    <div class="mb-3">
       <label for="Vehicle Number" class="form-label">Vehicle Number</label>
       <input formControlName="VehicleNumber" type="text" class="form-control" placeholder="Enter Vehicle Number  ">
       <mat-error *ngIf="VehicleNumbercontrol?.hasError('pattern')">Enter proper Vehicle Number</mat-error>
@@ -42,7 +48,7 @@
         <mat-label>Add Rows to insert</mat-label>
         <input #box type="number" matInput placeholder="" (keyup.enter)="onEnter(box.value)">
       </mat-form-field>
-      <button style="margin-top: 1em;" mat-flat-button color="warn">Delete All Rows</button>
+      <button style="margin-top: 1em;" (click)="deleteAllRows()" mat-flat-button color="warn">Delete All Rows</button>
     </div>
 
     <div class="row" style="margin-top: 5em;">
@@ -83,7 +89,7 @@
               </td>
 
               <td>
-                <input type="number" class="form-control" formControlName="Quantity" placeholder="QTY">
+                <input type="text" class="form-control" formControlName="Quantity" placeholder="QTY">
                 <mat-error *ngIf="Quantitycontrol(i)?.hasError('required')">Quantity is required</mat-error>
               </td>
 
@@ -93,7 +99,7 @@
               </td>
 
               <td>
-                <input type="number" class="form-control" formControlName="Per" placeholder="Per">
+                <input type="text" class="form-control" formControlName="Per" placeholder="Per">
                 <mat-error *ngIf="Percontrol(i)?.hasError('required')">Per is required</mat-error>
               </td>
 

@@ -90,8 +90,7 @@ export class BillingFormComponent implements OnInit {
   }
 
   deleteAllRows(){
-    console.log(this.userForm.controls['productData'].get('Amount'))
-    // this.formarr.splice(0,this.formarr.length);
+    this.formarr.controls.splice(1,this.formarr.controls.length);
   }
 
   onEnter(value: string) {
@@ -176,6 +175,10 @@ export class BillingFormComponent implements OnInit {
 
   Percontrol(i: number) {
     return this.productDatacontrol?.controls[i].get('Per');
+  }
+
+  TransportationModecontrol() {
+    return this.productDatacontrol.get('TransportationMode');
   }
 
   Amountcontrol(i: number) {
