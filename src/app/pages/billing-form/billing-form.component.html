@@ -2,35 +2,36 @@
 
   <form class="form-group" [formGroup]="userForm" (ngSubmit)="submitForm()">
 
-    <div class="mb-3">
+    <div class="col-md-3">
       <label for="Name" class="form-label">Name</label>
       <input formControlName="Name" type="text" class="form-control" placeholder="Enter Name">
     </div>
 
-    <div class="mb-3">
+    <div class="col-md-3">
       <label for="Address" class="form-label">Address</label>
       <input formControlName="Address" type="text" class="form-control" placeholder="Enter Address">
       <mat-error *ngIf="Addresscontrol?.hasError('pattern')">more than 4</mat-error>
     </div>
 
-    <div class="mb-3">
+    <div class="col-md-3">
       <label for="TransportationMode" class="form-label">Transportation Mode</label>
-      <input formControlName="TransportationMode" type="text" class="form-control" placeholder="Enter Transportation Mode  ">
+      <input formControlName="TransportationMode" type="text" class="form-control"
+        placeholder="Enter Transportation Mode  ">
       <!-- <mat-error *ngIf="VehicleNumbercontrol?.hasError('pattern')">Enter proper Transportation Mode</mat-error> -->
     </div>
 
-    <div class="mb-3">
+    <div class="col-md-3">
       <label for="Vehicle Number" class="form-label">Vehicle Number</label>
       <input formControlName="VehicleNumber" type="text" class="form-control" placeholder="Enter Vehicle Number  ">
       <mat-error *ngIf="VehicleNumbercontrol?.hasError('pattern')">Enter proper Vehicle Number</mat-error>
     </div>
 
-    <div class="mb-3">
+    <div class="col-md-3">
       <label for="PlaceOfSupply" class="form-label">Place Of Supply</label>
       <input formControlName="PlaceOfSupply" type="text" class="form-control" placeholder="Enter Place Of Supply  ">
     </div>
 
-    <div class="mb-3">
+    <div class="col-md-3">
       <label for="ShippedTo" class="form-label">Shipping Address</label>
       <input formControlName="ShippedTo" type="text" class="form-control" placeholder="Enter Shipping Address">
     </div>
@@ -44,11 +45,16 @@
     </mat-form-field>
 
     <div>
-      <mat-form-field style="right: 3.25em; position: absolute;" appearance="outline">
+      <!-- <mat-form-field style="right: 3.25em; position: absolute;" appearance="outline">
         <mat-label>Add Rows to insert</mat-label>
         <input #box type="number" matInput placeholder="" (keyup.enter)="onEnter(box.value)">
-      </mat-form-field>
-      <button style="margin-top: 1em;" (click)="deleteAllRows()" mat-flat-button color="warn">Delete All Rows</button>
+      </mat-form-field> -->
+      <!-- <td class="showhim"  style="right: 3.25em; position: absolute;"> -->
+      <!-- </td> -->
+      <button style="height: 30px !important;width: 30px;right: 3.25em; position: absolute;" class="showme"
+        mat-flat-button color="primary" (click)="addNewRow()"><strong>+</strong></button>
+      <button style=" right: 11em; position: absolute;"
+        (click)="deleteAllRows()" mat-flat-button color="warn">Delete All</button>
     </div>
 
     <div class="row" style="margin-top: 5em;">
@@ -60,16 +66,12 @@
               <th style="white-space: nowrap;padding-right: 4em;float: center;">
                 Index
               </th>
-              <th style="white-space: nowrap;padding-right: 4em;float: center;">Description</th>
+              <th style="white-space: nowrap;padding-right: 4em;float: center">Description</th>
               <th style="white-space: nowrap;padding-right: 4em;float: center;">HSN</th>
               <th style="white-space: nowrap;padding-right: 4em;float: center;">Quantity</th>
               <th style="white-space: nowrap;padding-right: 4em;float: center;">Rate</th>
               <th style="white-space: nowrap;padding-right: 4em;float: center;">Per</th>
               <th style="white-space: nowrap;padding-right: 4em;float: center;">Amount</th>
-              <!-- <th>
-                <button style="height: 35px !important;width: 35px;" mat-mini-fab color="warn"
-                  (click)="addNewRow()"><strong>+</strong></button>
-              </th> -->
             </tr>
           </thead>
           <tbody>
@@ -108,26 +110,19 @@
                 <mat-error *ngIf="Amountcontrol(i)?.hasError('required')">Amount is required</mat-error>
               </td>
               <td>
-                <button style="height: 35px !important;width: 35px;" mat-mini-fab color="warn" (click)="deleteRow(i)"><i
-                    class="bi bi-trash3-fill"></i></button>
+                <button style="height: 35px !important;width: 35px;"  mat-flat-button color="primary" (click)="deleteRow(i)"><i
+                    class="bi bi-trash3-fill"></i>
+                </button>
               </td>
-
-
-
-              <td class="showhim">
-                <button style="height: 30px !important;width: 30px;" class="showme" mat-mini-fab color="warn"
-                  (click)="addNewRow()"><strong>+</strong></button>
-              </td>
-
-
             </tr>
             <tr>
               <td></td>
               <td></td>
               <td></td>
               <td></td>
+              <td></td>
+              <td></td>
               <td><strong>Grand Total:{{totalPrice()|currency:'INR'}}</strong></td>
-
             </tr>
           </tbody>
         </table>
