@@ -18,6 +18,11 @@
 .row::-webkit-scrollbar {
   overflow: auto;
   display: none;
+  width:100%;
+  display: grid;
+  position: relative;
+  // ma
+
 }
 
 mat-mini-fab{
@@ -26,6 +31,12 @@ mat-mini-fab{
 
 #buttonvisible{
   display: none;
+}
+
+form{
+  position: relative;
+  // width: 65%;
+  // margin: auto !important;
 }
 
 // .showme {
