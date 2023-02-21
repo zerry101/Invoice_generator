@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { globalConstants } from '../../shared/constants';
 import { MAT_DATE_FORMATS } from "@angular/material/core";
 import { Output, EventEmitter } from '@angular/core';
+import { SharedDataService } from 'src/app/shared/services/shared-data.service';
 
 @Component({
   selector: 'igx-billing-form',
@@ -27,13 +28,12 @@ import { Output, EventEmitter } from '@angular/core';
 })
 export class BillingFormComponent implements OnInit {
 
-  @Output() newItemEvent= new EventEmitter<FormGroup>();
+  // @Output() newItemEvent= new EventEmitter<FormGroup>();
 
   userForm: FormGroup = new FormGroup({});
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,public sD:SharedDataService) {
     this.todaydate.setDate(this.todaydate.getDate());
-
 
   }
 
@@ -141,12 +141,20 @@ export class BillingFormComponent implements OnInit {
 
   // this.currentDate.setValue
 
+  Data:any;
+
   submitForm() {
     this.userForm.controls['GrandTotal'].patchValue(this.totalPrice());
-    console.log(this.userForm.value);
+    // console.log(this.userForm.value);
     this.userForm.markAllAsTouched();
     this.userForm.markAsDirty();
-    this.newItemEvent.emit(this.userForm);
+        this.Data=this.userForm.value;
+    this.sD.formData?.push(this.userForm.value);
+    // console.log(Object.keys(this.sD.formData));
+    console.log(this.sD.formData);
+
+
+    // this.newItemEvent.emit(this.userForm);
 
   }
 
