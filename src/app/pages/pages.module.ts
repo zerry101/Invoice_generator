@@ -10,7 +10,6 @@ import { ComponentsModule } from '../components/components.module';
 import { CustomerInvoiceComponent } from './customer-invoice/customer-invoice.component';
 
 
-
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
@@ -86,7 +85,7 @@ const ALlMaterials=[
     BillingFormComponent,
     DashboardComponent,
     PagesComponent,
-    CustomerInvoiceComponent
+    CustomerInvoiceComponent,
   ],
   imports: [
     ALlMaterials,

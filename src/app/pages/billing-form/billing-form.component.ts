@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { globalConstants } from '../../shared/constants';
 import { MAT_DATE_FORMATS } from "@angular/material/core";
-
+import { Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'igx-billing-form',
@@ -27,6 +27,8 @@ import { MAT_DATE_FORMATS } from "@angular/material/core";
 })
 export class BillingFormComponent implements OnInit {
 
+  @Output() newItemEvent= new EventEmitter<FormGroup>();
+
   userForm: FormGroup = new FormGroup({});
 
   constructor(private fb: FormBuilder) {
@@ -41,6 +43,8 @@ export class BillingFormComponent implements OnInit {
   ngOnInit(): void {
     this.setupForm();
     this.userForm.controls['DateOfSupply'].patchValue(this.todaysDate());
+    console.log(typeof(this.todaysDate()),this.todaysDate());
+
     // console.log(this.DateOfSupplycontrol?.value);
     // console.log(this.todaysDate());
   }
@@ -59,6 +63,7 @@ export class BillingFormComponent implements OnInit {
       PlaceOfSupply: [""],
       ShippedTo: [""],
       productData: this.fb.array([this.initItemRows()]),
+      GrandTotal:[Number]
     })
   }
 
@@ -112,6 +117,9 @@ export class BillingFormComponent implements OnInit {
 
 
   totalPrice() {
+
+
+
     return this.productDatacontrol?.controls.reduce((acc: number, data: any) => {
       return acc + data.get('Amount').value;
     }, 0);
@@ -134,9 +142,11 @@ export class BillingFormComponent implements OnInit {
   // this.currentDate.setValue
 
   submitForm() {
+    this.userForm.controls['GrandTotal'].patchValue(this.totalPrice());
     console.log(this.userForm.value);
     this.userForm.markAllAsTouched();
     this.userForm.markAsDirty();
+    this.newItemEvent.emit(this.userForm);
 
   }
 

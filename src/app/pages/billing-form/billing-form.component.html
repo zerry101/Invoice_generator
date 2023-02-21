@@ -58,12 +58,12 @@
 
       <div class=" col  border">
 
-        <div class=" container  text-align-center col " style="right: 0;">
-          <button style="background-color: #3f51b5;" class="row w-100 h-25 btn btn-secondary m-2" type="button">Download
+        <div class="  container  text-align-center  col " style="right: 0;">
+          <button style="background-color: #21263e;" class="row w-100 h-25 btn btn-secondary m-2" type="button">Download
             Invoice</button>
-          <button style="background-color: #3f51b5;" class="row w-100 h-25 btn btn-secondary m-2" type="button">Preview
+          <button style="background-color: #21263e;" class="row w-100 h-25 btn btn-secondary m-2" type="button">Preview
           </button>
-          <button style="background-color: #3f51b5;" class="row w-100 h-25 btn btn-secondary m-2" type="button">Print
+          <button style="background-color: #21263e;" class="row w-100 h-25 btn btn-secondary m-2" type="button">Print
             Invoice</button>
         </div>
       </div>
@@ -156,7 +156,8 @@
       </div>
     </div>
     <div class="example-button-container">
-      <button type="submit" mat-flat-button color="primary">SUBMIT</button>
+      <button type="submit" mat-flat-button color="primary" >SUBMIT</button>
     </div>
   </form>
+  <igx-generate-invoice [item]="todaysDate()" ></igx-generate-invoice>
 </div>
