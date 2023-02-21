@@ -1,16 +1,30 @@
 import { Injectable } from '@angular/core';
-import { FormArray, FormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
+// import { FormArray, FormGroup } from '@angular/forms';
+
+// interface FormGroup{
+//   Name: [""],
+//   Address: [""],
+//   GSTNO: [""],
+//   TransportationMode: [""],
+//   VehicleNumber: [""],
+//   DateOfSupply: [""],
+//   PlaceOfSupply: [""],
+//   ShippedTo: [""],
+//   // productData: this.fb.array([this.initItemRows()]),
+//   // GrandTotal:[Number]
+// }
 
 @Injectable({
   providedIn: 'root'
 })
 export class SharedDataService {
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  constructor() {
+  // constructor() {
 
-   }
+  //  }
 
-   formData:FormArray<any> | undefined;
+   // eslint-disable-next-line @typescript-eslint/ban-types
+   formData:Array<Object>=[];
 }
 

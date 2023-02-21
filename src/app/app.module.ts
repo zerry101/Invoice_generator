@@ -10,8 +10,8 @@ import { AppComponent } from './app.component';
   ],
 
   imports: [
-    BrowserModule,
     BrowserAnimationsModule,
+    BrowserModule,
     AppRoutingModule,
   ],
   providers: [],

@@ -16,6 +16,7 @@ const routes: Routes = [
         pathMatch: 'full',
       },
       {
+
         path: 'billing',
         component: BillingFormComponent
       },

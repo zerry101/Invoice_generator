@@ -4,7 +4,7 @@
 
 <div class="container col mt-3">
 
-  <form class="form-group" [formGroup]="userForm" (ngSubmit)="submitForm()">
+  <form class="form-group" [formGroup]="userForm" >
 
     <div class="row">
 
@@ -156,8 +156,7 @@
       </div>
     </div>
     <div class="example-button-container">
-      <button  type="submit" mat-flat-button color="primary"  >SUBMIT</button>
+      <button (click)="submitForm()" type="submit" mat-flat-button color="primary"  >SUBMIT</button>
     </div>
   </form>
-  <igx-generate-invoice  ></igx-generate-invoice>
 </div>

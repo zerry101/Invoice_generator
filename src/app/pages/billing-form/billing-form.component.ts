@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { globalConstants } from '../../shared/constants';
 import { MAT_DATE_FORMATS } from "@angular/material/core";
-import { Output, EventEmitter } from '@angular/core';
+// import { Output, EventEmitter } from '@angular/core';
 import { SharedDataService } from 'src/app/shared/services/shared-data.service';
 
 @Component({
@@ -149,13 +149,11 @@ export class BillingFormComponent implements OnInit {
     this.userForm.markAllAsTouched();
     this.userForm.markAsDirty();
         this.Data=this.userForm.value;
-    this.sD.formData?.push(this.userForm.value);
-    // console.log(Object.keys(this.sD.formData));
+    this.sD.formData?.push(this.Data);
+    // console.log(typeof(this.userForm.value));
+    // console.log(typeof(this.sD.formData));
+
     console.log(this.sD.formData);
-
-
-    // this.newItemEvent.emit(this.userForm);
-
   }
 
 
