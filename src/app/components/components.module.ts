@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { RouterModule } from '@angular/router';
 import { GenerateInvoiceComponent } from './generate-invoice/generate-invoice.component';
+import { PagesModule } from "../pages/pages.module";
 // import {}
 
 
@@ -12,18 +13,17 @@ const COMPONENTS = [
 ];
 
 @NgModule({
-  declarations: [
-    COMPONENTS,
-
-  ],
-  imports: [
-    CommonModule,
-    // GenerateInvoiceComponent,
-
-    RouterModule
-  ],
-  exports: [
-    COMPONENTS
-  ]
+    declarations: [
+        COMPONENTS,
+    ],
+    exports: [
+        COMPONENTS
+    ],
+    imports: [
+        CommonModule,
+        // GenerateInvoiceComponent,
+        RouterModule,
+        PagesModule
+    ]
 })
 export class ComponentsModule { }
