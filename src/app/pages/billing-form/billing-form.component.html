@@ -4,7 +4,7 @@
 
 <div class="container col mt-3">
 
-  <form class="form-group" [formGroup]="userForm" >
+  <form class="form-group" [formGroup]="userForm">
 
     <div class="row">
 
@@ -59,11 +59,14 @@
       <div class=" col  border">
 
         <div class="  container  text-align-center  col " style="right: 0;">
-          <button style="background-color: #21263e;" class="row w-100 h-25 btn btn-secondary m-2" type="button">Download
+          <button (click)="downloadInvoice()" style="background-color: #21263e;"
+            class="row w-100 h-25 btn btn-secondary m-2" type="button">Download
             Invoice</button>
-          <button style="background-color: #21263e;" class="row w-100 h-25 btn btn-secondary m-2" type="button">Preview
+          <button (click)="previewInvoice()" style="background-color: #21263e;"
+            class="row w-100 h-25 btn btn-secondary m-2" type="button">Preview
           </button>
-          <button style="background-color: #21263e;" class="row w-100 h-25 btn btn-secondary m-2" type="button">Print
+          <button (click)="printInvoice()" style="background-color: #21263e;"
+            class="row w-100 h-25 btn btn-secondary m-2" type="button">Print
             Invoice</button>
         </div>
       </div>
@@ -156,7 +159,9 @@
       </div>
     </div>
     <div class="example-button-container">
-      <button (click)="submitForm()" type="submit" mat-flat-button color="primary"  >SUBMIT</button>
+      <button (click)="submitForm()" type="submit" mat-flat-button color="primary">SUBMIT</button>
     </div>
   </form>
 </div>
+<strong *ngIf="exclusive">exclusive</strong>
+<igx-generate-invoice></igx-generate-invoice>

@@ -5,6 +5,7 @@ import { MAT_DATE_FORMATS } from "@angular/material/core";
 // import { Output, EventEmitter } from '@angular/core';
 import { SharedDataService } from 'src/app/shared/services/shared-data.service';
 
+
 @Component({
   selector: 'igx-billing-form',
   templateUrl: './billing-form.component.html',
@@ -31,9 +32,11 @@ export class BillingFormComponent implements OnInit {
   // @Output() newItemEvent= new EventEmitter<FormGroup>();
 
   userForm: FormGroup = new FormGroup({});
+  exclusive: boolean | undefined = true;
 
-  constructor(private fb: FormBuilder,public sD:SharedDataService) {
+  constructor(private fb: FormBuilder, public sD: SharedDataService) {
     this.todaydate.setDate(this.todaydate.getDate());
+
 
   }
 
@@ -43,7 +46,11 @@ export class BillingFormComponent implements OnInit {
   ngOnInit(): void {
     this.setupForm();
     this.userForm.controls['DateOfSupply'].patchValue(this.todaysDate());
-    console.log(typeof(this.todaysDate()),this.todaysDate());
+    console.log(typeof (this.todaysDate()), this.todaysDate());
+
+    this.sD.exclusive.subscribe((res) => {
+      this.exclusive = res;
+    })
 
     // console.log(this.DateOfSupplycontrol?.value);
     // console.log(this.todaysDate());
@@ -63,7 +70,7 @@ export class BillingFormComponent implements OnInit {
       PlaceOfSupply: [""],
       ShippedTo: [""],
       productData: this.fb.array([this.initItemRows()]),
-      GrandTotal:[Number]
+      GrandTotal: [Number]
     })
   }
 
@@ -84,6 +91,18 @@ export class BillingFormComponent implements OnInit {
     return this.userForm.get('productData') as FormArray;
   }
 
+  printInvoice() {
+    this.sD.clickPrintInvoice();
+  }
+
+  downloadInvoice() {
+    this.sD.clickDownloadInvoice();
+  }
+
+  previewInvoice() {
+    this.sD.clickPreviewInvoice();
+  }
+
   addNewRow() {
     this.formarr?.push(this.initItemRows());
   }
@@ -94,8 +113,8 @@ export class BillingFormComponent implements OnInit {
     }
   }
 
-  deleteAllRows(){
-    this.formarr.controls.splice(1,this.formarr.controls.length);
+  deleteAllRows() {
+    this.formarr.controls.splice(1, this.formarr.controls.length);
   }
 
   onEnter(value: string) {
@@ -141,14 +160,14 @@ export class BillingFormComponent implements OnInit {
 
   // this.currentDate.setValue
 
-  Data:any;
+  Data: any;
 
   submitForm() {
     this.userForm.controls['GrandTotal'].patchValue(this.totalPrice());
     // console.log(this.userForm.value);
     this.userForm.markAllAsTouched();
     this.userForm.markAsDirty();
-        this.Data=this.userForm.value;
+    this.Data = this.userForm.value;
     this.sD.formData?.push(this.Data);
     // console.log(typeof(this.userForm.value));
     // console.log(typeof(this.sD.formData));

@@ -11,13 +11,12 @@ const COMPONENTS = [
 
 @NgModule({
     declarations: [
-        COMPONENTS
+        COMPONENTS,
     ],
 
     imports: [
         CommonModule,
         RouterModule,
-        // PagesModule
     ],
     exports: [
       COMPONENTS
