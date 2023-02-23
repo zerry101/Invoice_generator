@@ -2,7 +2,7 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { jsPDF } from 'jspdf';
 import { SharedDataService } from 'src/app/shared/services/shared-data.service';
 import { ViewChild, ElementRef } from '@angular/core';
-
+import html2canvas from 'html2canvas';
 @Component({
   selector: 'igx-generate-invoice',
   templateUrl: './generate-invoice.component.html',
@@ -21,8 +21,8 @@ export class GenerateInvoiceComponent implements OnInit, AfterViewInit {
     this.sD.exclusive.next(true);
     this.sD.getPrintInvoice().subscribe((res) => {
 
-      res === 'download' ? this.makePDF() : false;    //  console.log(res);
-      console.log(res);
+      res === 'download' ? this.openPDF() : false;    //  console.log(res);
+      // console.log(res);
 
 
     })
@@ -34,21 +34,34 @@ export class GenerateInvoiceComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     // throw new Error('Method not implemented.');
-    console.log(this.box);
+    // console.log(this.box);
     console.log();
     // this.box?.nativeElement.style.background='blue';
   }
 
 
   makePDF() {
-    let pdf = new jsPDF('p', 'pt', 'a4');
+    let pdf = new jsPDF('p', 'mm', 'letter');
     pdf.html(this.box?.nativeElement, {
       callback: (pdf) => { pdf.save("demo.pdf"); }
     })
   }
 
+  public openPDF(): void {
+    // let DATA: any = document.getElementById('box');
+    html2canvas(this.box?.nativeElement).then((canvas) => {
+      let fileWidth = 208;
+      let fileHeight = (canvas.height * fileWidth) / canvas.width;
+      const FILEURI = canvas.toDataURL('image/png');
+      let PDF = new jsPDF('p', 'mm', 'a4');
+      let position = 0;
+      PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
+      PDF.save('angular-demo.pdf');
+    });
+
   // increasecount(){
   // this.count++;
   // }
 
+}
 }
