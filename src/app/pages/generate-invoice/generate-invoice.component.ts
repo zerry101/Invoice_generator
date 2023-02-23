@@ -41,7 +41,7 @@ export class GenerateInvoiceComponent implements OnInit, AfterViewInit {
 
 
   makePDF() {
-    let pdf = new jsPDF('p', 'mm', 'letter');
+    const pdf = new jsPDF('p', 'mm', 'letter');
     pdf.html(this.box?.nativeElement, {
       callback: (pdf) => { pdf.save("demo.pdf"); }
     })
@@ -50,11 +50,11 @@ export class GenerateInvoiceComponent implements OnInit, AfterViewInit {
   public openPDF(): void {
     // let DATA: any = document.getElementById('box');
     html2canvas(this.box?.nativeElement).then((canvas) => {
-      let fileWidth = 208;
-      let fileHeight = (canvas.height * fileWidth) / canvas.width;
+      const fileWidth = 208;
+      const fileHeight = (canvas.height * fileWidth) / canvas.width;
       const FILEURI = canvas.toDataURL('image/png');
-      let PDF = new jsPDF('p', 'mm', 'a4');
-      let position = 0;
+      const PDF = new jsPDF('p', 'mm', 'a4');
+      const position = 0;
       PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
       PDF.save('angular-demo.pdf');
     });
