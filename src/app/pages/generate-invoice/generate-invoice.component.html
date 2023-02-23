@@ -1,4 +1,121 @@
-<p>generate-invoice works!</p>
-<button (click)="makePDF()" >make pdf</button>
+<hr />
+<hr />
+<!-- <p>generate-invoice works!</p> -->
+<button (click)="makePDF()">make pdf</button>
 
 <!-- <h1>{{count}}</h1> -->
+<div #box>
+  <div style="text-align: center" class="title">
+    <h2>Bill of Supply</h2>
+    <p>Composition taxable person. Not eligible to collect tax on supplies</p>
+    <div class="table">
+
+      <table>
+
+        <!-- Data Table -->
+
+        <table>
+          <!--  1st Data Row  -->
+          <tr>
+            <td style="width: auto">
+          <tr>
+            KHUSH PLASTIC D,53/2, SARDAR ESTATE AJWA ROAD VADODARA
+            GSTIN/UIN: 24AEXPK0707K1Z9 State Name : Gujarat, Code : 24
+            E-Mail : dgolani@yahoo.com
+
+          </tr>
+          <tr>
+            Buyer Real Plast Manufacture 6 , Sarvodaya State , Nr. Chamunda
+            Bridge , Asarwa , Ahmedabad GSTIN/UIN : 24JUFPK5052Q1Z1 State
+            Name : Gujarat, Code : 24
+          </tr>
+          </td>
+
+          <td style="width: auto ">
+            <tr>
+              <td style="width: 50%;">Invoice no. 395</td>
+              <td>Dated 13-Oct-2022</td>
+            </tr>
+            <tr>
+              <td>Delivery Note</td>
+              <td>Mode/Terms of Payment</td>
+            </tr>
+            <tr>
+              <td>Supplier's Ref. 395</td>
+              <td>Other Reference(s)</td>
+            </tr>
+            <tr>
+              <td>Buyer's Order No.</td>
+              <td>Dated</td>
+            </tr>
+            <tr>
+              <td>Despatch Document No</td>
+              <td>Delivery Note Date</td>
+            </tr>
+            <tr>
+              <td>Despatched through</td>
+              <td>Destination</td>
+            </tr>
+            <tr>
+              Terms of Delivery
+            </tr>
+          </td>
+          </tr>
+        </table>
+
+        <!-- Product table -->
+
+      <table style="width: 100%;">
+        <tr>
+          <th style="width: 10%">SI NO.</th>
+          <th>Description of Goods</th>
+          <th>HSN/SAC</th>
+          <th>Quantity</th>
+          <th>Rate</th>
+          <th>Per</th>
+          <th>Amount</th>
+        </tr>
+        <!-- ngfor -->
+        <tr>
+          <td>1</td>
+          <td>Nitro Pouch</td>
+          <td>3294</td>
+          <td>480 set</td>
+          <td>54.00</td>
+          <td>set</td>
+          <td>25,920.00</td>
+        </tr>
+
+        <!-- total -->
+        <tr>
+          <td></td>
+          <td>Total</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>52000</td>
+        </tr>
+
+        <tr style="white-space: nowrap; text-align: center;">
+          Amount Chargaeble in Words
+          <p>
+            <strong>
+              INR Fifty Two Thousand Nine Hundred Sixty Five Only
+            </strong>
+          </p>
+        </tr>
+        <!-- <tr style="white-space: nowrap">
+
+        </tr> -->
+
+      </table>
+
+      </table>
+
+
+
+
+    </div>
+  </div>
+</div>
