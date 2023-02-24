@@ -3,6 +3,15 @@ import { jsPDF } from 'jspdf';
 import { SharedDataService } from 'src/app/shared/services/shared-data.service';
 import { ViewChild, ElementRef } from '@angular/core';
 import html2canvas from 'html2canvas';
+
+// pdfMAke
+import * as pdfMake from "pdfmake/build/pdfmake";
+import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+// import * from 'html-to-pdfmake';
+
+
+(<any>pdfMake).vfs = pdfFonts.pdfMake.vfs;
+
 @Component({
   selector: 'igx-generate-invoice',
   templateUrl: './generate-invoice.component.html',
@@ -21,9 +30,9 @@ export class GenerateInvoiceComponent implements OnInit, AfterViewInit {
     this.sD.exclusive.next(true);
     this.sD.getPrintInvoice().subscribe((res) => {
 
-      res === 'download' ? this.openPDF() : false;    //  console.log(res);
-      // console.log(res);
-
+      res === 'download' ? pdfMake.createPdf(this.docDefination).download() : false;    //  console.log(res);
+      res === 'print' ?     pdfMake.createPdf(this.docDefination).print():false;
+      res==='preview'?    pdfMake.createPdf(this.docDefination).open():false;
 
     })
 
@@ -59,9 +68,28 @@ export class GenerateInvoiceComponent implements OnInit, AfterViewInit {
       PDF.save('angular-demo.pdf');
     });
 
+
+  }
+
+  // docDefination: any;
+
+    docDefination:any = {
+      header: 'C#Corner PDF Header',
+      content: 'Sample PDF generated with Angular and PDFMake for C#Corner Blog'
+    };
+
+    // html:any=htmlToPdfmake
+
+
+
+
+
+}
+
+
+
   // increasecount(){
   // this.count++;
   // }
 
-}
-}
+
