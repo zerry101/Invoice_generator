@@ -113,9 +113,9 @@ export class BillingFormComponent implements OnInit {
     }
   }
 
-  deleteAllRows() {
-    this.formarr.controls.splice(1, this.formarr.controls.length);
-  }
+  // deleteAllRows() {
+  //   this.formarr.controls.splice(1, this.formarr.controls.length);
+  // }
 
   onEnter(value: string) {
     const numberOfRowsToInsert = parseInt(value, 10) - 1;
