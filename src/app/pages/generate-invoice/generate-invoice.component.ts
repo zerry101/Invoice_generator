@@ -61,7 +61,7 @@ export class GenerateInvoiceComponent implements OnInit, AfterViewInit {
     const pdf = new jsPDF({
       orientation: 'p',
         unit: 'pt',
-        format: [1700,1700]
+        format: [1300,1300]
     });
     pdf.html(this.box?.nativeElement, {
       callback: (pdf) => { pdf.save("demo.pdf."); }
