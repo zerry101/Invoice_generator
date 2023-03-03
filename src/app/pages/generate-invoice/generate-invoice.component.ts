@@ -8,7 +8,7 @@ import html2canvas from 'html2canvas';
 import * as pdfMake from "pdfmake/build/pdfmake";
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 // import * from 'html-to-pdfmake';
-import htmlToPdfmake from 'html-to-pdfmake';
+// import htmlToPdfmake from 'html-to-pdfmake';
 // import * as html2pdf from 'html2pdf.js';
 
 (<any>pdfMake).vfs = pdfFonts.pdfMake.vfs;

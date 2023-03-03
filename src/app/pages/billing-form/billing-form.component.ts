@@ -69,6 +69,9 @@ export class BillingFormComponent implements OnInit {
       DateOfSupply: [],
       PlaceOfSupply: [""],
       ShippedTo: [""],
+      BanKName:[""],
+      AccountNo:[""],
+      BranchandIFSCode:[""],
       productData: this.fb.array([this.initItemRows()]),
       GrandTotal: [Number]
     })
@@ -186,6 +189,9 @@ export class BillingFormComponent implements OnInit {
   get GSTNOcontrol() { return this.userForm.get('GSTNO'); }
   get Namecontrol() { return this.userForm.get('Name'); }
   get Addresscontrol() { return this.userForm.get('Address'); }
+  get BankNamecontrol() { return this.userForm.get('BankName'); }
+  get AccountNocontrol() { return this.userForm.get('AccountNo'); }
+  get BranchandIFSCodecontrol() { return this.userForm.get('BranchandIFSCode'); }
 
 
   get productDatacontrol() {
