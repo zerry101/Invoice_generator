@@ -4,7 +4,14 @@ import { globalConstants } from '../../shared/constants';
 import { MAT_DATE_FORMATS } from "@angular/material/core";
 // import { Output, EventEmitter } from '@angular/core';
 import { SharedDataService } from 'src/app/shared/services/shared-data.service';
+import { DataTransferService } from 'src/app/shared/services/data-transfer.service';
 
+ interface  employee {
+    firstname:string,
+   lastname:string,
+   emailid:string
+
+}
 
 @Component({
   selector: 'igx-billing-form',
@@ -34,7 +41,7 @@ export class BillingFormComponent implements OnInit {
   userForm: FormGroup = new FormGroup({});
   exclusive: boolean | undefined = true;
 
-  constructor(private fb: FormBuilder, public sD: SharedDataService) {
+  constructor(private fb: FormBuilder, public sD: SharedDataService,public dt:DataTransferService) {
     this.todaydate.setDate(this.todaydate.getDate());
 
 
@@ -69,9 +76,9 @@ export class BillingFormComponent implements OnInit {
       DateOfSupply: [],
       PlaceOfSupply: [""],
       ShippedTo: [""],
-      BanKName:[""],
-      AccountNo:[""],
-      BranchandIFSCode:[""],
+      // BanKName:[""],
+      // AccountNo:[""],
+      // BranchandIFSCode:[""],
       productData: this.fb.array([this.initItemRows()]),
       GrandTotal: [Number]
     })
@@ -164,6 +171,11 @@ export class BillingFormComponent implements OnInit {
   // this.currentDate.setValue
 
   Data: any;
+  Employee:employee={
+    firstname: '',
+    lastname: '',
+    emailid: ''
+  };
 
   submitForm() {
     this.userForm.controls['GrandTotal'].patchValue(this.totalPrice());
@@ -174,8 +186,17 @@ export class BillingFormComponent implements OnInit {
     this.sD.formData?.push(this.Data);
     // console.log(typeof(this.userForm.value));
     // console.log(typeof(this.sD.formData));
+     this.Employee.firstname=this.Data.Name;
+     this.Employee.lastname=this.Data.Address;
+     this.Employee.emailid=this.Data.PlaceOfSupply;
 
-    console.log(this.sD.formData);
+     this.dt.postData(this.Employee).subscribe((data)=>{
+      console.log("Employee posted"+data);
+
+     })
+
+
+    console.log(this.Employee);
   }
 
 

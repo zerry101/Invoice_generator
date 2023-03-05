@@ -30,7 +30,7 @@ export class CustomerInvoiceComponent implements OnInit,AfterViewInit {
   Data!:any;
 
   fetchData():void{
-   this.Data=this.dt.data().subscribe((dataObj:any)=>{
+   this.Data=this.dt.getData().subscribe((dataObj:any)=>{
       console.log(dataObj);
       console.log(typeof(dataObj));
       console.log('email id type');
