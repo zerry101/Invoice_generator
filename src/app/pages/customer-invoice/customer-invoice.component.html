@@ -1,44 +1,36 @@
-<form>
-  <fieldset>
-    <legend>Customer Details</legend>
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
 
-    <!-- <label for="first-name">Client Name</label> -->
-    <!-- <h1 class="heading">Client Name</h1> -->
-    <mat-form-field appearance="outline">
-      <mat-label>Client Name</mat-label>
-      <input matInput type="text" id="first-name" name="first-name" placeholder="Name" />
-    </mat-form-field>
+    <!-- Position Column -->
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+    </ng-container>
 
-    <h3 id="gender-selector">
-      <h1 class="heading">Gender</h1>
-      <input type="radio" id="male" name="gender" value="Male" />
-      <label for="male">Male</label>
-      <input type="radio" id="female" name="gender" value="Female" />
-      <label for="female">Female</label>
-    </h3>
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
 
-    <h1 class="heading">Email</h1>
-    <input type="email" id="email" name="email" placeholder="your@email.com" />
+    <!-- Weight Column -->
+    <ng-container matColumnDef="weight">
+      <th mat-header-cell *matHeaderCellDef> Weight </th>
+      <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+    </ng-container>
 
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="symbol">
+      <th mat-header-cell *matHeaderCellDef> Symbol </th>
+      <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+    </ng-container>
 
-    <h1 class="heading">Phone</h1>
-    <input type="text" id="phone" name="phone" placeholder="+91" required="digits" />
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
 
-
-    <h1 class="heading">GST NUMBER</h1>
-    <input type="text" id="phone" name="phone" placeholder="GSTNO" required="digits" />
-
-    <h1 class="heading">Town</h1>
-    <select name="town" id="town">
-      <option value="varna">Ahmedabad</option>
-      <option value="varna">Kheda</option>
-      <option value="varna">Sarkhej</option>
-    </select>
-
-    <h1 id="message-area">
-      <h1 class="heading">Address</h1>
-      <textarea id="message" name="message" cols="35" rows="5" placeholder="More information..."></textarea>
-    </h1>
-    <button mat-flat-button color="primary">Primary</button>
-  </fieldset>
-</form>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons
+                 aria-label="Select page of periodic elements">
+  </mat-paginator>
+</div>
