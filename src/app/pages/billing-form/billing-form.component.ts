@@ -6,10 +6,10 @@ import { MAT_DATE_FORMATS } from "@angular/material/core";
 import { SharedDataService } from 'src/app/shared/services/shared-data.service';
 import { DataTransferService } from 'src/app/shared/services/data-transfer.service';
 
- interface  employee {
-    firstname:string,
-   lastname:string,
-   emailid:string
+interface employee {
+  firstname: string,
+  lastname: string,
+  emailid: string
 
 }
 
@@ -41,7 +41,7 @@ export class BillingFormComponent implements OnInit {
   userForm: FormGroup = new FormGroup({});
   exclusive: boolean | undefined = true;
 
-  constructor(private fb: FormBuilder, public sD: SharedDataService,public dt:DataTransferService) {
+  constructor(private fb: FormBuilder, public sD: SharedDataService, public dt: DataTransferService) {
     this.todaydate.setDate(this.todaydate.getDate());
 
 
@@ -171,11 +171,11 @@ export class BillingFormComponent implements OnInit {
   // this.currentDate.setValue
 
   Data: any;
-  Employee:employee={
-    firstname: '',
-    lastname: '',
-    emailid: ''
-  };
+  // Employee:employee={
+  //   firstname: '',
+  //   lastname: '',
+  //   emailid: ''
+  // };
 
   submitForm() {
     this.userForm.controls['GrandTotal'].patchValue(this.totalPrice());
@@ -184,27 +184,70 @@ export class BillingFormComponent implements OnInit {
     this.userForm.markAsDirty();
     this.Data = this.userForm.value;
     this.sD.formData?.push(this.Data);
+    this.Data.productData=JSON.stringify(this.Data.productData);
+    console.log("this is data  "+typeof(this.Data.productData));
+
+
     // console.log(typeof(this.userForm.value));
-    console.log(this.userForm);
+    // console.log(this.userForm);
+    console.log(typeof (JSON.stringify(this.Data.productData)));
+    console.log(JSON.stringify(this.Data.productData));
+    console.log(JSON.parse(JSON.stringify(this.Data.productData)));
+
+    console.log(this.fb.group({ Description: 'first item', HSN: 3304, Quantity: '1 doz', Rate: 34, Per: 'doz' }));
+
+
+    const far = [{ "Description": "first", "HSN": "", "Quantity": "", "Rate": "", "Per": "", "Amount": null }, { "Description": "second", "HSN": "", "Quantity": "", "Rate": "", "Per": "", "Amount": null }, { "Description": "third", "HSN": "", "Quantity": "", "Rate": "", "Per": "", "Amount": null }, { "Description": "fourth", "HSN": "", "Quantity": "", "Rate": "", "Per": "", "Amount": null }];
+
+
+    const formaary = far.map(data => this.fb.group(data));
+
+    console.log(formaary);
+
+
+    // for (let i = 0; i < formaary.length; i++) {
+    //   if(i==0){
+
+    //   }
+    //   this.formarr.push(formaary[i]);
+    // }
+
+    this.formarr.removeAt(0);
+    formaary.forEach((data)=>{
+      this.formarr.push(data);
+    })
+    // this.formarr.patchValue(formaary);
+
+
+
+    // console.log("this is updated" + this.formarr.value);
+
+
+
+
+    // this.productDatacontrol.patchValue()
+
 
     // console.log(typeof(this.sD.formData));
-     this.Employee.firstname=this.Data.Name;
-     this.Employee.lastname=this.Data.Address;
-     this.Employee.emailid=this.Data.PlaceOfSupply;
+    //  this.Employee.firstname=this.Data.Name;
+    //  this.Employee.lastname=this.Data.Address;
+    //  this.Employee.emailid=this.Data.PlaceOfSupply;
 
     //  console.log(typeof(this.Data.DateOfSupply));
 
 
-     this.dt.postData(this.Employee).subscribe((data)=>{
-      console.log("Employee posted"+data);
+    //  this.dt.postData().subscribe((data)=>{
+    //   console.log("Employee posted"+data);
 
-     })
+    //  })
 
 
-    console.log(this.Employee);
+    // console.log(this.Employee);
   }
 
 
+
+  // sampleData:  = new FormArray([{ "Description": "first item", "HSN": 3304, "Quantity": "1 doz", "Rate": 34, "Per": "doz", "Amount": 32 }, { "Description": "second item", "HSN": 3209, "Quantity": "2 doz", "Rate": 43, "Per": "56", "Amount": 56 }]);
 
   get DateOfSupplycontrol() {
     return this.userForm.get('DateOfSupply');
