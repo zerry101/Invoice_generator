@@ -236,10 +236,10 @@ export class BillingFormComponent implements OnInit {
     //  console.log(typeof(this.Data.DateOfSupply));
 
 
-    //  this.dt.postData().subscribe((data)=>{
-    //   console.log("Employee posted"+data);
+     this.dt.postData(this.Data).subscribe((data)=>{
+      console.log("Employee posted"+data);
 
-    //  })
+     })
 
 
     // console.log(this.Employee);
