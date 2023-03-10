@@ -185,10 +185,15 @@ export class BillingFormComponent implements OnInit {
     this.Data = this.userForm.value;
     this.sD.formData?.push(this.Data);
     // console.log(typeof(this.userForm.value));
+    console.log(this.userForm);
+
     // console.log(typeof(this.sD.formData));
      this.Employee.firstname=this.Data.Name;
      this.Employee.lastname=this.Data.Address;
      this.Employee.emailid=this.Data.PlaceOfSupply;
+
+    //  console.log(typeof(this.Data.DateOfSupply));
+
 
      this.dt.postData(this.Employee).subscribe((data)=>{
       console.log("Employee posted"+data);
