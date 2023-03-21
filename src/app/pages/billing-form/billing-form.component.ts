@@ -70,6 +70,8 @@ export class BillingFormComponent implements OnInit {
     this.userForm = this.fb.group({
       Name: [""],
       Address: [""],
+      ContactNo: ["" ,[Validators.required,Validators.pattern(globalConstants.CONTACT_NO)]],
+      // LandlineNo: ["" ,[Validators.required,Validators.pattern(globalConstants.LANDLINE_NO)]],
       GSTNO: ["", [Validators.required, Validators.pattern(globalConstants.GST_PATTERN)]],
       TransportationMode: [""],
       VehicleNumber: ["", Validators.pattern(globalConstants.VEHICLENO_PATTERN)],
@@ -184,8 +186,8 @@ export class BillingFormComponent implements OnInit {
     this.userForm.markAsDirty();
     this.Data = this.userForm.value;
     this.sD.formData?.push(this.Data);
-    this.Data.productData=JSON.stringify(this.Data.productData);
-    console.log("this is data  "+typeof(this.Data.productData));
+    this.Data.productData = JSON.stringify(this.Data.productData);
+    console.log("this is data  " + typeof (this.Data.productData));
 
 
     // console.log(typeof(this.userForm.value));
@@ -213,7 +215,7 @@ export class BillingFormComponent implements OnInit {
     // }
 
     this.formarr.removeAt(0);
-    formaary.forEach((data)=>{
+    formaary.forEach((data) => {
       this.formarr.push(data);
     })
     // this.formarr.patchValue(formaary);
@@ -236,10 +238,10 @@ export class BillingFormComponent implements OnInit {
     //  console.log(typeof(this.Data.DateOfSupply));
 
 
-     this.dt.postData(this.Data).subscribe((data)=>{
-      console.log("Employee posted"+data);
+    this.dt.postData(this.Data).subscribe((data) => {
+      console.log("Employee posted" + data);
 
-     })
+    })
 
 
     // console.log(this.Employee);
@@ -261,6 +263,8 @@ export class BillingFormComponent implements OnInit {
   get BankNamecontrol() { return this.userForm.get('BankName'); }
   get AccountNocontrol() { return this.userForm.get('AccountNo'); }
   get BranchandIFSCodecontrol() { return this.userForm.get('BranchandIFSCode'); }
+  get ContactNocontrol() { return this.userForm.get('ContactNo'); }
+  get LandlineNocontrol() { return this.userForm.get('LandlineNo'); }
 
 
   get productDatacontrol() {

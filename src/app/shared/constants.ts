@@ -3,5 +3,7 @@ export const globalConstants = {
   HSN_PATTERN : '',
   MOBILE_PATTERN :'',
   EMAIL_PATTERN : '',
-  VEHICLENO_PATTERN:'^[A-Z]{2}[ -][0-9]{1,2}(?: [A-Z])?(?: [A-Z]*)? [0-9]{4}$'
+  VEHICLENO_PATTERN:'^[A-Z]{2}[ -][0-9]{1,2}(?: [A-Z])?(?: [A-Z]*)? [0-9]{4}$',
+  CONTACT_NO:'^((\\+91-?)|0)?[0-9]{10}$',
+  // LANDLINE_NO:'^[0-9]{8}$'
 }

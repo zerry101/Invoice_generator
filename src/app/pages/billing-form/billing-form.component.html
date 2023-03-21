@@ -32,17 +32,29 @@
         <div class="col-md">
           <label for="Vehicle Number" class="form-label">Vehicle Number</label>
           <input formControlName="VehicleNumber" type="text" class="form-control" placeholder="Enter Vehicle Number  ">
-          <mat-error *ngIf="VehicleNumbercontrol?.hasError('pattern')">Enter proper Vehicle Number</mat-error>
+          <mat-error *ngIf="VehicleNumbercontrol?.hasError('pattern')">Please Enter proper Vehicle Number</mat-error>
         </div>
 
         <div class="col-md">
+          <label for="ContactNo" class="form-label">Contact No</label>
+          <input formControlName="ContactNo" type="number " class="form-control" placeholder="Enter Contact No  ">
+          <mat-error *ngIf="ContactNocontrol?.hasError('pattern')">Please Enter proper Contact No</mat-error>
+        </div>
+
+        <!-- <div class="col-md">
+          <label for="LandlineNo" class="form-label">Landline No</label>
+          <input formControlName="LandlineNo" type="text" class="form-control" placeholder="Enter Landline No  ">
+          <mat-error *ngIf="LandlineNocontrol?.hasError('pattern')">Please Enter proper Landline No</mat-error>
+        </div> -->
+
+        <div class="col-md">
           <label for="PlaceOfSupply" class="form-label">Place Of Supply</label>
-          <input formControlName="PlaceOfSupply" type="text" class="form-control" placeholder="Enter Place Of Supply  ">
+          <input formControlName="PlaceOfSupply" type="text" class="form-control" placeholder="Please Enter Place Of Supply  ">
         </div>
 
         <div class="mb-3">
           <label for="ShippedTo" class="form-label">Shipping Address</label>
-          <input formControlName="ShippedTo" type="text" class="form-control" placeholder="Enter Shipping Address">
+          <input formControlName="ShippedTo" type="text" class="form-control" placeholder="Please Enter Shipping Address">
         </div>
         <!-- <div class="mb-3">
           <label for="BankName" class="form-label">Bank Name</label>
