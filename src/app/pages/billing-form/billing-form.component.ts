@@ -5,6 +5,7 @@ import { MAT_DATE_FORMATS } from "@angular/material/core";
 // import { Output, EventEmitter } from '@angular/core';
 import { SharedDataService } from 'src/app/shared/services/shared-data.service';
 import { DataTransferService } from 'src/app/shared/services/data-transfer.service';
+import { Router } from '@angular/router';
 
 interface employee {
   firstname: string,
@@ -41,7 +42,7 @@ export class BillingFormComponent implements OnInit {
   userForm: FormGroup = new FormGroup({});
   exclusive: boolean | undefined = true;
 
-  constructor(private fb: FormBuilder, public sD: SharedDataService, public dt: DataTransferService) {
+  constructor(private fb: FormBuilder, public sD: SharedDataService, public dt: DataTransferService, public router: Router) {
     this.todaydate.setDate(this.todaydate.getDate());
 
 
@@ -70,7 +71,7 @@ export class BillingFormComponent implements OnInit {
     this.userForm = this.fb.group({
       Name: [""],
       Address: [""],
-      ContactNo: ["" ,[Validators.required,Validators.pattern(globalConstants.CONTACT_NO)]],
+      ContactNo: ["", [Validators.required, Validators.pattern(globalConstants.CONTACT_NO)]],
       // LandlineNo: ["" ,[Validators.required,Validators.pattern(globalConstants.LANDLINE_NO)]],
       GSTNO: ["", [Validators.required, Validators.pattern(globalConstants.GST_PATTERN)]],
       TransportationMode: [""],
@@ -217,6 +218,12 @@ export class BillingFormComponent implements OnInit {
     this.formarr.removeAt(0);
     formaary.forEach((data) => {
       this.formarr.push(data);
+
+
+
+
+
+
     })
     // this.formarr.patchValue(formaary);
 
@@ -242,6 +249,8 @@ export class BillingFormComponent implements OnInit {
       console.log("Employee posted" + data);
 
     })
+
+    this.router.navigate(['/customer-invoice'])
 
 
     // console.log(this.Employee);
