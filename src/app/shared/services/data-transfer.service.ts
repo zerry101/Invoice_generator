@@ -18,9 +18,10 @@ export class DataTransferService {
   // console.log();
 
   // eslint-disable-next-line @typescript-eslint/ban-types
-  postData(em:Object):Observable<any>{
-    return this.http.post(`${this.baseUrl}`,em)
+  postData(em:any){
+    return this.http.post("http://localhost:8080/api/v1/employees",em)
   }
+
 
   // postData():Observable<any>{
   //   return this.http.post(`${this.baseUrl}`);

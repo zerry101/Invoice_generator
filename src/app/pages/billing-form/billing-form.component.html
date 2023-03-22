@@ -13,32 +13,32 @@
       <div class="col container border">
         <div class="col-md">
           <label for="Name" class="form-label">Name</label>
-          <input formControlName="Name" type="text" class="form-control col" placeholder="Enter Name">
+          <input formControlName="name" type="text" class="form-control col" placeholder="Enter Name">
         </div>
 
         <div class="col-md">
-          <label for="Address" class="form-label">Address</label>
-          <input formControlName="Address" type="text" class="form-control" placeholder="Enter Address">
-          <mat-error *ngIf="Addresscontrol?.hasError('pattern')">more than 4</mat-error>
+          <label for="address" class="form-label">address</label>
+          <input formControlName="address" type="text" class="form-control" placeholder="Enter address">
+          <mat-error *ngIf="addresscontrol?.hasError('pattern')">more than 4</mat-error>
         </div>
 
         <div class="col-md">
-          <label for="TransportationMode" class="form-label">Transportation Mode</label>
-          <input formControlName="TransportationMode" type="text" class="form-control"
+          <label for="transportationMode" class="form-label">Transportation Mode</label>
+          <input formControlName="transportationMode" type="text" class="form-control"
             placeholder="Enter Transportation Mode  ">
-          <!-- <mat-error *ngIf="VehicleNumbercontrol?.hasError('pattern')">Enter proper Transportation Mode</mat-error> -->
+          <!-- <mat-error *ngIf="vehicleNumbercontrol?.hasError('pattern')">Enter proper Transportation Mode</mat-error> -->
         </div>
 
         <div class="col-md">
           <label for="Vehicle Number" class="form-label">Vehicle Number</label>
-          <input formControlName="VehicleNumber" type="text" class="form-control" placeholder="Enter Vehicle Number  ">
-          <mat-error *ngIf="VehicleNumbercontrol?.hasError('pattern')">Please Enter proper Vehicle Number</mat-error>
+          <input formControlName="vehicleNumber" type="text" class="form-control" placeholder="Enter Vehicle Number  ">
+          <mat-error *ngIf="vehicleNumbercontrol?.hasError('pattern')">Please Enter proper Vehicle Number</mat-error>
         </div>
 
         <div class="col-md">
-          <label for="ContactNo" class="form-label">Contact No</label>
-          <input formControlName="ContactNo" type="number " class="form-control" placeholder="Enter Contact No  ">
-          <mat-error *ngIf="ContactNocontrol?.hasError('pattern')">Please Enter proper Contact No</mat-error>
+          <label for="contactNo" class="form-label">Contact No</label>
+          <input formControlName="contactNo" type="number " class="form-control" placeholder="Enter Contact No  ">
+          <mat-error *ngIf="contactNocontrol?.hasError('pattern')">Please Enter proper Contact No</mat-error>
         </div>
 
         <!-- <div class="col-md">
@@ -48,13 +48,13 @@
         </div> -->
 
         <div class="col-md">
-          <label for="PlaceOfSupply" class="form-label">Place Of Supply</label>
-          <input formControlName="PlaceOfSupply" type="text" class="form-control" placeholder="Please Enter Place Of Supply  ">
+          <label for="placeOfSupply" class="form-label">Place Of Supply</label>
+          <input formControlName="placeOfSupply" type="text" class="form-control" placeholder="Please Enter Place Of Supply  ">
         </div>
 
         <div class="mb-3">
-          <label for="ShippedTo" class="form-label">Shipping Address</label>
-          <input formControlName="ShippedTo" type="text" class="form-control" placeholder="Please Enter Shipping Address">
+          <label for="shippedTo" class="form-label">Shipping address</label>
+          <input formControlName="shippedTo" type="text" class="form-control" placeholder="Please Enter Shipping address">
         </div>
         <!-- <div class="mb-3">
           <label for="BankName" class="form-label">Bank Name</label>
@@ -71,7 +71,7 @@
 
         <mat-form-field appearance="fill">
           <mat-label>Shipping Date</mat-label>
-          <input matInput [matDatepicker]="picker" formControlName="DateOfSupply" [ngModel]="todaydate">
+          <input matInput [matDatepicker]="picker" formControlName="dateOfSupply" [ngModel]="todaydate">
           <mat-hint>DD/MM/YYYY</mat-hint>
           <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker [startAt]="todaydate" #picker></mat-datepicker>

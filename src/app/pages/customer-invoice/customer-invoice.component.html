@@ -4,28 +4,43 @@
     <table mat-table [dataSource]="dataSource">
 
       <!-- Position Column -->
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef> id </th>
-        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      <ng-container matColumnDef="Name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
       </ng-container>
 
       <!-- Name Column -->
-      <ng-container matColumnDef="lastname">
-        <th mat-header-cell *matHeaderCellDef>lastname</th>
+      <ng-container matColumnDef="Address">
+        <th mat-header-cell *matHeaderCellDef>Address</th>
 
-        <td mat-cell *matCellDef="let element"> {{element.lastname}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.address}} </td>
       </ng-container>
 
       <!-- Weight Column -->
-      <ng-container matColumnDef="firstname">
-        <th mat-header-cell *matHeaderCellDef> firstname </th>
-        <td mat-cell *matCellDef="let element"> {{element.firstname}} </td>
+      <ng-container matColumnDef="ContactNo">
+        <th mat-header-cell *matHeaderCellDef> ContactNo </th>
+        <td mat-cell *matCellDef="let element"> {{element.contactNo}} </td>
       </ng-container>
 
       <!-- Symbol Column -->
-      <ng-container matColumnDef="email_id">
-        <th mat-header-cell *matHeaderCellDef> email_id </th>
-        <td mat-cell *matCellDef="let element"> {{element.emailid}} </td>
+      <ng-container matColumnDef="Date of supply">
+        <th mat-header-cell *matHeaderCellDef> Date of supply </th>
+        <td mat-cell *matCellDef="let element"> {{element.dateOfSupply}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Place of Supply">
+        <th mat-header-cell *matHeaderCellDef> Place of Supply </th>
+        <td mat-cell *matCellDef="let element"> {{element.placeOfSupply}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Transportation Mode">
+        <th mat-header-cell *matHeaderCellDef> Transportation Mode </th>
+        <td mat-cell *matCellDef="let element"> {{element.transportantionMode}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Vehicle Number">
+        <th mat-header-cell *matHeaderCellDef> Vehicle Number </th>
+        <td mat-cell *matCellDef="let element"> {{element.vehicleNumber}} </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

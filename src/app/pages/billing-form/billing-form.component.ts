@@ -53,14 +53,14 @@ export class BillingFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.setupForm();
-    this.userForm.controls['DateOfSupply'].patchValue(this.todaysDate());
+    this.userForm.controls['dateOfSupply'].patchValue(this.todaysDate());
     console.log(typeof (this.todaysDate()), this.todaysDate());
 
     this.sD.exclusive.subscribe((res) => {
       this.exclusive = res;
     })
 
-    // console.log(this.DateOfSupplycontrol?.value);
+    // console.log(this.dateOfSupplycontrol?.value);
     // console.log(this.todaysDate());
   }
 
@@ -69,21 +69,21 @@ export class BillingFormComponent implements OnInit {
 
   setupForm() {
     this.userForm = this.fb.group({
-      Name: [""],
-      Address: [""],
-      ContactNo: ["", [Validators.required, Validators.pattern(globalConstants.CONTACT_NO)]],
+      name: [""],
+      address: [""],
+      contactNo: ["", [Validators.required, Validators.pattern(globalConstants.CONTACT_NO)]],
       // LandlineNo: ["" ,[Validators.required,Validators.pattern(globalConstants.LANDLINE_NO)]],
       GSTNO: ["", [Validators.required, Validators.pattern(globalConstants.GST_PATTERN)]],
-      TransportationMode: [""],
-      VehicleNumber: ["", Validators.pattern(globalConstants.VEHICLENO_PATTERN)],
-      DateOfSupply: [],
-      PlaceOfSupply: [""],
-      ShippedTo: [""],
+      transportationMode: [""],
+      vehicleNumber: ["", Validators.pattern(globalConstants.VEHICLENO_PATTERN)],
+      dateOfSupply: [],
+      placeOfSupply: [""],
+      shippedTo: [""],
       // BanKName:[""],
       // AccountNo:[""],
       // BranchandIFSCode:[""],
       productData: this.fb.array([this.initItemRows()]),
-      GrandTotal: [Number]
+      grandTotal: [Number]
     })
   }
 
@@ -181,31 +181,39 @@ export class BillingFormComponent implements OnInit {
   // };
 
   submitForm() {
-    this.userForm.controls['GrandTotal'].patchValue(this.totalPrice());
+    this.userForm.controls['grandTotal'].patchValue(this.totalPrice());
     // console.log(this.userForm.value);
     this.userForm.markAllAsTouched();
     this.userForm.markAsDirty();
+
     this.Data = this.userForm.value;
+    console.log(" haha data");
+    console.log(this.Data);
+
+
+
     this.sD.formData?.push(this.Data);
     this.Data.productData = JSON.stringify(this.Data.productData);
-    console.log("this is data  " + typeof (this.Data.productData));
+    console.log("data ");
+
+
 
 
     // console.log(typeof(this.userForm.value));
     // console.log(this.userForm);
-    console.log(typeof (JSON.stringify(this.Data.productData)));
-    console.log(JSON.stringify(this.Data.productData));
-    console.log(JSON.parse(JSON.stringify(this.Data.productData)));
+    // console.log(typeof (JSON.stringify(this.Data.productData)));
+    // console.log(JSON.stringify(this.Data.productData));
+    // console.log(JSON.parse(JSON.stringify(this.Data.productData)));
 
-    console.log(this.fb.group({ Description: 'first item', HSN: 3304, Quantity: '1 doz', Rate: 34, Per: 'doz' }));
-
-
-    const far = [{ "Description": "first", "HSN": "", "Quantity": "", "Rate": "", "Per": "", "Amount": null }, { "Description": "second", "HSN": "", "Quantity": "", "Rate": "", "Per": "", "Amount": null }, { "Description": "third", "HSN": "", "Quantity": "", "Rate": "", "Per": "", "Amount": null }, { "Description": "fourth", "HSN": "", "Quantity": "", "Rate": "", "Per": "", "Amount": null }];
+    // console.log(this.fb.group({ Description: 'first item', HSN: 3304, Quantity: '1 doz', Rate: 34, Per: 'doz' }));
 
 
-    const formaary = far.map(data => this.fb.group(data));
+    // const far = [{ "Description": "first", "HSN": "", "Quantity": "", "Rate": "", "Per": "", "Amount": null }, { "Description": "second", "HSN": "", "Quantity": "", "Rate": "", "Per": "", "Amount": null }, { "Description": "third", "HSN": "", "Quantity": "", "Rate": "", "Per": "", "Amount": null }, { "Description": "fourth", "HSN": "", "Quantity": "", "Rate": "", "Per": "", "Amount": null }];
 
-    console.log(formaary);
+
+    // const formaary = far.map(data => this.fb.group(data));
+
+    // console.log(formaary);
 
 
     // for (let i = 0; i < formaary.length; i++) {
@@ -215,16 +223,16 @@ export class BillingFormComponent implements OnInit {
     //   this.formarr.push(formaary[i]);
     // }
 
-    this.formarr.removeAt(0);
-    formaary.forEach((data) => {
-      this.formarr.push(data);
+    // this.formarr.removeAt(0);
+    // formaary.forEach((data) => {
+    // this.formarr.push(data);
 
 
 
 
 
 
-    })
+    // })
     // this.formarr.patchValue(formaary);
 
 
@@ -239,18 +247,27 @@ export class BillingFormComponent implements OnInit {
 
     // console.log(typeof(this.sD.formData));
     //  this.Employee.firstname=this.Data.Name;
-    //  this.Employee.lastname=this.Data.Address;
-    //  this.Employee.emailid=this.Data.PlaceOfSupply;
+    //  this.Employee.lastname=this.Data.address;
+    //  this.Employee.emailid=this.Data.placeOfSupply;
 
-    //  console.log(typeof(this.Data.DateOfSupply));
+    //  console.log(typeof(this.Data.dateOfSupply));
 
 
     this.dt.postData(this.Data).subscribe((data) => {
-      console.log("Employee posted" + data);
+      console.log(data);
 
-    })
+    });
 
-    this.router.navigate(['/customer-invoice'])
+
+    // console.log("this is data  " + typeof (this.Data.productData));
+    // console.log("this is data  " + this.Data.productData);
+
+    // console.log("this is Form value");
+    // console.log(this.userForm.value);
+
+
+
+    // this.router.navigate(['/customer-invoice'])
 
 
     // console.log(this.Employee);
@@ -260,19 +277,19 @@ export class BillingFormComponent implements OnInit {
 
   // sampleData:  = new FormArray([{ "Description": "first item", "HSN": 3304, "Quantity": "1 doz", "Rate": 34, "Per": "doz", "Amount": 32 }, { "Description": "second item", "HSN": 3209, "Quantity": "2 doz", "Rate": 43, "Per": "56", "Amount": 56 }]);
 
-  get DateOfSupplycontrol() {
-    return this.userForm.get('DateOfSupply');
+  get dateOfSupplycontrol() {
+    return this.userForm.get('dateOfSupply');
   }
 
 
-  get VehicleNumbercontrol() { return this.userForm.controls['VehicleNumber']; }
+  get vehicleNumbercontrol() { return this.userForm.controls['vehicleNumber']; }
   get GSTNOcontrol() { return this.userForm.get('GSTNO'); }
   get Namecontrol() { return this.userForm.get('Name'); }
-  get Addresscontrol() { return this.userForm.get('Address'); }
+  get addresscontrol() { return this.userForm.get('address'); }
   get BankNamecontrol() { return this.userForm.get('BankName'); }
   get AccountNocontrol() { return this.userForm.get('AccountNo'); }
   get BranchandIFSCodecontrol() { return this.userForm.get('BranchandIFSCode'); }
-  get ContactNocontrol() { return this.userForm.get('ContactNo'); }
+  get contactNocontrol() { return this.userForm.get('contactNo'); }
   get LandlineNocontrol() { return this.userForm.get('LandlineNo'); }
 
 
@@ -301,8 +318,8 @@ export class BillingFormComponent implements OnInit {
     return this.productDatacontrol?.controls[i].get('Per');
   }
 
-  TransportationModecontrol() {
-    return this.productDatacontrol.get('TransportationMode');
+  transportationModecontrol() {
+    return this.productDatacontrol.get('transportationMode');
   }
 
   Amountcontrol(i: number) {
