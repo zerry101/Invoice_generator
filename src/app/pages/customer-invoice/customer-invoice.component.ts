@@ -54,7 +54,7 @@ export class CustomerInvoiceComponent implements OnInit,AfterViewInit {
 
 
 
-  displayedColumns: string[] = ['Name','Address','ContactNo' , 'Date of supply','Place of Supply','Transportation Mode','Vehicle Number'];
+  displayedColumns: string[] = ['Name','Address','ContactNo' , 'Date_of_supply','Place_of_Supply','Transportation_Mode','Vehicle_Number'];
 
   dataSource!:any;
 

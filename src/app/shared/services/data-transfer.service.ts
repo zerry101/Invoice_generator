@@ -18,6 +18,7 @@ export class DataTransferService {
   // console.log();
 
   // eslint-disable-next-line @typescript-eslint/ban-types
+
   postData(em:any){
     return this.http.post("http://localhost:8080/api/v1/employees",em)
   }
