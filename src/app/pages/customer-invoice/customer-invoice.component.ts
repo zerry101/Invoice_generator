@@ -1,9 +1,9 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataTransferService } from 'src/app/shared/services/data-transfer.service';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatTableDataSource} from '@angular/material/table';
-import {MatTableModule} from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
 
 
 
@@ -12,7 +12,7 @@ import {MatTableModule} from '@angular/material/table';
   templateUrl: './customer-invoice.component.html',
   styleUrls: ['./customer-invoice.component.scss']
 })
-export class CustomerInvoiceComponent implements OnInit,AfterViewInit {
+export class CustomerInvoiceComponent implements OnInit, AfterViewInit {
   // eslint-disable-next-line @typescript-eslint/ban-types
   ELEMENT_DATA: Array<Object> = [];
   constructor(private router: Router, public dt: DataTransferService) {
@@ -27,12 +27,12 @@ export class CustomerInvoiceComponent implements OnInit,AfterViewInit {
 
 
   }
-  @ViewChild(MatPaginator) paginator!: MatPaginator ;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   // eslint-disable-next-line @angular-eslint/use-lifecycle-interface
   ngAfterViewInit() {
     console.log();
-  ;
+    ;
 
 
 
@@ -40,17 +40,17 @@ export class CustomerInvoiceComponent implements OnInit,AfterViewInit {
 
 
 
-  Data!:any;
+  Data!: any;
 
-  fetchData():void{
-    this.Data=this.dt.getData().subscribe((dataObj:any)=>{
+  fetchData(): void {
+    this.Data = this.dt.getData().subscribe((dataObj: any) => {
       console.log(dataObj);
-      console.log(typeof(dataObj));
+      console.log(typeof (dataObj));
       console.log('email id type');
 
       console.log(dataObj[0].email_id);
 
-      this.ELEMENT_DATA=dataObj;
+      this.ELEMENT_DATA = dataObj;
       this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
       this.dataSource.paginator = this.paginator;
       // this.dataSource.sort = this.sort;
@@ -59,7 +59,7 @@ export class CustomerInvoiceComponent implements OnInit,AfterViewInit {
       console.log(this.ELEMENT_DATA);
 
 
-   })
+    })
   }
 
 
@@ -74,12 +74,15 @@ export class CustomerInvoiceComponent implements OnInit,AfterViewInit {
 
 
 
-  displayedColumns: string[] = ['Name','Address','ContactNo' , 'Date_of_supply','Place_of_Supply','Transportation_Mode','Vehicle_Number'];
+  displayedColumns: string[] = ['Name', 'Address', 'ContactNo', 'Date_of_supply', 'Place_of_Supply', 'Transportation_Mode', 'Vehicle_Number', 'action'];
 
-  dataSource!:any;
+  dataSource!: any;
 
+  edit(elem: any) {
+    console.log(elem);
+  }
 
-   // eslint-disable-next-line @typescript-eslint/ban-types
+  // eslint-disable-next-line @typescript-eslint/ban-types
 
 
 }
