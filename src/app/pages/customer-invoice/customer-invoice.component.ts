@@ -6,6 +6,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import {MatTableModule} from '@angular/material/table';
 
 
+
 @Component({
   selector: 'igx-customer-invoice',
   templateUrl: './customer-invoice.component.html',
@@ -26,11 +27,20 @@ export class CustomerInvoiceComponent implements OnInit,AfterViewInit {
 
 
   }
+  @ViewChild(MatPaginator) paginator!: MatPaginator ;
+
+  // eslint-disable-next-line @angular-eslint/use-lifecycle-interface
+  ngAfterViewInit() {
+    console.log();
+
+  }
+
+
 
   Data!:any;
 
   fetchData():void{
-   this.Data=this.dt.getData().subscribe((dataObj:any)=>{
+    this.Data=this.dt.getData().subscribe((dataObj:any)=>{
       console.log(dataObj);
       console.log(typeof(dataObj));
       console.log('email id type');
@@ -39,6 +49,9 @@ export class CustomerInvoiceComponent implements OnInit,AfterViewInit {
 
       this.ELEMENT_DATA=dataObj;
       this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+      this.dataSource.paginator = this.paginator;
+      // this.dataSource.sort = this.sort;
+
       console.log('this is ele data');
       console.log(this.ELEMENT_DATA);
 
@@ -48,6 +61,10 @@ export class CustomerInvoiceComponent implements OnInit,AfterViewInit {
 
 
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
   // eslint-disable-next-line @typescript-eslint/ban-types
 
 
@@ -57,13 +74,6 @@ export class CustomerInvoiceComponent implements OnInit,AfterViewInit {
   displayedColumns: string[] = ['Name','Address','ContactNo' , 'Date_of_supply','Place_of_Supply','Transportation_Mode','Vehicle_Number'];
 
   dataSource!:any;
-
-  @ViewChild(MatPaginator) paginator!: MatPaginator ;
-
-  // eslint-disable-next-line @angular-eslint/use-lifecycle-interface
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-  }
 
 
    // eslint-disable-next-line @typescript-eslint/ban-types
