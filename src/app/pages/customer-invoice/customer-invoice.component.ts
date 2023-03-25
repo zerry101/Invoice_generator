@@ -32,7 +32,7 @@ export class CustomerInvoiceComponent implements OnInit, AfterViewInit {
   // eslint-disable-next-line @angular-eslint/use-lifecycle-interface
   ngAfterViewInit() {
     console.log();
-    ;
+    // ;
 
 
 
