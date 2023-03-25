@@ -126,6 +126,9 @@ mat-row {
 .mat-column-Name {
   border-right: 1px solid #adb5bd;
 }
+.mat-column-Vehicle_Number {
+  border-right: 1px solid #adb5bd;
+}
 
 .mat-mdc-form-field {
   // margin-left: 50x;
@@ -155,29 +158,44 @@ display: table;
   // width: 100vw;
 }
 
-.mdc-data-table__cell,.mdc-data-table__header-cell {
-  box-sizing: border-box;
-  overflow: auto;
-  text-align: left;
-  text-overflow: clip;
+
+.button{
+  display: flex;
+  flex-direction: row;
+  margin-top: 2rem;
+  justify-content: center;
 }
+
+// .buttons{
+//   align-items: center;
+//   margin-top: 2px;
+//   justify-content: center;
+// }
+
+
+// .mdc-data-table__cell,.mdc-data-table__header-cell {
+//   box-sizing: border-box;
+//   overflow: auto;
+//   text-align: left;
+//   text-overflow: clip;
+// }
 
 @media screen and (max-width:600px) {
   mat-table{
     overflow-y: scroll;
   }
 
-  .mdc-data-table__cell {
-    box-sizing: border-box;
-    overflow: auto;
-    text-align: left;
-    text-overflow: clip;
-}
-.mdc-data-table__cell,.mdc-data-table__header-cell {
-  box-sizing: border-box;
-  overflow: auto;
-  text-align: left;
-  text-overflow: clip;
-}
+//   .mdc-data-table__cell {
+//     box-sizing: border-box;
+//     overflow: auto;
+//     text-align: left;
+//     text-overflow: clip;
+// }
+// .mdc-data-table__cell,.mdc-data-table__header-cell {
+//   box-sizing: border-box;
+//   overflow: auto;
+//   text-align: left;
+//   text-overflow: clip;
+// }
 }
 
