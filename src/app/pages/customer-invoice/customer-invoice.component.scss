@@ -149,22 +149,32 @@ mat-row {
 //   margin: 0 auto;
 // }
 
-mat-table{
-  // text-align: center;
+
+
+@media screen  and (min-width:600px) {
+  mat-table{
+
+  overflow-y: scroll;
+
+  }
+}
+@media screen  and (min-width:1030px) {
+  mat-table{
+
+  // overflow-y: scroll;
   table-layout: fixed;
-width: 100%;
-display: table;
+  width: 100%;
+  display: table;
 
-  // width: 100vw;
+  }
 }
-
-
-.button{
-  display: flex;
-  flex-direction: row;
-  margin-top: 2rem;
-  justify-content: center;
-}
+// .button{
+//   margin-top: 2px !important;
+//   display: flex;
+//   flex-direction: row;
+//   margin-top: 2rem;
+//   justify-content: center;
+// }
 
 // .buttons{
 //   align-items: center;

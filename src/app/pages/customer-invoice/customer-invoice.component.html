@@ -7,7 +7,7 @@
     <mat-icon style="margin-bottom: auto;position: absolute;right: 0.5% ;;" fontIcon="search"></mat-icon>
     <input matInput (keyup)="applyFilter($event)" placeholder="Search Item" #input>
   </mat-form-field>
-  <mat-table  mat-table [dataSource]="dataSource">
+  <mat-table mat-table [dataSource]="dataSource">
 
     <!-- Position Column -->
     <ng-container class="column-border" matColumnDef="Name">
@@ -49,11 +49,11 @@
       <td mat-cell *matCellDef="let element"> {{element.vehicleNumber}} </td>
     </ng-container>
 
-    <ng-container class="button" matColumnDef="action">
+    <ng-container class="buttons"   matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef> Action </th>
-      <td mat-cell *matCellDef="let element">
-        <button mat-flat-button (click)="edit(element)"><mat-icon color="primary" fontIcon="edit"></mat-icon></button>
-        <button mat-flat-button (click)="edit(element)"><mat-icon color="warn" fontIcon="delete"></mat-icon></button>
+      <td mat-cell class="button"    *matCellDef="let element">
+        <button mat-flat-button   style=" margin: 7px!important;"(click)="edit(element)"><mat-icon color="primary" fontIcon="edit"></mat-icon></button>
+        <button mat-flat-button style=" margin: 7px!important;" (click)="edit(element)"><mat-icon color="warn" fontIcon="delete"></mat-icon></button>
         <!-- <button (click)="edit(element)">Delete</button> -->
       </td>
     </ng-container>
