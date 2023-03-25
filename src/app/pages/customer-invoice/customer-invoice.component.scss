@@ -102,32 +102,33 @@ form::-webkit-scrollbar {
 
 
 mat-row {
-  border-bottom: #dee2e6;
+  border-bottom: #e9ecef;
 }
 
 .mat-column-Address {
-  border-right: 1px solid #adb5bd;
+  border-right: 1px solid #e9ecef;
 }
 .mat-column-ContactNo {
-  border-right: 1px solid #adb5bd;
+  border-right: 1px solid #e9ecef;
 }
 .mat-column-Date_of_supply {
-  border-right: 1px solid #adb5bd;
+  border-right: 1px solid #e9ecef;
 }
 .mat-column-Place_of_Supply {
-  border-right: 1px solid #adb5bd;
+  border-right: 1px solid #e9ecef;
 }
 .mat-column-Transportation_Mode {
-  border-right: 1px solid #adb5bd;
+  border-right: 1px solid #e9ecef;
 }
 // .mat-column-Vehicle_Number{
-//   border-right: 1px solid #adb5bd;
+//   border-right: 1px solid #e9ecef;
 // }
+
 .mat-column-Name {
-  border-right: 1px solid #adb5bd;
+  border-right: 1px solid #e9ecef;
 }
 .mat-column-Vehicle_Number {
-  border-right: 1px solid #adb5bd;
+  border-right: 1px solid #e9ecef;
 }
 
 .mat-mdc-form-field {
@@ -142,6 +143,9 @@ mat-row {
   width: 80%;
 }
 
+th{
+  border-top: 1.5px solid #e9ecef !important;
+}
 
 // .mat-elevation-z8{
 //   margin-left: auto;
