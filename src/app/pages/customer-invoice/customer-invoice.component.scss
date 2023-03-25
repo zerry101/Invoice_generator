@@ -1,134 +1,134 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+// @import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 
-form {
-  background-color: rgb(144, 231, 179);
-  width: 100vh;
-  height: auto;
-  margin: 2em auto;
-  padding: 2em 3em;
-  border-radius: 0.5em;
-}
-
-fieldset {
-  background-color: inherit;
-  border: none;
-  height: auto;
-}
-
-legend {
-  font-family: Georgia, serif;
-  font-size: 2.2rem;
-  margin: 0 auto 1em auto;
-}
-
-p {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 1em auto;
-}
-
-#message-area {
-  align-items: flex-start;
-}
-
-fieldset label,
-#gender {
-  width: 7em;
-}
-
-#gender-selector label {
-  width: 4em;
-}
-
-#gender-selector input {
-  margin-right: 0.4em;
-}
-
-// #gender-selector{
-//   margin-left: 39px;
+// form {
+//   background-color: rgb(144, 231, 179);
+//   width: 100vh;
+//   height: auto;
+//   margin: 2em auto;
+//   padding: 2em 3em;
+//   border-radius: 0.5em;
 // }
 
-fieldset label[for="agree"] {
-  width: 18em;
-}
+// fieldset {
+//   background-color: inherit;
+//   border: none;
+//   height: auto;
+// }
 
-#checkbox,
-#gender-selector {
-  justify-content: flex-start;
-}
+// legend {
+//   font-family: Georgia, serif;
+//   font-size: 2.2rem;
+//   margin: 0 auto 1em auto;
+// }
 
-// input[type="text"],
-// input[type="number"],
-// input[type="email"],
-// textarea,
-// select {
-//       width: 18em;
-//       margin-right: 6.95em;
-//       padding: 0.4em 0.7em;
-//       }
+// p {
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   margin: 1em auto;
+// }
 
-textarea {
-  max-width: 18em;
-}
+// #message-area {
+//   align-items: flex-start;
+// }
 
-input[type="checkbox"] {
-  margin-right: 0.5em;
-}
+// fieldset label,
+// #gender {
+//   width: 7em;
+// }
 
-input[type="submit"] {
-  font-weight: bold;
-  letter-spacing: 0.06em;
-  background-color: #23446566;
-  color: #ffffff;
-  border: none;
-  border-radius: 0.4em;
-  padding: 1.2em 3.2em;
-  margin: 1em auto 0 auto;
-}
+// #gender-selector label {
+//   width: 4em;
+// }
 
-.heading {
-  font-weight: 100;
-  margin-top: 5px;
-}
+// #gender-selector input {
+//   margin-right: 0.4em;
+// }
 
-form::-webkit-scrollbar {
-  display: none;
-  // overflow-y: hidden;
-}
+// // #gender-selector{
+// //   margin-left: 39px;
+// // }
+
+// fieldset label[for="agree"] {
+//   width: 18em;
+// }
+
+// #checkbox,
+// #gender-selector {
+//   justify-content: flex-start;
+// }
+
+// // input[type="text"],
+// // input[type="number"],
+// // input[type="email"],
+// // textarea,
+// // select {
+// //       width: 18em;
+// //       margin-right: 6.95em;
+// //       padding: 0.4em 0.7em;
+// //       }
+
+// textarea {
+//   max-width: 18em;
+// }
+
+// input[type="checkbox"] {
+//   margin-right: 0.5em;
+// }
+
+// input[type="submit"] {
+//   font-weight: bold;
+//   letter-spacing: 0.06em;
+//   background-color: #23446566;
+//   color: #ffffff;
+//   border: none;
+//   border-radius: 0.4em;
+//   padding: 1.2em 3.2em;
+//   margin: 1em auto 0 auto;
+// }
+
+// .heading {
+//   font-weight: 100;
+//   margin-top: 5px;
+// }
+
+// form::-webkit-scrollbar {
+//   display: none;
+//   // overflow-y: hidden;
+// }
 
 
 
 
 
 mat-row {
-  border-bottom: #e9ecef;
+  border: grey;
 }
 
 .mat-column-Address {
-  border-right: 1px solid #e9ecef;
+  border-right: 1px solid grey;
 }
 .mat-column-ContactNo {
-  border-right: 1px solid #e9ecef;
+  border-right: 1px solid grey;
 }
 .mat-column-Date_of_supply {
-  border-right: 1px solid #e9ecef;
+  border-right: 1px solid grey;
 }
 .mat-column-Place_of_Supply {
-  border-right: 1px solid #e9ecef;
+  border-right: 1px solid grey;
 }
 .mat-column-Transportation_Mode {
-  border-right: 1px solid #e9ecef;
+  border-right: 1px solid grey;
 }
 // .mat-column-Vehicle_Number{
-//   border-right: 1px solid #e9ecef;
+//   border-right: 1px solid grey;
 // }
 
 .mat-column-Name {
-  border-right: 1px solid #e9ecef;
+  border-right: 1px solid grey;
 }
 .mat-column-Vehicle_Number {
-  border-right: 1px solid #e9ecef;
+  border-right: 1px solid grey;
 }
 
 .mat-mdc-form-field {
@@ -144,14 +144,15 @@ mat-row {
 }
 
 th{
-  border-top: 1.5px solid #e9ecef !important;
+  border-top: 1.5px solid grey !important;
 }
 
-// .mat-elevation-z8{
-//   margin-left: auto;
-//   margin-right: auto;
-//   margin: 0 auto;
-// }
+.mat-mdc-header-cell{
+  vertical-align: middle;
+
+}
+
+
 
 
 
@@ -172,44 +173,12 @@ th{
 
   }
 }
-// .button{
-//   margin-top: 2px !important;
-//   display: flex;
-//   flex-direction: row;
-//   margin-top: 2rem;
-//   justify-content: center;
-// }
-
-// .buttons{
-//   align-items: center;
-//   margin-top: 2px;
-//   justify-content: center;
-// }
-
-
-// .mdc-data-table__cell,.mdc-data-table__header-cell {
-//   box-sizing: border-box;
-//   overflow: auto;
-//   text-align: left;
-//   text-overflow: clip;
-// }
 
 @media screen and (max-width:600px) {
   mat-table{
     overflow-y: scroll;
   }
 
-//   .mdc-data-table__cell {
-//     box-sizing: border-box;
-//     overflow: auto;
-//     text-align: left;
-//     text-overflow: clip;
-// }
-// .mdc-data-table__cell,.mdc-data-table__header-cell {
-//   box-sizing: border-box;
-//   overflow: auto;
-//   text-align: left;
-//   text-overflow: clip;
-// }
+
 }
 
