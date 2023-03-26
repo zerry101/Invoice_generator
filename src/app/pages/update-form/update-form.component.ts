@@ -34,6 +34,7 @@ export class UpdateFormComponent implements OnInit {
   userForm: FormGroup = new FormGroup({});
   exclusive: boolean | undefined = true;
 
+
   constructor(private fb: FormBuilder, public sD: SharedDataService, public dt: DataTransferService, public router: Router) {
     this.todaydate.setDate(this.todaydate.getDate());
     this.dt.tableInstanceData.subscribe((data) => {
@@ -47,7 +48,7 @@ export class UpdateFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.setupForm();
-    this.userForm.controls['dateOfSupply'].patchValue(this.todaysDate());
+    // this.userForm.controls['dateOfSupply'].patchValue(this.todaysDate());
     console.log(typeof (this.todaysDate()), this.todaysDate());
 
     this.sD.exclusive.subscribe((res) => {
@@ -69,7 +70,7 @@ export class UpdateFormComponent implements OnInit {
       GSTNO: ["", [Validators.required, Validators.pattern(globalConstants.GST_PATTERN)]],
       transportationMode: [""],
       vehicleNumber: ["", Validators.pattern(globalConstants.VEHICLENO_PATTERN)],
-      dateOfSupply: [],
+      dateOfSupply: [""],
       placeOfSupply: [""],
       shippedTo: [""],
       // BanKName:[""],
