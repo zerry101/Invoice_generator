@@ -19,7 +19,6 @@ export class CustomerInvoiceComponent implements OnInit, AfterViewInit {
   // eslint-disable-next-line @typescript-eslint/ban-types
   ELEMENT_DATA: Array<Object> | undefined = [];
   constructor(private excelService: ExcelService, private router: Router, public dt: DataTransferService) {
-    // console.log('this is element data');
   }
 
 
@@ -38,15 +37,15 @@ export class CustomerInvoiceComponent implements OnInit, AfterViewInit {
   Data!: any;
   fetchData(): void {
     this.Data = this.dt.getData().subscribe((dataObj: any) => {
-      console.log(dataObj);
-      console.log(typeof (dataObj));
-      console.log('email id type');
-      console.log(dataObj[0].email_id);
+      // console.log(dataObj);
+      // console.log(typeof (dataObj));
+      // console.log('email id type');
+      // console.log(dataObj[0].email_id);
       this.ELEMENT_DATA = dataObj;
       this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
       this.dataSource.paginator = this.paginator;
-      console.log('this is ele data');
-      console.log(this.ELEMENT_DATA);
+      // console.log('this is ele data');
+      // console.log(this.ELEMENT_DATA);
     })
   }
 
@@ -68,6 +67,7 @@ export class CustomerInvoiceComponent implements OnInit, AfterViewInit {
   edit(elem: any) {
     // console.log(elem);
     console.log(elem);
+    this.dt.tableInstanceData.next(elem);
     this.router.navigate(['/update-invoice']);
   }
 

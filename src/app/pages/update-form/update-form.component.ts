@@ -1,4 +1,4 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { globalConstants } from '../../shared/constants';
 import { MAT_DATE_FORMATS } from "@angular/material/core";
@@ -36,6 +36,11 @@ export class UpdateFormComponent implements OnInit {
 
   constructor(private fb: FormBuilder, public sD: SharedDataService, public dt: DataTransferService, public router: Router) {
     this.todaydate.setDate(this.todaydate.getDate());
+    this.dt.tableInstanceData.subscribe((data) => {
+      console.log("this table instance data");
+
+      console.log(data);
+    })
 
 
   }
@@ -52,6 +57,8 @@ export class UpdateFormComponent implements OnInit {
     // console.log(this.dateOfSupplycontrol?.value);
     // console.log(this.todaysDate());
   }
+
+
 
   setupForm() {
     this.userForm = this.fb.group({
@@ -177,7 +184,7 @@ export class UpdateFormComponent implements OnInit {
     console.log(this.Data);
     console.log(this.Data.dateOfSupply.toDateString());
 
-    this.Data.dateOfSupply=`${this.Data.dateOfSupply.getDate()+'/'+(this.Data.dateOfSupply.getMonth()+1)+'/'+this.Data.dateOfSupply.getFullYear()}`;
+    this.Data.dateOfSupply = `${this.Data.dateOfSupply.getDate() + '/' + (this.Data.dateOfSupply.getMonth() + 1) + '/' + this.Data.dateOfSupply.getFullYear()}`;
 
     this.sD.formData?.push(this.Data);
     this.Data.productData = JSON.stringify(this.Data.productData);
@@ -312,6 +319,8 @@ export class UpdateFormComponent implements OnInit {
   Amountcontrol(i: number) {
     return this.productDatacontrol?.controls[i].get('Amount');
   }
+
+
 
 
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {  HttpClient} from '@angular/common/http';
-import { Observable, retry } from 'rxjs';
+import { BehaviorSubject, Observable, retry } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +10,9 @@ export class DataTransferService {
   constructor(public http:HttpClient) {  }
 
   private baseUrl="http://localhost:8080/api/v1/employees";
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  tableInstanceData:BehaviorSubject<any>= new BehaviorSubject<any>({});
+
 
   getData():Observable<any>{
     return this.http.get(`${this.baseUrl}`);
