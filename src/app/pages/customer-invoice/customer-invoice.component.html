@@ -53,7 +53,7 @@
       <th mat-header-cell *matHeaderCellDef> Action </th>
       <td mat-cell class="button"    *matCellDef="let element">
         <button mat-flat-button   style=" margin: 7px!important;" (click)="edit(element)"><mat-icon color="primary" fontIcon="edit"></mat-icon></button>
-        <button mat-flat-button style=" margin: 7px!important;" (click)="edit(element)"><mat-icon color="warn" fontIcon="delete"></mat-icon></button>
+        <button mat-flat-button style=" margin: 7px!important;" (click)="delete(element)"><mat-icon color="warn" fontIcon="delete"></mat-icon></button>
         <!-- <button (click)="edit(element)">Delete</button> -->
       </td>
     </ng-container>

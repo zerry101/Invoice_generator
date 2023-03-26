@@ -19,7 +19,7 @@ export class CustomerInvoiceComponent implements OnInit, AfterViewInit {
   // eslint-disable-next-line @typescript-eslint/ban-types
   ELEMENT_DATA: Array<Object> | undefined = [];
   constructor(private excelService: ExcelService, private router: Router, public dt: DataTransferService) {
-    console.log('this is element data');
+    // console.log('this is element data');
   }
 
 
@@ -66,10 +66,19 @@ export class CustomerInvoiceComponent implements OnInit, AfterViewInit {
   dataSource!: any;
 
   edit(elem: any) {
+    // console.log(elem);
     console.log(elem);
+    this.router.navigate(['/update-invoice']);
   }
 
-    // eslint-disable-next-line @typescript-eslint/ban-types
+
+
+  delete(elem: any) {
+    console.log(elem);
+
+  }
+
+  // eslint-disable-next-line @typescript-eslint/ban-types
   exportTable() {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     this.excelService.exportAsExcelFile(this.ELEMENT_DATA!, 'export-to-excel');
