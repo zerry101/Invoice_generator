@@ -1,0 +1,188 @@
+<p>update-form works!</p>
+<div class="container col mt-3">
+
+  <form class="form-group" [formGroup]="userForm">
+
+    <div class="row">
+
+
+
+      <div class="col container border">
+        <div class="col-md">
+          <label for="Name" class="form-label">Name</label>
+          <input formControlName="name" type="text" class="form-control col" placeholder="Enter Name">
+        </div>
+
+        <div class="col-md">
+          <label for="address" class="form-label">address</label>
+          <input formControlName="address" type="text" class="form-control" placeholder="Enter address">
+          <mat-error *ngIf="addresscontrol?.hasError('pattern')">more than 4</mat-error>
+        </div>
+
+        <div class="col-md">
+          <label for="transportationMode" class="form-label">Transportation Mode</label>
+          <input formControlName="transportationMode" type="text" class="form-control"
+            placeholder="Enter Transportation Mode  ">
+          <!-- <mat-error *ngIf="vehicleNumbercontrol?.hasError('pattern')">Enter proper Transportation Mode</mat-error> -->
+        </div>
+
+        <div class="col-md">
+          <label for="Vehicle Number" class="form-label">Vehicle Number</label>
+          <input formControlName="vehicleNumber" type="text" class="form-control" placeholder="Enter Vehicle Number  ">
+          <mat-error *ngIf="vehicleNumbercontrol?.hasError('pattern')">Please Enter proper Vehicle Number</mat-error>
+        </div>
+
+        <div class="col-md">
+          <label for="contactNo" class="form-label">Contact No</label>
+          <input formControlName="contactNo" type="number " class="form-control" placeholder="Enter Contact No  ">
+          <mat-error *ngIf="contactNocontrol?.hasError('pattern')">Please Enter proper Contact No</mat-error>
+        </div>
+
+        <!-- <div class="col-md">
+          <label for="LandlineNo" class="form-label">Landline No</label>
+          <input formControlName="LandlineNo" type="text" class="form-control" placeholder="Enter Landline No  ">
+          <mat-error *ngIf="LandlineNocontrol?.hasError('pattern')">Please Enter proper Landline No</mat-error>
+        </div> -->
+
+        <div class="col-md">
+          <label for="placeOfSupply" class="form-label">Place Of Supply</label>
+          <input formControlName="placeOfSupply" type="text" class="form-control" placeholder="Please Enter Place Of Supply  ">
+        </div>
+
+        <div class="mb-3">
+          <label for="shippedTo" class="form-label">Shipping address</label>
+          <input formControlName="shippedTo" type="text" class="form-control" placeholder="Please Enter Shipping address">
+        </div>
+        <!-- <div class="mb-3">
+          <label for="BankName" class="form-label">Bank Name</label>
+          <input formControlName="BankName" type="text" class="form-control" placeholder="Enter Bank Name">
+        </div>
+        <div class="mb-3">
+          <label for="AccountNo" class="form-label">Account No</label>
+          <input formControlName="AccountNo" type="text" class="form-control" placeholder="Enter Account No">
+        </div>
+        <div class="mb-3">
+          <label for="BranchandIFSCode" class="form-label">Branch and IFS Code</label>
+          <input formControlName="BranchandIFSCode" type="text" class="form-control" placeholder="Enter Branch and IFS Code">
+        </div> -->
+
+        <mat-form-field appearance="fill">
+          <mat-label>Shipping Date</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="dateOfSupply" [ngModel]="todaydate">
+          <mat-hint>DD/MM/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker [startAt]="todaydate" #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+
+
+      <div class=" col  border">
+
+        <div class="  container  text-align-center  col " style="right: 0;">
+          <button (click)="downloadInvoice()" style="background-color: #21263e;"
+            class="row w-100 h-25 btn btn-secondary m-2" type="button">Download
+            Invoice</button>
+          <button (click)="previewInvoice()" style="background-color: #21263e;"
+            class="row w-100 h-25 btn btn-secondary m-2" type="button">Preview
+          </button>
+          <button (click)="printInvoice()" style="background-color: #21263e;"
+            class="row w-100 h-25 btn btn-secondary m-2" type="button">Print
+            Invoice</button>
+        </div>
+      </div>
+
+
+    </div>
+
+
+
+
+
+    <div>
+
+      <!-- <button style="height: 30px !important;width: 30px;right: 3.25em; position: absolute;" class="showme"
+        mat-flat-button color="primary" (click)="addNewRow()"><strong>+</strong></button> -->
+
+    </div>
+
+    <div class="row" style="margin-top: 5em;">
+      <div class="col-sl-12" formArrayName="productData">
+
+        <table class="table table-responsive table-hover" style="display: block;">
+          <thead class="thead-dark">
+            <tr>
+              <th style="white-space: nowrap;padding-right: 4em;float: center;">
+                Index
+              </th>
+              <th>Description</th>
+              <th style="white-space: nowrap;padding-right: 4em;float: center;">HSN</th>
+              <th style="white-space: nowrap;padding-right: 4em;float: center;">Quantity</th>
+              <th style="white-space: nowrap;padding-right: 4em;float: center;">Rate</th>
+              <th style="white-space: nowrap;padding-right: 4em;float: center;">Per</th>
+              <th style="white-space: nowrap;margin-left: auto;">Amount</th>
+
+              <button style="height: 30px !important;width: 30px;right: 0rem; position: absolute;" class="showme"
+                mat-flat-button color="primary" (click)="addNewRow()"><strong>+</strong></button>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let itemrow of getItemRows(); let i=index" [formGroupName]="i">
+              <td>
+                {{i+1}}
+              </td>
+              <td>
+                <input type="text" class="form-control" formControlName="Description" placeholder="Enter Description">
+                <mat-error *ngIf="Descriptioncontrol(i)?.hasError('required')">Description is required</mat-error>
+              </td>
+              <td>
+                <input type="number" [ngClass]="{'is-invalid':HSNcontrol(i)?.hasError('pattern')}" class="form-control"
+                  formControlName="HSN" placeholder="HSN">
+                <mat-error *ngIf="HSNcontrol(i)?.hasError('pattern')">length must be between 4 to 8 </mat-error>
+                <mat-error *ngIf="HSNcontrol(i)?.hasError('required')">HSN is required </mat-error>
+              </td>
+
+              <td>
+                <input type="text" class="form-control" formControlName="Quantity" placeholder="QTY">
+                <mat-error *ngIf="Quantitycontrol(i)?.hasError('required')">Quantity is required</mat-error>
+              </td>
+
+              <td>
+                <input type="number" class="form-control" formControlName="Rate" placeholder="Rate">
+                <mat-error *ngIf="Ratecontrol(i)?.hasError('required')">Rate is required</mat-error>
+              </td>
+
+              <td>
+                <input type="text" class="form-control" formControlName="Per" placeholder="Per">
+                <mat-error *ngIf="Percontrol(i)?.hasError('required')">Per is required</mat-error>
+              </td>
+
+              <td>
+                <input type="number" class="form-control" formControlName="Amount" placeholder="Amount">
+                <mat-error *ngIf="Amountcontrol(i)?.hasError('required')">Amount is required</mat-error>
+              </td>
+              <td>
+                <button style="height: 35px !important;width: 35px;" mat-mini-fab color="primary"
+                  (click)="deleteRow(i)"><i class="bi bi-trash3-fill"></i></button>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td><strong>Grand Total:{{totalPrice()|currency:'INR'}}</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="example-button-container">
+      <button (click)="submitForm()" type="submit" mat-flat-button color="primary">SUBMIT</button>
+    </div>
+  </form>
+</div>
+<!-- <strong *ngIf="exclusive">exclusive</strong> -->
+<!-- <igx-generate-invoice></igx-generate-invoice> -->

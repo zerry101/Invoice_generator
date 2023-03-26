@@ -4,6 +4,7 @@ import { BillingFormComponent } from './billing-form/billing-form.component';
 import { CustomerInvoiceComponent } from './customer-invoice/customer-invoice.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PagesComponent } from './pages.component';
+import { UpdateFormComponent } from './update-form/update-form.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,10 @@ const routes: Routes = [
       {
         path:'customer-invoice',
         component: CustomerInvoiceComponent
+      },
+      {
+        path:'update-invoice',
+        component: UpdateFormComponent
       }
     ]
   }

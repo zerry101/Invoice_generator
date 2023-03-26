@@ -42,6 +42,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatMomentDateModule} from '@angular/material-moment-adapter';
 import { DatePipe } from '@angular/common';
+import { UpdateFormComponent } from './update-form/update-form.component';
 
 
 
@@ -86,7 +87,8 @@ const ALlMaterials=[
     DashboardComponent,
     PagesComponent,
     CustomerInvoiceComponent,
-    GenerateInvoiceComponent
+    GenerateInvoiceComponent,
+    UpdateFormComponent
   ],
   imports: [
     ALlMaterials,
