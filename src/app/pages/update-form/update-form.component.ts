@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { globalConstants } from '../../shared/constants';
 import { MAT_DATE_FORMATS } from "@angular/material/core";
-// import { Output, EventEmitter } from '@angular/core';
 import { SharedDataService } from 'src/app/shared/services/shared-data.service';
 import { DataTransferService } from 'src/app/shared/services/data-transfer.service';
 import { Router } from '@angular/router';
@@ -29,65 +28,44 @@ import { Router } from '@angular/router';
     },
   ]
 })
-export class UpdateFormComponent implements OnInit,OnDestroy {
+export class UpdateFormComponent implements OnInit, OnDestroy {
 
   userForm: FormGroup = new FormGroup({});
   exclusive: boolean | undefined = true;
 
-
-  constructor(private fb: FormBuilder, public sD: SharedDataService, public dt: DataTransferService, public router: Router) {
-    // this.todaydate.setDate(this.todaydate.getDate());
-
-
-
-  }
+  constructor(private fb: FormBuilder, public sD: SharedDataService, public dt: DataTransferService, public router: Router) { }
   ngOnDestroy(): void {
-    // throw new Error('Method not implemented.');
     this.userForm.reset();
   }
 
   ngOnInit(): void {
 
     this.setupForm();
-    // console.log("form is set");
 
     this.dt.tableInstanceData.subscribe((data) => {
+      Object.keys(this.userForm.controls).forEach((control) => {
+        console.log(control, data[control]);
 
-      console.log("this table instance data");
-
-      // let i=0;
-      Object.keys(this.userForm.controls).forEach((control,i)=>{
-        console.log(control);
-
-        this.userForm.controls[control].patchValue(data[control])
-        // console.log(," data");
+        this.userForm.controls[control].patchValue(data[control]);
+        if (control.localeCompare('productData')) {
+          JSON.parse(data.productData).forEach((product: any) => {
+            this.initItemRows();
+          })
+          this.formarr.patchValue(JSON.parse(data.productData));
+        }
 
 
       })
-
-
-
-      // Object.keys(this.userForm.controls).forEach((element:any,i)=>{
-      //   console.log(Object.keys(data));
-      //   console.log(element);
-
-      //    element.patchValue();
-      //   //  i++;
-      // })
 
       console.log(data);
     })
 
 
-    // this.userForm.controls['dateOfSupply'].patchValue(this.todaysDate());
     console.log(typeof (this.todaysDate()), this.todaysDate());
 
     this.sD.exclusive.subscribe((res) => {
       this.exclusive = res;
     })
-
-    // console.log(this.dateOfSupplycontrol?.value);
-    // console.log(this.todaysDate());
   }
 
 
@@ -97,22 +75,18 @@ export class UpdateFormComponent implements OnInit,OnDestroy {
       name: [""],
       address: [""],
       contactNo: ["", [Validators.required, Validators.pattern(globalConstants.CONTACT_NO)]],
-      // LandlineNo: ["" ,[Validators.required,Validators.pattern(globalConstants.LANDLINE_NO)]],
       GSTNO: ["", [Validators.required, Validators.pattern(globalConstants.GST_PATTERN)]],
       transportationMode: [""],
       vehicleNumber: ["", Validators.pattern(globalConstants.VEHICLENO_PATTERN)],
       dateOfSupply: [""],
       placeOfSupply: [""],
       shippedTo: [""],
-      // BanKName:[""],
-      // AccountNo:[""],
-      // BranchandIFSCode:[""],
+
       productData: this.fb.array([this.initItemRows()]),
       grandTotal: [Number]
     })
   }
 
-  // selectedDate=this.datePipe.transform
 
   initItemRows(): FormGroup {
     return this.fb.group({
@@ -151,14 +125,10 @@ export class UpdateFormComponent implements OnInit,OnDestroy {
     }
   }
 
-  // deleteAllRows() {
-  //   this.formarr.controls.splice(1, this.formarr.controls.length);
-  // }
 
   onEnter(value: string) {
     const numberOfRowsToInsert = parseInt(value, 10) - 1;
 
-    // console.log();
     for (let i = 0; i < numberOfRowsToInsert; i++) {
       this.formarr?.push(this.initItemRows());
     }
@@ -194,20 +164,12 @@ export class UpdateFormComponent implements OnInit,OnDestroy {
   }
 
   todaydate = new Date();
-  // this.todaydate=this.todaydate.getDate()+1
 
-  // this.currentDate.setValue
 
   Data: any;
-  // Employee:employee={
-  //   firstname: '',
-  //   lastname: '',
-  //   emailid: ''
-  // };
 
   submitForm() {
     this.userForm.controls['grandTotal'].patchValue(this.totalPrice());
-    // console.log(this.userForm.value);
     this.userForm.markAllAsTouched();
     this.userForm.markAsDirty();
 
@@ -221,92 +183,14 @@ export class UpdateFormComponent implements OnInit,OnDestroy {
     this.sD.formData?.push(this.Data);
     this.Data.productData = JSON.stringify(this.Data.productData);
     console.log("data ");
-
-
-
-
-    // console.log(typeof(this.userForm.value));
-    // console.log(this.userForm);
-    // console.log(typeof (JSON.stringify(this.Data.productData)));
-    // console.log(JSON.stringify(this.Data.productData));
-    // console.log(JSON.parse(JSON.stringify(this.Data.productData)));
-
-    // console.log(this.fb.group({ Description: 'first item', HSN: 3304, Quantity: '1 doz', Rate: 34, Per: 'doz' }));
-
-
-    // const far = [{ "Description": "first", "HSN": "", "Quantity": "", "Rate": "", "Per": "", "Amount": null }, { "Description": "second", "HSN": "", "Quantity": "", "Rate": "", "Per": "", "Amount": null }, { "Description": "third", "HSN": "", "Quantity": "", "Rate": "", "Per": "", "Amount": null }, { "Description": "fourth", "HSN": "", "Quantity": "", "Rate": "", "Per": "", "Amount": null }];
-
-
-    // const formaary = far.map(data => this.fb.group(data));
-
-    // console.log(formaary);
-
-
-    // for (let i = 0; i < formaary.length; i++) {
-    //   if(i==0){
-
-    //   }
-    //   this.formarr.push(formaary[i]);
-    // }
-
-    // this.formarr.removeAt(0);
-    // formaary.forEach((data) => {
-    // this.formarr.push(data);
-
-
-
-
-
-
-    // })
-    // this.formarr.patchValue(formaary);
-
-
-
-    // console.log("this is updated" + this.formarr.value);
-
-
-
-
-    // this.productDatacontrol.patchValue()
-
-
-    // console.log(typeof(this.sD.formData));
-    //  this.Employee.firstname=this.Data.Name;
-    //  this.Employee.lastname=this.Data.address;
-    //  this.Employee.emailid=this.Data.placeOfSupply;
-
-    //  console.log(typeof(this.Data.dateOfSupply));
-
-
-    this.dt.postData(this.Data).subscribe((data) => {
-      console.log(data);
-
-    });
-
-
-    // console.log("this is data  " + typeof (this.Data.productData));
-    // console.log("this is data  " + this.Data.productData);
-
-    // console.log("this is Form value");
-    // console.log(this.userForm.value);
-
-
-
-    // this.router.navigate(['/customer-invoice'])
-
-
-    // console.log(this.Employee);
   }
 
 
 
-  // sampleData:  = new FormArray([{ "Description": "first item", "HSN": 3304, "Quantity": "1 doz", "Rate": 34, "Per": "doz", "Amount": 32 }, { "Description": "second item", "HSN": 3209, "Quantity": "2 doz", "Rate": 43, "Per": "56", "Amount": 56 }]);
 
   get dateOfSupplycontrol() {
     return this.userForm.get('dateOfSupply');
   }
-
 
   get vehicleNumbercontrol() { return this.userForm.controls['vehicleNumber']; }
   get GSTNOcontrol() { return this.userForm.get('GSTNO'); }
@@ -351,8 +235,5 @@ export class UpdateFormComponent implements OnInit,OnDestroy {
   Amountcontrol(i: number) {
     return this.productDatacontrol?.controls[i].get('Amount');
   }
-
-
-
 
 }
