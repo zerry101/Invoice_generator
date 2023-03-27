@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { globalConstants } from '../../shared/constants';
 import { MAT_DATE_FORMATS } from "@angular/material/core";
@@ -29,25 +29,56 @@ import { Router } from '@angular/router';
     },
   ]
 })
-export class UpdateFormComponent implements OnInit {
+export class UpdateFormComponent implements OnInit,OnDestroy {
 
   userForm: FormGroup = new FormGroup({});
   exclusive: boolean | undefined = true;
 
 
   constructor(private fb: FormBuilder, public sD: SharedDataService, public dt: DataTransferService, public router: Router) {
-    this.todaydate.setDate(this.todaydate.getDate());
+    // this.todaydate.setDate(this.todaydate.getDate());
+
+
+
+  }
+  ngOnDestroy(): void {
+    // throw new Error('Method not implemented.');
+    this.userForm.reset();
+  }
+
+  ngOnInit(): void {
+
+    this.setupForm();
+    // console.log("form is set");
+
     this.dt.tableInstanceData.subscribe((data) => {
+
       console.log("this table instance data");
+
+      // let i=0;
+      Object.keys(this.userForm.controls).forEach((control,i)=>{
+        console.log(control);
+
+        this.userForm.controls[control].patchValue(data[control])
+        // console.log(," data");
+
+
+      })
+
+
+
+      // Object.keys(this.userForm.controls).forEach((element:any,i)=>{
+      //   console.log(Object.keys(data));
+      //   console.log(element);
+
+      //    element.patchValue();
+      //   //  i++;
+      // })
 
       console.log(data);
     })
 
 
-  }
-
-  ngOnInit(): void {
-    this.setupForm();
     // this.userForm.controls['dateOfSupply'].patchValue(this.todaysDate());
     console.log(typeof (this.todaysDate()), this.todaysDate());
 
