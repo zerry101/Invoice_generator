@@ -1,10 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { globalConstants } from '../../shared/constants';
 import { MAT_DATE_FORMATS } from "@angular/material/core";
 import { SharedDataService } from 'src/app/shared/services/shared-data.service';
 import { DataTransferService } from 'src/app/shared/services/data-transfer.service';
 import { Router } from '@angular/router';
+import moment from 'moment';
 
 
 @Component({
@@ -28,25 +29,27 @@ import { Router } from '@angular/router';
     },
   ]
 })
-export class UpdateFormComponent implements OnInit, OnDestroy {
+export class UpdateFormComponent implements OnInit, OnDestroy ,AfterViewInit{
 
   userForm: FormGroup = new FormGroup({});
   exclusive: boolean | undefined = true;
 
   constructor(private fb: FormBuilder, public sD: SharedDataService, public dt: DataTransferService, public router: Router) { }
-  ngOnDestroy(): void {
-    this.userForm.reset();
-  }
 
-  ngOnInit(): void {
+  dataTOBePatched:any={};
 
-    this.setupForm();
-
+  ngAfterViewInit(): void {
     this.dt.tableInstanceData.subscribe((data) => {
-      Object.keys(this.userForm.controls).forEach((control) => {
-        console.log(control, data[control]);
+      console.log("this is date");
+this.dataTOBePatched=data;
 
-        this.userForm.controls[control].patchValue(data[control]);
+        console.log(data.dateOfSupply);
+
+
+        Object.keys(this.userForm.controls).forEach((control) => {
+          console.log(control, data[control]);
+
+          this.userForm.controls[control].patchValue(data[control]);
         if (control.localeCompare('productData')) {
           JSON.parse(data.productData).forEach((product: any) => {
             this.initItemRows();
@@ -57,8 +60,25 @@ export class UpdateFormComponent implements OnInit, OnDestroy {
 
       })
 
-      console.log(data);
     })
+    console.log('this is Date of give form');
+
+    // console.log(new Date(`${this.dataTOBePatched?.dateOfSupply.getDate()}/${this.dataTOBePatched?.dateOfSupply.getMonth()}/${this.dataTOBePatched?.dateOfSupply.getFullYear()}`));
+    console.log(this.dataTOBePatched?.dateOfSupply.toLocaleString('en-GB'));
+
+
+    this.userForm.get('dateOfSupply')?.patchValue(new Date(this.dataTOBePatched?.dateOfSupply.toDateString()));
+  }
+  ngOnDestroy(): void {
+    this.userForm.reset();
+  }
+
+  ngOnInit(): void {
+
+
+    this.setupForm();
+
+
 
 
     console.log(typeof (this.todaysDate()), this.todaysDate());
@@ -67,6 +87,7 @@ export class UpdateFormComponent implements OnInit, OnDestroy {
       this.exclusive = res;
     })
   }
+
 
 
 
@@ -176,7 +197,9 @@ export class UpdateFormComponent implements OnInit, OnDestroy {
     this.Data = this.userForm.value;
     console.log(" haha data");
     console.log(this.Data);
-    console.log(this.Data.dateOfSupply.toDateString());
+    console.log(this.Data.dateOfSupply);
+    // console.log(this.Data.dateOfSupply);
+
 
     this.Data.dateOfSupply = `${this.Data.dateOfSupply.getDate() + '/' + (this.Data.dateOfSupply.getMonth() + 1) + '/' + this.Data.dateOfSupply.getFullYear()}`;
 
