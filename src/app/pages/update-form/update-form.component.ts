@@ -29,45 +29,66 @@ import moment from 'moment';
     },
   ]
 })
-export class UpdateFormComponent implements OnInit, OnDestroy ,AfterViewInit{
+export class UpdateFormComponent implements OnInit, OnDestroy, AfterViewInit {
 
   userForm: FormGroup = new FormGroup({});
   exclusive: boolean | undefined = true;
 
   constructor(private fb: FormBuilder, public sD: SharedDataService, public dt: DataTransferService, public router: Router) { }
 
-  dataTOBePatched:any={};
+  dataTOBePatched: any = {};
+  parsedProductData:any=[];
 
   ngAfterViewInit(): void {
     this.dt.tableInstanceData.subscribe((data) => {
-      console.log("this is date");
-this.dataTOBePatched=data;
+      // console.log("this is date");
+      this.dataTOBePatched = data;
 
-        console.log(data.dateOfSupply);
+      // console.log(data.dateOfSupply);
 
+      // console.log("this is product parssed ");
+      // console.log(JSON.parse(data.productData));
+      this.parsedProductData=JSON.parse(this.dataTOBePatched.productData);
 
-        Object.keys(this.userForm.controls).forEach((control) => {
-          console.log(control, data[control]);
+      this.parsedProductData.forEach((eachProductData:any,index:number)=>{
+        index>0?this.addNewRow():false;
+        console.log(eachProductData);
+        this.formarr.controls[index].patchValue(eachProductData);
+        // console.log(this.totalPrice());
 
-          this.userForm.controls[control].patchValue(data[control]);
-        if (control.localeCompare('productData')) {
-          JSON.parse(data.productData).forEach((product: any) => {
-            this.initItemRows();
-          })
-          this.formarr.patchValue(JSON.parse(data.productData));
-        }
-
+        // this.
+        // this.
+        // console.log(eachProductData);
 
       })
+console.log('this is total price');
+
+      // console.log(this.totalPrice());
+
+
+      Object.keys(this.userForm.controls).forEach((control) => {
+        // console.log(control, data[control]);
+
+        this.userForm.controls[control].patchValue(data[control]);
+      })
+
+
+
+
+
 
     })
-    console.log('this is Date of give form');
+
+
+    // console.log('this is Date of give form');
 
     // console.log(new Date(`${this.dataTOBePatched?.dateOfSupply.getDate()}/${this.dataTOBePatched?.dateOfSupply.getMonth()}/${this.dataTOBePatched?.dateOfSupply.getFullYear()}`));
-    console.log(this.dataTOBePatched?.dateOfSupply.toLocaleString('en-GB'));
+    // this.dataTOBePatched.dateOfSupply=this.dataTOBePatched?.dateOfSupply.toLocaleString('en-GB')
 
 
-    this.userForm.get('dateOfSupply')?.patchValue(new Date(this.dataTOBePatched?.dateOfSupply.toDateString()));
+    // console.log(moment(this.dataTOBePatched.dateOfSupply,"DD/MM/YYYY").toDate());
+
+    this.userForm.get('dateOfSupply')?.patchValue(moment(this.dataTOBePatched.dateOfSupply,"DD/MM/YYYY").toDate());
   }
   ngOnDestroy(): void {
     this.userForm.reset();
@@ -169,7 +190,9 @@ this.dataTOBePatched=data;
 
 
     return this.productDatacontrol?.controls.reduce((acc: number, data: any) => {
+      console.log(acc);
       return acc + data.get('Amount').value;
+
     }, 0);
 
 
