@@ -33,13 +33,14 @@ export class CustomerInvoiceComponent implements OnInit, AfterViewInit {
   // eslint-disable-next-line @angular-eslint/use-lifecycle-interface
   ngAfterViewInit() {
     console.log();
+    this.dataSource.paginator = this.paginator;
   }
 
 
   Data!: any;
   totalElements=0;
-  fetchData(pageNumber: Number, pageSize: Number): void {
-    this.Data = this.dt.getData(1, 10).subscribe((dataObj: any) => {
+  fetchData(pageNumber: number, pageSize: number): void {
+    this.Data = this.dt.getData(pageNumber, pageSize).subscribe((dataObj: any) => {
       // console.log(dataObj);
       // console.log(typeof (dataObj));
       // console.log('email id type');
@@ -47,11 +48,11 @@ export class CustomerInvoiceComponent implements OnInit, AfterViewInit {
       this.ELEMENT_DATA = dataObj.content;
       this.totalElements=dataObj.totalElements;
 
-
-      console.log(this.totalElements);
-
       this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
-      this.dataSource.paginator = this.paginator;
+
+      console.log(dataObj);
+
+
       // console.log('this is ele data');
       // console.log(this.ELEMENT_DATA);
     })
