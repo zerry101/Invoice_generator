@@ -7,6 +7,8 @@ import { MatTableModule } from '@angular/material/table';
 import * as XLSX from "xlsx";
 import { ExcelService } from 'src/app/shared/services/excel.service';
 import { async } from 'rxjs';
+import { PageEvent } from '@angular/material/paginator';
+
 
 
 @Component({
@@ -23,7 +25,7 @@ export class CustomerInvoiceComponent implements OnInit, AfterViewInit {
 
 
   ngOnInit(): void {
-    this.fetchData();
+    this.fetchData(0, 10);
   }
 
 
@@ -35,13 +37,19 @@ export class CustomerInvoiceComponent implements OnInit, AfterViewInit {
 
 
   Data!: any;
-  fetchData(): void {
-    this.Data = this.dt.getData().subscribe((dataObj: any) => {
+  totalElements=0;
+  fetchData(pageNumber: Number, pageSize: Number): void {
+    this.Data = this.dt.getData(1, 10).subscribe((dataObj: any) => {
       // console.log(dataObj);
       // console.log(typeof (dataObj));
       // console.log('email id type');
       // console.log(dataObj[0].email_id);
-      this.ELEMENT_DATA = dataObj;
+      this.ELEMENT_DATA = dataObj.content;
+      this.totalElements=dataObj.totalElements;
+
+
+      console.log(this.totalElements);
+
       this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
       this.dataSource.paginator = this.paginator;
       // console.log('this is ele data');
@@ -49,6 +57,16 @@ export class CustomerInvoiceComponent implements OnInit, AfterViewInit {
     })
   }
 
+
+  nextPage(event: PageEvent) {
+    const pageNumber: number = event.pageIndex;
+    const pageSize: number = event.pageSize;
+    this.fetchData(pageNumber, pageSize);
+    console.log('this is pagen and pges');
+
+    console.log(pageNumber,pageSize);
+
+  }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

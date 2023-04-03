@@ -14,8 +14,8 @@ export class DataTransferService {
   tableInstanceData:BehaviorSubject<any>= new BehaviorSubject<any>({});
 
 
-  getData():Observable<any>{
-    return this.http.get(`${this.baseUrl}`);
+  getData(pageNumber:number,papageSize:number):Observable<any>{
+    return this.http.get(`${this.baseUrl}?pageNumber=${pageNumber}&pageSize=${papageSize}`);
   }
   // :Observable<any>=this.http.get('http://localhost:8080/api/v1/employees');
   // console.log();
