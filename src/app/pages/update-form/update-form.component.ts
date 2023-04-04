@@ -37,7 +37,7 @@ export class UpdateFormComponent implements OnInit, OnDestroy, AfterViewInit {
   constructor(private fb: FormBuilder, public sD: SharedDataService, public dt: DataTransferService, public router: Router) { }
 
   dataTOBePatched: any = {};
-  parsedProductData:any=[];
+  parsedProductData: any = [];
 
   ngAfterViewInit(): void {
     this.dt.tableInstanceData.subscribe((data) => {
@@ -48,10 +48,10 @@ export class UpdateFormComponent implements OnInit, OnDestroy, AfterViewInit {
 
       // console.log("this is product parssed ");
       // console.log(JSON.parse(data.productData));
-      this.parsedProductData=JSON.parse(this.dataTOBePatched.productData);
+      this.parsedProductData = JSON.parse(this.dataTOBePatched.productData);
 
-      this.parsedProductData.forEach((eachProductData:any,index:number)=>{
-        index>0?this.addNewRow():false;
+      this.parsedProductData.forEach((eachProductData: any, index: number) => {
+        index > 0 ? this.addNewRow() : false;
         console.log(eachProductData);
         this.formarr.controls[index].patchValue(eachProductData);
         // console.log(this.totalPrice());
@@ -61,7 +61,7 @@ export class UpdateFormComponent implements OnInit, OnDestroy, AfterViewInit {
         // console.log(eachProductData);
 
       })
-console.log('this is total price');
+      console.log('this is total price');
 
       // console.log(this.totalPrice());
 
@@ -87,8 +87,11 @@ console.log('this is total price');
 
 
     // console.log(moment(this.dataTOBePatched.dateOfSupply,"DD/MM/YYYY").toDate());
+    console.log("THIS IS DATA TO BE PATCHED");
 
-    this.userForm.get('dateOfSupply')?.patchValue(moment(this.dataTOBePatched.dateOfSupply,"DD/MM/YYYY").toDate());
+    console.log(this.dataTOBePatched.dateOfSupply);
+
+    this.userForm.get('dateOfSupply')?.patchValue(this.dataTOBePatched.dateOfSupply);
   }
   ngOnDestroy(): void {
     this.userForm.reset();

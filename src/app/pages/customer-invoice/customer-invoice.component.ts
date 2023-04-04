@@ -6,7 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatTableModule } from '@angular/material/table';
 import * as XLSX from "xlsx";
 import { ExcelService } from 'src/app/shared/services/excel.service';
-import { async } from 'rxjs';
+import { async, map } from 'rxjs';
 import { PageEvent } from '@angular/material/paginator';
 
 
@@ -38,15 +38,28 @@ export class CustomerInvoiceComponent implements OnInit, AfterViewInit {
 
 
   Data!: any;
-  totalElements=0;
+  totalElements = 0;
   fetchData(pageNumber: number, pageSize: number): void {
     this.Data = this.dt.getData(pageNumber, pageSize).subscribe((dataObj: any) => {
+      console.log("before");
+      console.log(dataObj);
+
+       dataObj.content.map((item: any,index:number) => {
+        const dateObj1 = new Date(dataObj.content[index].dateOfSupply);
+        item.dateOfSupply = `${dateObj1.getDate()}/${dateObj1.getMonth()}/${dateObj1.getFullYear()}`;
+      })
+
+      // console.log(dataObj2);
+
+
+      // console.log(new Date(dataObj.content[0].dateOfSupply).getDate());
+
       // console.log(dataObj);
       // console.log(typeof (dataObj));
       // console.log('email id type');
       // console.log(dataObj[0].email_id);
       this.ELEMENT_DATA = dataObj.content;
-      this.totalElements=dataObj.totalElements;
+      this.totalElements = dataObj.totalElements;
 
       this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
 
@@ -65,7 +78,7 @@ export class CustomerInvoiceComponent implements OnInit, AfterViewInit {
     this.fetchData(pageNumber, pageSize);
     console.log('this is pagen and pges');
 
-    console.log(pageNumber,pageSize);
+    console.log(pageNumber, pageSize);
 
   }
 
@@ -74,9 +87,6 @@ export class CustomerInvoiceComponent implements OnInit, AfterViewInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   // eslint-disable-next-line @typescript-eslint/ban-types
-
-
-
 
 
   displayedColumns: string[] = ['Name', 'Address', 'ContactNo', 'Date_of_supply', 'Place_of_Supply', 'Transportation_Mode', 'Vehicle_Number', 'action'];

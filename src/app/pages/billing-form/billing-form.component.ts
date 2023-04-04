@@ -191,7 +191,7 @@ export class BillingFormComponent implements OnInit {
     console.log(this.Data);
     console.log(this.Data.dateOfSupply.toDateString());
 
-    this.Data.dateOfSupply=`${this.Data.dateOfSupply.getDate()+'/'+(this.Data.dateOfSupply.getMonth()+1)+'/'+this.Data.dateOfSupply.getFullYear()}`;
+    // this.Data.dateOfSupply=`${this.Data.dateOfSupply.getDate()+'/'+(this.Data.dateOfSupply.getMonth()+1)+'/'+this.Data.dateOfSupply.getFullYear()}`;
 
     this.sD.formData?.push(this.Data);
     this.Data.productData = JSON.stringify(this.Data.productData);
