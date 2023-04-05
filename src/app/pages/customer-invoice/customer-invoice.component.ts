@@ -43,7 +43,7 @@ export class CustomerInvoiceComponent implements OnInit, AfterViewInit {
     this.Data = this.dt.getData(pageNumber, pageSize).subscribe({
       next: (res: any) => {
         res.content.map((item: any, index: number) => {
-          const dateObj1 = new Date(res.content[index].dateOfSupply);
+          const dateObj1 = new Date(res.content[index].dateofsupply);
           item.date = `${dateObj1.getDate()}/${dateObj1.getMonth()+1}/${dateObj1.getFullYear()}`;
         });
 

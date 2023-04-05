@@ -50,10 +50,12 @@ export class UpdateFormComponent implements OnInit, OnDestroy, AfterViewInit {
       })
 
       Object.keys(this.userForm.controls).forEach((control) => {
+        // console.log(data[control]);
+
         this.userForm.controls[control].patchValue(data[control]);
       })
     })
-    this.userForm.get('dateOfSupply')?.patchValue(this.dataTOBePatched.dateOfSupply);
+    this.userForm.get('dateofsupply')?.patchValue(this.dataTOBePatched.dateofsupply);
     // console.log("THIS IS DATA TO BE PATCHED");
     // console.log(this.dataTOBePatched.dateOfSupply);
   }
@@ -76,13 +78,13 @@ export class UpdateFormComponent implements OnInit, OnDestroy, AfterViewInit {
     this.userForm = this.fb.group({
       name: [""],
       address: [""],
-      contactNo: ["", [Validators.required, Validators.pattern(globalConstants.CONTACT_NO)]],
+      contactno: ["", [Validators.required, Validators.pattern(globalConstants.CONTACT_NO)]],
       GSTNO: ["", [Validators.required, Validators.pattern(globalConstants.GST_PATTERN)]],
-      transportationMode: [""],
-      vehicleNumber: ["", Validators.pattern(globalConstants.VEHICLENO_PATTERN)],
-      dateOfSupply: [""],
-      placeOfSupply: [""],
-      shippedTo: [""],
+      transportationmode: [""],
+      vehiclenumber: ["", Validators.pattern(globalConstants.VEHICLENO_PATTERN)],
+      dateofsupply: [""],
+      placeofsupply: [""],
+      shippedto: [""],
 
       productData: this.fb.array([this.initItemRows()]),
       grandTotal: [Number]
@@ -184,17 +186,17 @@ export class UpdateFormComponent implements OnInit, OnDestroy, AfterViewInit {
 
 
   get dateOfSupplycontrol() {
-    return this.userForm.get('dateOfSupply');
+    return this.userForm.get('dateofsupply');
   }
 
-  get vehicleNumbercontrol() { return this.userForm.controls['vehicleNumber']; }
+  get vehicleNumbercontrol() { return this.userForm.controls['vehiclenumber']; }
   get GSTNOcontrol() { return this.userForm.get('GSTNO'); }
-  get Namecontrol() { return this.userForm.get('Name'); }
+  get Namecontrol() { return this.userForm.get('name'); }
   get addresscontrol() { return this.userForm.get('address'); }
   get BankNamecontrol() { return this.userForm.get('BankName'); }
-  get AccountNocontrol() { return this.userForm.get('AccountNo'); }
+  get AccountNocontrol() { return this.userForm.get('Accountno'); }
   get BranchandIFSCodecontrol() { return this.userForm.get('BranchandIFSCode'); }
-  get contactNocontrol() { return this.userForm.get('contactNo'); }
+  get contactnocontrol() { return this.userForm.get('contactno'); }
   get LandlineNocontrol() { return this.userForm.get('LandlineNo'); }
 
 
@@ -223,8 +225,8 @@ export class UpdateFormComponent implements OnInit, OnDestroy, AfterViewInit {
     return this.productDatacontrol?.controls[i].get('Per');
   }
 
-  transportationModecontrol() {
-    return this.productDatacontrol.get('transportationMode');
+  transportationmodecontrol() {
+    return this.productDatacontrol.get('transportationmode');
   }
 
   Amountcontrol(i: number) {
