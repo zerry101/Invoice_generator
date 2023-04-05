@@ -5,8 +5,6 @@ import { MAT_DATE_FORMATS } from "@angular/material/core";
 import { SharedDataService } from 'src/app/shared/services/shared-data.service';
 import { DataTransferService } from 'src/app/shared/services/data-transfer.service';
 import { Router } from '@angular/router';
-import moment from 'moment';
-
 
 @Component({
   selector: 'igx-update-form',
@@ -29,6 +27,7 @@ import moment from 'moment';
     },
   ]
 })
+
 export class UpdateFormComponent implements OnInit, OnDestroy, AfterViewInit {
 
   userForm: FormGroup = new FormGroup({});
@@ -36,62 +35,27 @@ export class UpdateFormComponent implements OnInit, OnDestroy, AfterViewInit {
 
   constructor(private fb: FormBuilder, public sD: SharedDataService, public dt: DataTransferService, public router: Router) { }
 
-  dataTOBePatched: any = {};
+  dataTOBePatched: any |undefined= {};
   parsedProductData: any = [];
 
   ngAfterViewInit(): void {
     this.dt.tableInstanceData.subscribe((data) => {
-      // console.log("this is date");
+
       this.dataTOBePatched = data;
-
-      // console.log(data.dateOfSupply);
-
-      // console.log("this is product parssed ");
-      // console.log(JSON.parse(data.productData));
       this.parsedProductData = JSON.parse(this.dataTOBePatched.productData);
 
       this.parsedProductData.forEach((eachProductData: any, index: number) => {
         index > 0 ? this.addNewRow() : false;
-        console.log(eachProductData);
         this.formarr.controls[index].patchValue(eachProductData);
-        // console.log(this.totalPrice());
-
-        // this.
-        // this.
-        // console.log(eachProductData);
-
       })
-      console.log('this is total price');
-
-      // console.log(this.totalPrice());
-
 
       Object.keys(this.userForm.controls).forEach((control) => {
-        // console.log(control, data[control]);
-
         this.userForm.controls[control].patchValue(data[control]);
       })
-
-
-
-
-
-
     })
-
-
-    // console.log('this is Date of give form');
-
-    // console.log(new Date(`${this.dataTOBePatched?.dateOfSupply.getDate()}/${this.dataTOBePatched?.dateOfSupply.getMonth()}/${this.dataTOBePatched?.dateOfSupply.getFullYear()}`));
-    // this.dataTOBePatched.dateOfSupply=this.dataTOBePatched?.dateOfSupply.toLocaleString('en-GB')
-
-
-    // console.log(moment(this.dataTOBePatched.dateOfSupply,"DD/MM/YYYY").toDate());
-    console.log("THIS IS DATA TO BE PATCHED");
-
-    console.log(this.dataTOBePatched.dateOfSupply);
-
     this.userForm.get('dateOfSupply')?.patchValue(this.dataTOBePatched.dateOfSupply);
+    // console.log("THIS IS DATA TO BE PATCHED");
+    // console.log(this.dataTOBePatched.dateOfSupply);
   }
   ngOnDestroy(): void {
     this.userForm.reset();
@@ -99,14 +63,7 @@ export class UpdateFormComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit(): void {
 
-
     this.setupForm();
-
-
-
-
-    console.log(typeof (this.todaysDate()), this.todaysDate());
-
     this.sD.exclusive.subscribe((res) => {
       this.exclusive = res;
     })
@@ -193,9 +150,7 @@ export class UpdateFormComponent implements OnInit, OnDestroy, AfterViewInit {
 
 
     return this.productDatacontrol?.controls.reduce((acc: number, data: any) => {
-      console.log(acc);
       return acc + data.get('Amount').value;
-
     }, 0);
 
 
@@ -219,19 +174,10 @@ export class UpdateFormComponent implements OnInit, OnDestroy, AfterViewInit {
     this.userForm.controls['grandTotal'].patchValue(this.totalPrice());
     this.userForm.markAllAsTouched();
     this.userForm.markAsDirty();
-
     this.Data = this.userForm.value;
-    console.log(" haha data");
-    console.log(this.Data);
-    console.log(this.Data.dateOfSupply);
-    // console.log(this.Data.dateOfSupply);
-
-
-    this.Data.dateOfSupply = `${this.Data.dateOfSupply.getDate() + '/' + (this.Data.dateOfSupply.getMonth() + 1) + '/' + this.Data.dateOfSupply.getFullYear()}`;
-
-    this.sD.formData?.push(this.Data);
+    // this.sD.formData?.push(this.Data);
     this.Data.productData = JSON.stringify(this.Data.productData);
-    console.log("data ");
+    console.log(this.Data);
   }
 
 

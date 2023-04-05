@@ -40,34 +40,21 @@ export class CustomerInvoiceComponent implements OnInit, AfterViewInit {
   Data!: any;
   totalElements = 0;
   fetchData(pageNumber: number, pageSize: number): void {
-    this.Data = this.dt.getData(pageNumber, pageSize).subscribe((dataObj: any) => {
-      console.log("before");
-      console.log(dataObj);
+    this.Data = this.dt.getData(pageNumber, pageSize).subscribe({
+      next: (res: any) => {
+        res.content.map((item: any, index: number) => {
+          const dateObj1 = new Date(res.content[index].dateOfSupply);
+          item.date = `${dateObj1.getDate()}/${dateObj1.getMonth()+1}/${dateObj1.getFullYear()}`;
+        });
 
-       dataObj.content.map((item: any,index:number) => {
-        const dateObj1 = new Date(dataObj.content[index].dateOfSupply);
-        item.dateOfSupply = `${dateObj1.getDate()}/${dateObj1.getMonth()}/${dateObj1.getFullYear()}`;
-      })
+        this.ELEMENT_DATA = res.content;
+        this.totalElements = res.totalElements;
 
-      // console.log(dataObj2);
+        this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
 
+        console.log(res);
 
-      // console.log(new Date(dataObj.content[0].dateOfSupply).getDate());
-
-      // console.log(dataObj);
-      // console.log(typeof (dataObj));
-      // console.log('email id type');
-      // console.log(dataObj[0].email_id);
-      this.ELEMENT_DATA = dataObj.content;
-      this.totalElements = dataObj.totalElements;
-
-      this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
-
-      console.log(dataObj);
-
-
-      // console.log('this is ele data');
-      // console.log(this.ELEMENT_DATA);
+      }
     })
   }
 
