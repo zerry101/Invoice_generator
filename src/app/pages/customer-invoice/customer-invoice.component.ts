@@ -8,7 +8,7 @@ import * as XLSX from "xlsx";
 import { ExcelService } from 'src/app/shared/services/excel.service';
 import { async, map } from 'rxjs';
 import { PageEvent } from '@angular/material/paginator';
-
+import { DataSearchService } from 'src/app/shared/services/data-search.service';
 
 
 @Component({
@@ -20,7 +20,7 @@ import { PageEvent } from '@angular/material/paginator';
 export class CustomerInvoiceComponent implements OnInit, AfterViewInit {
   // eslint-disable-next-line @typescript-eslint/ban-types
   ELEMENT_DATA: Array<Object> | undefined = [];
-  constructor(private excelService: ExcelService, private router: Router, public dt: DataTransferService) {
+  constructor(private excelService: ExcelService, private router: Router, public dt: DataTransferService, private dataSearch: DataSearchService) {
   }
 
 
@@ -44,7 +44,7 @@ export class CustomerInvoiceComponent implements OnInit, AfterViewInit {
       next: (res: any) => {
         res.content.map((item: any, index: number) => {
           const dateObj1 = new Date(res.content[index].dateofsupply);
-          item.date = `${dateObj1.getDate()}/${dateObj1.getMonth()+1}/${dateObj1.getFullYear()}`;
+          item.date = `${dateObj1.getDate()}/${dateObj1.getMonth() + 1}/${dateObj1.getFullYear()}`;
         });
 
         this.ELEMENT_DATA = res.content;
@@ -71,7 +71,17 @@ export class CustomerInvoiceComponent implements OnInit, AfterViewInit {
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    console.log(filterValue);
+    this.dataSearch.searchData(filterValue).subscribe((data) => {
+      console.log("this is searched Data");
+
+      console.log(data);
+    });
+
+
+
+
+    // this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   // eslint-disable-next-line @typescript-eslint/ban-types
 
