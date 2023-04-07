@@ -20,6 +20,7 @@ import { DataSearchService } from 'src/app/shared/services/data-search.service';
 export class CustomerInvoiceComponent implements OnInit, AfterViewInit {
   // eslint-disable-next-line @typescript-eslint/ban-types
   ELEMENT_DATA: Array<Object> | undefined = [];
+  showMatPaginator=true;
   constructor(private excelService: ExcelService, private router: Router, public dt: DataTransferService, private dataSearch: DataSearchService) {
   }
 
@@ -72,15 +73,29 @@ export class CustomerInvoiceComponent implements OnInit, AfterViewInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     console.log(filterValue);
-    this.dataSearch.searchData(filterValue).subscribe((data) => {
-      console.log("this is searched Data");
-      // this
-      // console.log(data.lenth);
+    this.dataSearch.searchData(filterValue).subscribe({
+      next: (res) => {
+        console.log("this is searched Data");
+        // this
+        // console.log(data.lenth);
 
-      this.totalElements = data.lenth;
-      this.dataSource = new MatTableDataSource(data);
+        this.totalElements = res.length;
+        res.map((item: any, index: number) => {
+          const dateObj1 = new Date(item.dateofsupply);
 
-      console.log(data);
+          // console.log(item.name);
+
+          item.date = `${dateObj1.getDate()}/${dateObj1.getMonth() + 1}/${dateObj1.getFullYear()}`;
+        })
+        this.dataSource = new MatTableDataSource(res);
+        // this.isHidePageSize=true;
+        this.showMatPaginator=false;
+        // this.dataSource.PageSize=0;
+        // this.dataSource.PageOptions=0
+
+
+        console.log(this.dataSource);
+      }
     });
 
 
