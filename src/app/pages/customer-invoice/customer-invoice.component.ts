@@ -74,6 +74,11 @@ export class CustomerInvoiceComponent implements OnInit, AfterViewInit {
     console.log(filterValue);
     this.dataSearch.searchData(filterValue).subscribe((data) => {
       console.log("this is searched Data");
+      // this
+      // console.log(data.lenth);
+
+      this.totalElements = data.lenth;
+      this.dataSource = new MatTableDataSource(data);
 
       console.log(data);
     });

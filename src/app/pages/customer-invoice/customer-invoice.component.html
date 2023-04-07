@@ -5,7 +5,7 @@
   <mat-form-field>
     <mat-label>Filter</mat-label>
     <mat-icon style="margin-bottom: auto;position: absolute;right: 0.5% ;;" fontIcon="search"></mat-icon>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Search Item" #input>
+    <input matInput (keydown.enter)="applyFilter($event)" placeholder="Search Item" #input>
   </mat-form-field>
   <mat-table mat-table [dataSource]="dataSource">
 
