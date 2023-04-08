@@ -24,20 +24,20 @@
 
         <div class="col-md">
           <label for="transportationMode" class="form-label">Transportation Mode</label>
-          <input formControlName="transportationMode" type="text" class="form-control"
+          <input formControlName="transportationmode" type="text" class="form-control"
             placeholder="Enter Transportation Mode  ">
           <!-- <mat-error *ngIf="vehicleNumbercontrol?.hasError('pattern')">Enter proper Transportation Mode</mat-error> -->
         </div>
 
         <div class="col-md">
           <label for="Vehicle Number" class="form-label">Vehicle Number</label>
-          <input formControlName="vehicleNumber" type="text" class="form-control" placeholder="Enter Vehicle Number  ">
+          <input formControlName="vehiclenumber" type="text" class="form-control" placeholder="Enter Vehicle Number  ">
           <mat-error *ngIf="vehicleNumbercontrol?.hasError('pattern')">Please Enter proper Vehicle Number</mat-error>
         </div>
 
         <div class="col-md">
           <label for="contactNo" class="form-label">Contact No</label>
-          <input formControlName="contactNo" type="number " class="form-control" placeholder="Enter Contact No  ">
+          <input formControlName="contactno" type="number " class="form-control" placeholder="Enter Contact No  ">
           <mat-error *ngIf="contactNocontrol?.hasError('pattern')">Please Enter proper Contact No</mat-error>
         </div>
 
@@ -48,13 +48,13 @@
         </div> -->
 
         <div class="col-md">
-          <label for="placeOfSupply" class="form-label">Place Of Supply</label>
-          <input formControlName="placeOfSupply" type="text" class="form-control" placeholder="Please Enter Place Of Supply  ">
+          <label for="placeofsupply" class="form-label">Place Of Supply</label>
+          <input formControlName="placeofsupply" type="text" class="form-control" placeholder="Please Enter Place Of Supply  ">
         </div>
 
         <div class="mb-3">
           <label for="shippedTo" class="form-label">Shipping address</label>
-          <input formControlName="shippedTo" type="text" class="form-control" placeholder="Please Enter Shipping address">
+          <input formControlName="shippedto" type="text" class="form-control" placeholder="Please Enter Shipping address">
         </div>
         <!-- <div class="mb-3">
           <label for="BankName" class="form-label">Bank Name</label>
@@ -71,7 +71,7 @@
 
         <mat-form-field appearance="fill">
           <mat-label>Shipping Date</mat-label>
-          <input matInput [matDatepicker]="picker" formControlName="dateOfSupply" [ngModel]="todaydate">
+          <input matInput [matDatepicker]="picker" formControlName="dateofsupply" [ngModel]="todaydate">
           <mat-hint>DD/MM/YYYY</mat-hint>
           <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker [startAt]="todaydate" #picker></mat-datepicker>

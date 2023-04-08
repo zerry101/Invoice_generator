@@ -79,6 +79,7 @@ export class CustomerInvoiceComponent implements OnInit, AfterViewInit {
         // this
         // console.log(data.lenth);
 
+
         this.totalElements = res.length;
         res.map((item: any, index: number) => {
           const dateObj1 = new Date(item.dateofsupply);
@@ -90,6 +91,9 @@ export class CustomerInvoiceComponent implements OnInit, AfterViewInit {
         this.dataSource = new MatTableDataSource(res);
         // this.isHidePageSize=true;
         this.showMatPaginator=false;
+
+        console.log(res);
+
         // this.dataSource.PageSize=0;
         // this.dataSource.PageOptions=0
 

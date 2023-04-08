@@ -71,19 +71,19 @@ export class BillingFormComponent implements OnInit {
     this.userForm = this.fb.group({
       name: [""],
       address: [""],
-      contactNo: [Number, [Validators.required, Validators.pattern(globalConstants.CONTACT_NO)]],
+      contactno: ["",[Validators.required, Validators.pattern(globalConstants.CONTACT_NO)]],
       // LandlineNo: ["" ,[Validators.required,Validators.pattern(globalConstants.LANDLINE_NO)]],
       GSTNO: ["", [Validators.required, Validators.pattern(globalConstants.GST_PATTERN)]],
-      transportationMode: [""],
-      vehicleNumber: ["", Validators.pattern(globalConstants.VEHICLENO_PATTERN)],
-      dateOfSupply: [],
-      placeOfSupply: [""],
-      shippedTo: [""],
+      transportationmode: [""],
+      vehiclenumber: ["", Validators.pattern(globalConstants.VEHICLENO_PATTERN)],
+      dateofsupply: [],
+      placeofsupply: [""],
+      shippedto: [""],
       // BanKName:[""],
       // AccountNo:[""],
       // BranchandIFSCode:[""],
       productData: this.fb.array([this.initItemRows()]),
-      grandTotal: [Number]
+      grandtotal: [Number]
     })
   }
 
@@ -181,97 +181,17 @@ export class BillingFormComponent implements OnInit {
   // };
 
   submitForm() {
-    this.userForm.controls['grandTotal'].patchValue(this.totalPrice());
-    // console.log(this.userForm.value);
+    this.userForm.controls['grandtotal'].patchValue(this.totalPrice());
+
     this.userForm.markAllAsTouched();
     this.userForm.markAsDirty();
-
     this.Data = this.userForm.value;
-    console.log(" haha data");
-    console.log(this.Data);
-    console.log(this.Data.dateOfSupply.toDateString());
-
-    // this.Data.dateOfSupply=`${this.Data.dateOfSupply.getDate()+'/'+(this.Data.dateOfSupply.getMonth()+1)+'/'+this.Data.dateOfSupply.getFullYear()}`;
-
     this.sD.formData?.push(this.Data);
     this.Data.productData = JSON.stringify(this.Data.productData);
-    console.log("data ");
-
-
-
-
-    // console.log(typeof(this.userForm.value));
-    // console.log(this.userForm);
-    // console.log(typeof (JSON.stringify(this.Data.productData)));
-    // console.log(JSON.stringify(this.Data.productData));
-    // console.log(JSON.parse(JSON.stringify(this.Data.productData)));
-
-    // console.log(this.fb.group({ Description: 'first item', HSN: 3304, Quantity: '1 doz', Rate: 34, Per: 'doz' }));
-
-
-    // const far = [{ "Description": "first", "HSN": "", "Quantity": "", "Rate": "", "Per": "", "Amount": null }, { "Description": "second", "HSN": "", "Quantity": "", "Rate": "", "Per": "", "Amount": null }, { "Description": "third", "HSN": "", "Quantity": "", "Rate": "", "Per": "", "Amount": null }, { "Description": "fourth", "HSN": "", "Quantity": "", "Rate": "", "Per": "", "Amount": null }];
-
-
-    // const formaary = far.map(data => this.fb.group(data));
-
-    // console.log(formaary);
-
-
-    // for (let i = 0; i < formaary.length; i++) {
-    //   if(i==0){
-
-    //   }
-    //   this.formarr.push(formaary[i]);
-    // }
-
-    // this.formarr.removeAt(0);
-    // formaary.forEach((data) => {
-    // this.formarr.push(data);
-
-
-
-
-
-
-    // })
-    // this.formarr.patchValue(formaary);
-
-
-
-    // console.log("this is updated" + this.formarr.value);
-
-
-
-
-    // this.productDatacontrol.patchValue()
-
-
-    // console.log(typeof(this.sD.formData));
-    //  this.Employee.firstname=this.Data.Name;
-    //  this.Employee.lastname=this.Data.address;
-    //  this.Employee.emailid=this.Data.placeOfSupply;
-
-    //  console.log(typeof(this.Data.dateOfSupply));
-
 
     this.dt.postData(this.Data).subscribe((data) => {
       console.log(data);
-
     });
-
-
-    // console.log("this is data  " + typeof (this.Data.productData));
-    // console.log("this is data  " + this.Data.productData);
-
-    // console.log("this is Form value");
-    // console.log(this.userForm.value);
-
-
-
-    // this.router.navigate(['/customer-invoice'])
-
-
-    // console.log(this.Employee);
   }
 
 
@@ -279,18 +199,18 @@ export class BillingFormComponent implements OnInit {
   // sampleData:  = new FormArray([{ "Description": "first item", "HSN": 3304, "Quantity": "1 doz", "Rate": 34, "Per": "doz", "Amount": 32 }, { "Description": "second item", "HSN": 3209, "Quantity": "2 doz", "Rate": 43, "Per": "56", "Amount": 56 }]);
 
   get dateOfSupplycontrol() {
-    return this.userForm.get('dateOfSupply');
+    return this.userForm.get('dateofsupply');
   }
 
 
-  get vehicleNumbercontrol() { return this.userForm.controls['vehicleNumber']; }
+  get vehicleNumbercontrol() { return this.userForm.controls['vehiclenumber']; }
   get GSTNOcontrol() { return this.userForm.get('GSTNO'); }
-  get Namecontrol() { return this.userForm.get('Name'); }
+  get Namecontrol() { return this.userForm.get('name'); }
   get addresscontrol() { return this.userForm.get('address'); }
   get BankNamecontrol() { return this.userForm.get('BankName'); }
   get AccountNocontrol() { return this.userForm.get('AccountNo'); }
   get BranchandIFSCodecontrol() { return this.userForm.get('BranchandIFSCode'); }
-  get contactNocontrol() { return this.userForm.get('contactNo'); }
+  get contactNocontrol() { return this.userForm.get('contactno'); }
   get LandlineNocontrol() { return this.userForm.get('LandlineNo'); }
 
 
