@@ -78,7 +78,7 @@ export class UpdateFormComponent implements OnInit, OnDestroy, AfterViewInit {
     this.userForm = this.fb.group({
       name: [""],
       address: [""],
-      contactno: ["", [Validators.required, Validators.pattern(globalConstants.CONTACT_NO)]],
+      contactno: [Number, [Validators.required, Validators.pattern(globalConstants.CONTACT_NO)]],
       GSTNO: ["", [Validators.required, Validators.pattern(globalConstants.GST_PATTERN)]],
       transportationmode: [""],
       vehiclenumber: ["", Validators.pattern(globalConstants.VEHICLENO_PATTERN)],

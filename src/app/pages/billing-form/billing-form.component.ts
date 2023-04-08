@@ -71,7 +71,7 @@ export class BillingFormComponent implements OnInit {
     this.userForm = this.fb.group({
       name: [""],
       address: [""],
-      contactNo: ["", [Validators.required, Validators.pattern(globalConstants.CONTACT_NO)]],
+      contactNo: [Number, [Validators.required, Validators.pattern(globalConstants.CONTACT_NO)]],
       // LandlineNo: ["" ,[Validators.required,Validators.pattern(globalConstants.LANDLINE_NO)]],
       GSTNO: ["", [Validators.required, Validators.pattern(globalConstants.GST_PATTERN)]],
       transportationMode: [""],
