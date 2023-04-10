@@ -63,7 +63,7 @@
   </mat-table>
   <hr style=" color:solid 1px #adb5bd; margin-top: 0px;">
 
-  <mat-paginator *ngIf="showMatPaginator" [pageSizeOptions]="[5, 10, 20]"  [showFirstLastButtons]="true" [pageSize]="10" [length]="totalElements"  (page)="nextPage($event)" showFirstLastButtons aria-label="Select page of periodic elements">
+  <mat-paginator *ngIf="showMatPaginator" [pageSizeOptions]="[5, 10, 20]"   [pageSize]="10" [length]="totalElements"  (page)="nextPage($event)"  aria-label="Select page of periodic elements">
   </mat-paginator>
   <hr *ngIf="!showMatPaginator" style=" color:solid 1px #adb5bd; margin-top: 0px;">
 </div>

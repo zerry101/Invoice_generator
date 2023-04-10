@@ -59,6 +59,11 @@ export class CustomerInvoiceComponent implements OnInit, AfterViewInit {
     })
   }
 
+  onFirstLastPageButton(event:any){
+    console.log("hii");
+
+
+  }
 
   nextPage(event: PageEvent) {
     const pageNumber: number = event.pageIndex;
