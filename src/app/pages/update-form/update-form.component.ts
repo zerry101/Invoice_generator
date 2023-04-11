@@ -32,6 +32,8 @@ export class UpdateFormComponent implements OnInit, OnDestroy, AfterViewInit {
 
   userForm: FormGroup = new FormGroup({});
   exclusive: boolean | undefined = true;
+  disabled=true;
+  id:number | undefined;
 
   constructor(private fb: FormBuilder, public sD: SharedDataService, public dt: DataTransferService, public router: Router) { }
 
@@ -40,7 +42,7 @@ export class UpdateFormComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.dt.tableInstanceData.subscribe((data) => {
-
+      this.id=data['id'];
       this.dataTOBePatched = data;
       this.parsedProductData = JSON.parse(this.dataTOBePatched.productData);
 
@@ -55,6 +57,7 @@ export class UpdateFormComponent implements OnInit, OnDestroy, AfterViewInit {
         this.userForm.controls[control].patchValue(data[control]);
       })
     })
+
     this.userForm.get('dateofsupply')?.patchValue(this.dataTOBePatched.dateofsupply);
     // console.log("THIS IS DATA TO BE PATCHED");
     // console.log(this.dataTOBePatched.dateOfSupply);
@@ -76,6 +79,7 @@ export class UpdateFormComponent implements OnInit, OnDestroy, AfterViewInit {
 
   setupForm() {
     this.userForm = this.fb.group({
+      id:["",{disabled:true},[Validators.required]],
       name: [""],
       address: [""],
       contactno: [Number, [Validators.required, Validators.pattern(globalConstants.CONTACT_NO)]],
@@ -87,7 +91,7 @@ export class UpdateFormComponent implements OnInit, OnDestroy, AfterViewInit {
       shippedto: [""],
 
       productData: this.fb.array([this.initItemRows()]),
-      grandTotal: [Number]
+      grandtotal: [Number]
     })
   }
 
@@ -141,6 +145,9 @@ export class UpdateFormComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
 
+
+
+
   getItemRows() {
     return (this.userForm.get('productData') as FormArray).controls;
   }
@@ -173,13 +180,19 @@ export class UpdateFormComponent implements OnInit, OnDestroy, AfterViewInit {
   Data: any;
 
   submitForm() {
-    this.userForm.controls['grandTotal'].patchValue(this.totalPrice());
+    this.userForm.controls['grandtotal'].patchValue(this.totalPrice());
     this.userForm.markAllAsTouched();
     this.userForm.markAsDirty();
     this.Data = this.userForm.value;
     // this.sD.formData?.push(this.Data);
     this.Data.productData = JSON.stringify(this.Data.productData);
     console.log(this.Data);
+
+
+    this.dt.updateData(this.Data.id,this.Data).subscribe((data)=>{
+      console.log(data);
+
+    })
   }
 
 

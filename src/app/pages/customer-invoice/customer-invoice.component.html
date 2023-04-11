@@ -4,7 +4,7 @@
 
   <mat-form-field>
     <mat-label>Filter</mat-label>
-    <mat-icon style="margin-bottom: auto;position: absolute;right: 0.5% ;;" fontIcon="search"></mat-icon>
+    <mat-icon style="margin-bottom: auto;position: absolute;right: 0.5% ;;" fontIcon="search" (click)="applyFilter($event)"></mat-icon>
     <input matInput (keydown.enter)="applyFilter($event)" placeholder="Search Item" #input>
   </mat-form-field>
   <mat-table mat-table [dataSource]="dataSource">
@@ -63,7 +63,8 @@
   </mat-table>
   <hr style=" color:solid 1px #adb5bd; margin-top: 0px;">
 
-  <mat-paginator *ngIf="showMatPaginator" [pageSizeOptions]="[5, 10, 20]"   [pageSize]="10" [length]="totalElements"  (page)="nextPage($event)"  aria-label="Select page of periodic elements">
+
+  <mat-paginator *ngIf="showMatPaginator" [pageSizeOptions]="[5, 10, 20]"    [pageSize]="10" [length]="totalElements"  (page)="nextPage($event)"  aria-label="Select page of periodic elements">
   </mat-paginator>
   <hr *ngIf="!showMatPaginator" style=" color:solid 1px #adb5bd; margin-top: 0px;">
 </div>

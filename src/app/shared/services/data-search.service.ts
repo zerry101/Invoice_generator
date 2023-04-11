@@ -15,6 +15,5 @@ export class DataSearchService {
 
   searchData(input: any): Observable<any> {
     return this.http.get(`${this.searchURL}=${input}`);
-
   }
 }
