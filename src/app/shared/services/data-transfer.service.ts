@@ -31,6 +31,10 @@ export class DataTransferService {
     return this.http.post(`${this.baseURL}/api/v1/employees`, data);
   }
 
+  deleteData(id:any){
+    return this.http.delete(`${this.baseURL}/api/v1/employees/delete/${id}`)
+
+  }
 
   updateData(id: any,data:any) {
     return this.http.put(`${this.baseURL}/api/v1/employees/update/${id}`,data);

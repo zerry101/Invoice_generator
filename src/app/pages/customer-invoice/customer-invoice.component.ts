@@ -19,8 +19,12 @@ import { DataSearchService } from 'src/app/shared/services/data-search.service';
 
 export class CustomerInvoiceComponent implements OnInit, AfterViewInit {
   // eslint-disable-next-line @typescript-eslint/ban-types
+  pageSize: number | undefined;
+  pageNumber: number | undefined;
+
+  // eslint-disable-next-line @typescript-eslint/ban-types
   ELEMENT_DATA: Array<Object> | undefined = [];
-  showMatPaginator=true;
+  showMatPaginator = true;
   constructor(private excelService: ExcelService, private router: Router, public dt: DataTransferService, private dataSearch: DataSearchService) {
   }
 
@@ -41,25 +45,27 @@ export class CustomerInvoiceComponent implements OnInit, AfterViewInit {
   Data!: any;
   totalElements = 0;
   fetchData(pageNumber: number, pageSize: number): void {
-    this.Data = this.dt.getData(pageNumber, pageSize).subscribe({
-      next: (res: any) => {
-        res.content.map((item: any, index: number) => {
-          const dateObj1 = new Date(res.content[index].dateofsupply);
-          item.date = `${dateObj1.getDate()}/${dateObj1.getMonth() + 1}/${dateObj1.getFullYear()}`;
-        });
+    this.pageSize =pageSize;
+    this.pageNumber=pageNumber;
+      this.Data = this.dt.getData(pageNumber, pageSize).subscribe({
+        next: (res: any) => {
+          res.content.map((item: any, index: number) => {
+            const dateObj1 = new Date(res.content[index].dateofsupply);
+            item.date = `${dateObj1.getDate()}/${dateObj1.getMonth() + 1}/${dateObj1.getFullYear()}`;
+          });
 
-        this.ELEMENT_DATA = res.content;
-        this.totalElements = res.totalElements;
+          this.ELEMENT_DATA = res.content;
+          this.totalElements = res.totalElements;
 
-        this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+          this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
 
-        console.log(res);
+          console.log(res);
 
-      }
-    })
+        }
+      })
   }
 
-  onFirstLastPageButton(event:any){
+  onFirstLastPageButton(event: any) {
     console.log("hii");
 
 
@@ -95,7 +101,7 @@ export class CustomerInvoiceComponent implements OnInit, AfterViewInit {
         })
         this.dataSource = new MatTableDataSource(res);
         // this.isHidePageSize=true;
-        this.showMatPaginator=false;
+        this.showMatPaginator = false;
 
         console.log(res);
 
@@ -130,6 +136,12 @@ export class CustomerInvoiceComponent implements OnInit, AfterViewInit {
 
   delete(elem: any) {
     console.log(elem);
+
+    this.dt.deleteData(elem.id).subscribe((data)=>{
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      this.fetchData(this.pageNumber!, this.pageSize!);
+
+    });
 
   }
 
