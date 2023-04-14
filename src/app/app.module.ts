@@ -5,11 +5,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 // import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
+import { DialogOverviewExampleDialogComponent } from './shared/dialog-overview-example-dialog/dialog-overview-example-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+
 // import { GenerateInvoiceComponent } from './componrnts/generate-invoice/generate-invoice.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    DialogOverviewExampleDialogComponent,
     // GenerateInvoiceComponent,
   ],
 
@@ -17,7 +21,9 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent],

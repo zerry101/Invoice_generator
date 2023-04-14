@@ -9,7 +9,14 @@ import { ExcelService } from 'src/app/shared/services/excel.service';
 import { async, map } from 'rxjs';
 import { PageEvent } from '@angular/material/paginator';
 import { DataSearchService } from 'src/app/shared/services/data-search.service';
+import { DialogOverviewExampleDialogComponent } from 'src/app/shared/dialog-overview-example-dialog/dialog-overview-example-dialog.component';
+import {MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 
+
+export interface DialogData {
+  animal: string|undefined;
+  name: string|undefined;
+}
 
 @Component({
   selector: 'igx-customer-invoice',
@@ -17,7 +24,7 @@ import { DataSearchService } from 'src/app/shared/services/data-search.service';
   styleUrls: ['./customer-invoice.component.scss']
 })
 
-export class CustomerInvoiceComponent implements OnInit, AfterViewInit {
+export class CustomerInvoiceComponent implements OnInit, AfterViewInit,DialogData {
   // eslint-disable-next-line @typescript-eslint/ban-types
   pageSize: number | undefined;
   pageNumber: number | undefined;
@@ -25,8 +32,10 @@ export class CustomerInvoiceComponent implements OnInit, AfterViewInit {
   // eslint-disable-next-line @typescript-eslint/ban-types
   ELEMENT_DATA: Array<Object> | undefined = [];
   showMatPaginator = true;
-  constructor(private excelService: ExcelService, private router: Router, public dt: DataTransferService, private dataSearch: DataSearchService) {
+  constructor(public dialog:  MatDialog, private excelService: ExcelService, private router: Router, public dt: DataTransferService, private dataSearch: DataSearchService) {
   }
+  animal: string | undefined="";
+  name: string | undefined="";
 
 
   ngOnInit(): void {
@@ -133,11 +142,19 @@ export class CustomerInvoiceComponent implements OnInit, AfterViewInit {
   }
 
 
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(DialogOverviewExampleDialogComponent, {
+      width: '250px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
+  }
 
-  delete(elem: any) {
-    console.log(elem);
+  delete(element: any) {
+    this.openDialog('0ms', '0ms');
+    console.log(element);
 
-    this.dt.deleteData(elem.id).subscribe((data)=>{
+    this.dt.deleteData(element.id).subscribe((data)=>{
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       this.fetchData(this.pageNumber!, this.pageSize!);
 

@@ -7,8 +7,9 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { PagesComponent } from './pages.component';
 import { ComponentsModule } from '../components/components.module';
-import { CustomerInvoiceComponent } from './customer-invoice/customer-invoice.component';
+import { CustomerInvoiceComponent} from './customer-invoice/customer-invoice.component';
 import { GenerateInvoiceComponent } from './generate-invoice/generate-invoice.component';
+
 
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
@@ -48,7 +49,6 @@ import { UpdateFormComponent } from './update-form/update-form.component';
 
 const ALlMaterials=[
   MatAutocompleteModule,
-
   MatDatepickerModule,
   MatFormFieldModule,
   MatInputModule,
