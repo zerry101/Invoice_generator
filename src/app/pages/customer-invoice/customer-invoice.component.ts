@@ -6,12 +6,13 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatTableModule } from '@angular/material/table';
 import * as XLSX from "xlsx";
 import { ExcelService } from 'src/app/shared/services/excel.service';
-import { async, map } from 'rxjs';
+import { Observable, async, map, of } from 'rxjs';
 import { PageEvent } from '@angular/material/paginator';
 import { DataSearchService } from 'src/app/shared/services/data-search.service';
 import { DialogOverviewExampleDialogComponent } from 'src/app/shared/dialog-overview-example-dialog/dialog-overview-example-dialog.component';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { DialogRef } from '@angular/cdk/dialog';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition, } from '@angular/material/snack-bar';
+
 
 export interface DialogData {
   animal: string | undefined;
@@ -32,7 +33,7 @@ export class CustomerInvoiceComponent implements OnInit, AfterViewInit, DialogDa
   // eslint-disable-next-line @typescript-eslint/ban-types
   ELEMENT_DATA: Array<Object> | undefined = [];
   showMatPaginator = true;
-  constructor(public dialog: MatDialog, private excelService: ExcelService, private router: Router, public dt: DataTransferService, private dataSearch: DataSearchService) {
+  constructor(private _snackBar: MatSnackBar, public dialog: MatDialog, private excelService: ExcelService, private router: Router, public dt: DataTransferService, private dataSearch: DataSearchService) {
   }
   animal: string | undefined = "";
   name: string | undefined = "";
@@ -70,7 +71,9 @@ export class CustomerInvoiceComponent implements OnInit, AfterViewInit, DialogDa
 
         console.log(res);
 
+
       }
+
     })
   }
 
@@ -142,7 +145,7 @@ export class CustomerInvoiceComponent implements OnInit, AfterViewInit, DialogDa
   }
 
 
-  openDialog(enterAnimationDuration: string, exitAnimationDuration: string, event: Event,element:any): void {
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string, event: Event, element: any): void {
 
     const dialogRef = this.dialog.open(DialogOverviewExampleDialogComponent, {
       width: '250px',
@@ -154,10 +157,19 @@ export class CustomerInvoiceComponent implements OnInit, AfterViewInit, DialogDa
       console.log(res);
       if (res) {
         this.delete(element);
+
       }
 
     })
 
+
+  }
+
+  openSnackBar() {
+    this._snackBar.open('Data has been succesfully deleted ', 'Success', {
+      horizontalPosition: 'end',
+      verticalPosition: 'top',
+    });
   }
 
   delete(element: any) {
@@ -166,11 +178,14 @@ export class CustomerInvoiceComponent implements OnInit, AfterViewInit, DialogDa
 
     this.dt.deleteData(element.id).subscribe((data) => {
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      this.fetchData(this.pageNumber!, this.pageSize!);
+      this.fetchData(this.pageNumber!, this.pageSize!)
+      this.openSnackBar();
+
 
     });
-
   }
+
+
 
   // eslint-disable-next-line @typescript-eslint/ban-types
   exportTable() {
