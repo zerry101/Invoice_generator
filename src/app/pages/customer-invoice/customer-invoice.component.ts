@@ -10,12 +10,12 @@ import { async, map } from 'rxjs';
 import { PageEvent } from '@angular/material/paginator';
 import { DataSearchService } from 'src/app/shared/services/data-search.service';
 import { DialogOverviewExampleDialogComponent } from 'src/app/shared/dialog-overview-example-dialog/dialog-overview-example-dialog.component';
-import {MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-
+import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { DialogRef } from '@angular/cdk/dialog';
 
 export interface DialogData {
-  animal: string|undefined;
-  name: string|undefined;
+  animal: string | undefined;
+  name: string | undefined;
 }
 
 @Component({
@@ -24,7 +24,7 @@ export interface DialogData {
   styleUrls: ['./customer-invoice.component.scss']
 })
 
-export class CustomerInvoiceComponent implements OnInit, AfterViewInit,DialogData {
+export class CustomerInvoiceComponent implements OnInit, AfterViewInit, DialogData {
   // eslint-disable-next-line @typescript-eslint/ban-types
   pageSize: number | undefined;
   pageNumber: number | undefined;
@@ -32,10 +32,10 @@ export class CustomerInvoiceComponent implements OnInit, AfterViewInit,DialogDat
   // eslint-disable-next-line @typescript-eslint/ban-types
   ELEMENT_DATA: Array<Object> | undefined = [];
   showMatPaginator = true;
-  constructor(public dialog:  MatDialog, private excelService: ExcelService, private router: Router, public dt: DataTransferService, private dataSearch: DataSearchService) {
+  constructor(public dialog: MatDialog, private excelService: ExcelService, private router: Router, public dt: DataTransferService, private dataSearch: DataSearchService) {
   }
-  animal: string | undefined="";
-  name: string | undefined="";
+  animal: string | undefined = "";
+  name: string | undefined = "";
 
 
   ngOnInit(): void {
@@ -54,24 +54,24 @@ export class CustomerInvoiceComponent implements OnInit, AfterViewInit,DialogDat
   Data!: any;
   totalElements = 0;
   fetchData(pageNumber: number, pageSize: number): void {
-    this.pageSize =pageSize;
-    this.pageNumber=pageNumber;
-      this.Data = this.dt.getData(pageNumber, pageSize).subscribe({
-        next: (res: any) => {
-          res.content.map((item: any, index: number) => {
-            const dateObj1 = new Date(res.content[index].dateofsupply);
-            item.date = `${dateObj1.getDate()}/${dateObj1.getMonth() + 1}/${dateObj1.getFullYear()}`;
-          });
+    this.pageSize = pageSize;
+    this.pageNumber = pageNumber;
+    this.Data = this.dt.getData(pageNumber, pageSize).subscribe({
+      next: (res: any) => {
+        res.content.map((item: any, index: number) => {
+          const dateObj1 = new Date(res.content[index].dateofsupply);
+          item.date = `${dateObj1.getDate()}/${dateObj1.getMonth() + 1}/${dateObj1.getFullYear()}`;
+        });
 
-          this.ELEMENT_DATA = res.content;
-          this.totalElements = res.totalElements;
+        this.ELEMENT_DATA = res.content;
+        this.totalElements = res.totalElements;
 
-          this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+        this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
 
-          console.log(res);
+        console.log(res);
 
-        }
-      })
+      }
+    })
   }
 
   onFirstLastPageButton(event: any) {
@@ -142,19 +142,29 @@ export class CustomerInvoiceComponent implements OnInit, AfterViewInit,DialogDat
   }
 
 
-  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
-    this.dialog.open(DialogOverviewExampleDialogComponent, {
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string, event: Event,element:any): void {
+
+    const dialogRef = this.dialog.open(DialogOverviewExampleDialogComponent, {
       width: '250px',
       enterAnimationDuration,
       exitAnimationDuration,
     });
+
+    dialogRef.afterClosed().subscribe((res: any) => {
+      console.log(res);
+      if (res) {
+        this.delete(element);
+      }
+
+    })
+
   }
 
   delete(element: any) {
-    this.openDialog('0ms', '0ms');
+    // this.openDialog('0ms', '0ms');
     console.log(element);
 
-    this.dt.deleteData(element.id).subscribe((data)=>{
+    this.dt.deleteData(element.id).subscribe((data) => {
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       this.fetchData(this.pageNumber!, this.pageSize!);
 

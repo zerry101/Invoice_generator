@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DialogOverviewExampleDialogComponent } from './shared/dialog-overview-example-dialog/dialog-overview-example-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 
 // import { GenerateInvoiceComponent } from './componrnts/generate-invoice/generate-invoice.component';
 
@@ -23,6 +24,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     AppRoutingModule,
     HttpClientModule,
     MatDialogModule,
+    MatButtonModule
 
   ],
   providers: [],
