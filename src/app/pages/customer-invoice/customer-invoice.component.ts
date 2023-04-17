@@ -166,9 +166,10 @@ export class CustomerInvoiceComponent implements OnInit, AfterViewInit, DialogDa
   }
 
   openSnackBar() {
-    this._snackBar.open('Data has been succesfully deleted ', 'Success', {
-      horizontalPosition: 'end',
-      verticalPosition: 'top',
+    this._snackBar.open('Data has been succesfully deleted ', 'success', {
+      duration: 1000,
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom',
     });
   }
 

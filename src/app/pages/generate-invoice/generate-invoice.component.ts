@@ -3,10 +3,12 @@ import { jsPDF } from 'jspdf';
 import { SharedDataService } from 'src/app/shared/services/shared-data.service';
 import { ViewChild, ElementRef } from '@angular/core';
 import html2canvas from 'html2canvas';
+import 'jspdf-autotable';
 
 // pdfMAke
 import * as pdfMake from "pdfmake/build/pdfmake";
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+
 // import * from 'html-to-pdfmake';
 // import htmlToPdfmake from 'html-to-pdfmake';
 // import * as html2pdf from 'html2pdf.js';
@@ -53,60 +55,58 @@ export class GenerateInvoiceComponent implements OnInit, AfterViewInit {
 
 
   makePDF() {
-    // const width = this.box?.nativeElement.innerHTML.pageSize.getWidth();
-// const height = this.box?.nativeElement.innerHTML.pageSize.getHeight();
 
-// console.log(width,height);
+    const html = this.box?.nativeElement.innerHTML;
 
-    const pdf = new jsPDF({
-      orientation: 'p',
-        unit: 'pt',
-        format: [1300,1300]
-    });
-    pdf.html(this.box?.nativeElement, {
-      callback: (pdf) => { pdf.save("demo.pdf."); }
-    })
+    // Create a new jspdf instance
+    const doc = new jsPDF();
 
-    // pdf.createPDF(this.box?.nativeElement).open();
-  }
+    // Convert the HTML content to PDF using jspdf-autotable plugin
+    // doc.autoTable({ html });
 
-  public openPDF(): void {
-    // let DATA: any = document.getElementById('box');
-    html2canvas(this.box?.nativeElement).then((canvas) => {
-      const fileWidth = 208;
-      const fileHeight = (canvas.height * fileWidth) / canvas.width;
-      const FILEURI = canvas.toDataURL('image/png');
-      const PDF = new jsPDF('p', 'mm', 'a4');
-      const position = 0;
-      PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
-      PDF.save('angular-demo.pdf');
-    });
-
+    // Save the PDF file
+    doc.save("example.pdf");
 
   }
+
+  // public openPDF(): void {
+  //   // let DATA: any = document.getElementById('box');
+  //   html2canvas(this.box?.nativeElement).then((canvas) => {
+  //     const fileWidth = 208;
+  //     const fileHeight = (canvas.height * fileWidth) / canvas.width;
+  //     const FILEURI = canvas.toDataURL('image/png');
+  //     const PDF = new jsPDF('p', 'mm', 'a4');
+  //     const position = 0;
+  //     PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
+  //     PDF.save('angular-demo.pdf');
+  //   });
+
+
+  // }
 
   // docDefination: any;
 
-  docDefination: any = {
-    header: 'C#Corner PDF Header',
-    content: 'Sample PDF generated with Angular and PDFMake for C#Corner Blog'
-  };
+  // docDefination: any = {
+  //   header: 'C#Corner PDF Header',
+  //   content: 'Sample PDF generated with Angular and PDFMake for C#Corner Blog'
+  // };
 
   // html:any=htmlToPdfmakeht
 
 
 
-  generatePDF(){ new Promise((resolve, reject) => {
-    // var inclusions = document.getElementById('inclusions');
-    html2canvas(this.box?.nativeElement.innerHTML).then((canvas) => {
-        this.box?.nativeElement.appendChild(canvas);
-        const data_1 = canvas.toDataURL();
-        resolve(data_1);
-        console.log(this.box);
-    });
-});
+  // generatePDF() {
+  //   new Promise((resolve, reject) => {
+  //     // var inclusions = document.getElementById('inclusions');
+  //     html2canvas(this.box?.nativeElement.innerHTML).then((canvas) => {
+  //       this.box?.nativeElement.appendChild(canvas);
+  //       const data_1 = canvas.toDataURL();
+  //       resolve(data_1);
+  //       console.log(this.box);
+  //     });
+  //   });
 
 
 
-  }
+  // }
 }

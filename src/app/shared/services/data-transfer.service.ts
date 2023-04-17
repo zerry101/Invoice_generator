@@ -32,7 +32,7 @@ export class DataTransferService {
   }
 
   deleteData(id:any){
-    return this.http.delete(`${this.baseURL}/api/v1/employees/delete/${id}`)
+    return this.http.delete(`${this.baseURL}/api/v1/employees/delete/${id}`);
 
   }
 
