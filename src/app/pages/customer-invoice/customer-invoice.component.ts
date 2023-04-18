@@ -173,6 +173,7 @@ export class CustomerInvoiceComponent implements OnInit, AfterViewInit, DialogDa
     });
   }
 
+
   delete(element: any) {
     // this.openDialog('0ms', '0ms');
     console.log(element);

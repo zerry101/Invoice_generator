@@ -1,17 +1,20 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { jsPDF } from 'jspdf';
 import { SharedDataService } from 'src/app/shared/services/shared-data.service';
 import { ViewChild, ElementRef } from '@angular/core';
 import html2canvas from 'html2canvas';
+
+import * as jsPdf from 'jspdf';
 import 'jspdf-autotable';
 
-// pdfMAke
 import * as pdfMake from "pdfmake/build/pdfmake";
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 
 // import * from 'html-to-pdfmake';
 // import htmlToPdfmake from 'html-to-pdfmake';
 // import * as html2pdf from 'html2pdf.js';
+declare const require: any;
+const jsPDF = require('jspdf');
+require('jspdf-autotable');
 
 (<any>pdfMake).vfs = pdfFonts.pdfMake.vfs;
 
@@ -56,21 +59,42 @@ export class GenerateInvoiceComponent implements OnInit, AfterViewInit {
 
   makePDF() {
 
-    const html = this.box?.nativeElement.innerHTML;
+    const docDefinitio:any = {
+      content: [
+        {
+          table: {
+            widths: ['10%', '*', '*', '*', '*', '*', '*'],
+            headerRows: 1,
+            body: [
+              [
+                { text: 'SI NO.', style: 'tableHeader' },
+                { text: 'Description of Goods', style: 'tableHeader' },
+                { text: 'HSN/SAC', style: 'tableHeader' },
+                { text: 'Quantity', style: 'tableHeader' },
+                { text: 'Rate', style: 'tableHeader' },
+                { text: 'Per', style: 'tableHeader' },
+                { text: 'Amount', style: 'tableHeader' },
+              ],
+              [ '1', 'Nitro Pouch', '3294', '480 set', '54.00', 'set', '25,920.00' ],
+              [ '1', 'Nitro Pouch', '3294', '480 set', '54.00', 'set', '25,920.00' ],
+              [ '', 'Total', '', '', '', '', '52000' ],
+            ]
+          }
+        }
+      ],
+      styles: {
+        tableHeader: {
+          bold: true,
+          fillColor: '#eeeeee'
+        }
+      }
+    };
 
-    // Create a new jspdf instance
-    const doc = new jsPDF();
-
-    // Convert the HTML content to PDF using jspdf-autotable plugin
-    // doc.autoTable({ html });
-
-    // Save the PDF file
-    doc.save("example.pdf");
-
-  }
+  pdfMake.createPdf(docDefinitio).open();
+    }
 
   // public openPDF(): void {
-  //   // let DATA: any = document.getElementById('box');
+  //   // const DATA: any = document.getElementById('box');
   //   html2canvas(this.box?.nativeElement).then((canvas) => {
   //     const fileWidth = 208;
   //     const fileHeight = (canvas.height * fileWidth) / canvas.width;
