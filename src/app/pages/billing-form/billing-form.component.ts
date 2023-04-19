@@ -121,6 +121,8 @@ export class BillingFormComponent implements OnInit{
 
   previewInvoice() {
     this.sD.invoiceActivity.next('preview');
+    this.userForm.controls['grandtotal'].patchValue(this.totalPrice());
+
     this.sD.invoiceActivityData.next(this.userForm.value);
   }
   addNewRow() {

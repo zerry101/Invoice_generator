@@ -33,6 +33,7 @@ export class GenerateInvoiceComponent implements OnInit, AfterViewInit {
 
   tableData: any;
   tabledataarray: any = [];
+  totalProductPrice='';
   constructor(public sD: SharedDataService) { }
 
   ngOnInit(): void {
@@ -42,6 +43,11 @@ export class GenerateInvoiceComponent implements OnInit, AfterViewInit {
         console.log('i am generate incoice data');
         console.log(res);
         this.tableData = res.productData;
+        this.totalProductPrice=res.grandtotal.toLocaleString();
+        console.log(this.totalProductPrice,typeof(this.totalProductPrice));
+        // console.log(this.totalProductPrice.toLocaleString(),typeof());
+
+
         console.log('values');
 
 
@@ -112,7 +118,7 @@ export class GenerateInvoiceComponent implements OnInit, AfterViewInit {
                 { text: 'Amount', style: 'tableHeader' },
               ],
               ...this.tabledataarray,
-              ['', 'Total', '', '', '', '', '52000'],
+              ['', 'Total', '', '', '', '', this.totalProductPrice],
             ]
           }
         }
