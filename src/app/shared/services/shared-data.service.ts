@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-inferrable-types */
 import { Injectable } from '@angular/core';
 // import { FormGroup } from '@angular/forms';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 // import { ɵisObservable } from '@angular/core';
 // import { ObserversModule } from '@angular/cdk/observers';
 // import { FormArray, FormGroup } from '@angular/forms';
@@ -32,7 +32,9 @@ export class SharedDataService {
   formData: Array<Object> = [];
   exclusive = new Subject<boolean>();
 
-  public invoiceActivity = new Subject<any>();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  public invoiceActivity = new BehaviorSubject<any>(undefined);
+  public invoiceActivityData = new BehaviorSubject<any>(undefined);
 
   // eslint-disable-next-line @typescript-eslint/ban-types
   // invoiceOptions={
@@ -44,30 +46,38 @@ export class SharedDataService {
   //  this.invoiceOptions.preview=true;
 
 
-clickPrintInvoice(){
-  this.invoiceActivity.next('print');
-}
+// clickPrintInvoice(data:any){
+//   // this.invoiceActivity.next('print');
+//   // this.invoiceActivity.next(data);
+// }
 
-getPrintInvoice(): Observable < any > {
+getInvoiceCommand(): Observable < any > {
   return  this.invoiceActivity.asObservable();
 }
-
-clickPreviewInvoice(){
-  this.invoiceActivity.next('preview');
+getInvoiceData(): Observable < any > {
+  return  this.invoiceActivityData.asObservable();
 }
 
-getPreviewInvoice(): Observable < any > {
-  return this.invoiceActivity.asObservable();
-}
+// clickPreviewInvoice(data:any){
+//   this.invoiceActivity.next('preview');
+//   this.invoiceActivity.next(data);
 
-clickDownloadInvoice()
-{
-  this.invoiceActivity.next('download');
-}
+// }
 
-getDownloadInvoice(): Observable < any > {
-  return this.invoiceActivity.asObservable();
-}
+// getPreviewInvoice(): Observable < any > {
+//   return this.invoiceActivity.asObservable();
+// }
+
+// clickDownloadInvoice(data:any)
+// {
+//   this.invoiceActivity.next('download');
+//   this.invoiceActivity.next(data);
+
+// }
+
+// getDownloadInvoice(): Observable < any > {
+//   return this.invoiceActivity.asObservable();
+// }
 
 
 }

@@ -12,6 +12,7 @@ import { DataSearchService } from 'src/app/shared/services/data-search.service';
 import { DialogOverviewExampleDialogComponent } from 'src/app/shared/dialog-overview-example-dialog/dialog-overview-example-dialog.component';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition, } from '@angular/material/snack-bar';
+import { SharedDataService } from 'src/app/shared/services/shared-data.service';
 
 
 export interface DialogData {
@@ -33,7 +34,8 @@ export class CustomerInvoiceComponent implements OnInit, AfterViewInit, DialogDa
   // eslint-disable-next-line @typescript-eslint/ban-types
   ELEMENT_DATA: Array<Object> | undefined = [];
   showMatPaginator = true;
-  constructor(private _snackBar: MatSnackBar, public dialog: MatDialog, private excelService: ExcelService, private router: Router, public dt: DataTransferService, private dataSearch: DataSearchService) {
+  constructor(public sD:SharedDataService,private _snackBar: MatSnackBar, public dialog: MatDialog, private excelService: ExcelService, private router: Router, public dt: DataTransferService, private dataSearch: DataSearchService) {
+
   }
   animal: string | undefined = "";
   name: string | undefined = "";

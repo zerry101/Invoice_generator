@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { globalConstants } from '../../shared/constants';
 import { MAT_DATE_FORMATS } from "@angular/material/core";
@@ -35,7 +35,7 @@ interface employee {
     },
   ]
 })
-export class BillingFormComponent implements OnInit {
+export class BillingFormComponent implements OnInit{
 
   // @Output() newItemEvent= new EventEmitter<FormGroup>();
 
@@ -47,6 +47,7 @@ export class BillingFormComponent implements OnInit {
 
 
   }
+
 
 
 
@@ -63,6 +64,8 @@ export class BillingFormComponent implements OnInit {
     // console.log(this.dateOfSupplycontrol?.value);
     // console.log(this.todaysDate());
   }
+
+
 
 
 
@@ -105,17 +108,21 @@ export class BillingFormComponent implements OnInit {
   }
 
   printInvoice() {
-    this.sD.clickPrintInvoice();
-  }
+    console.log('hii');
+
+    this.sD.invoiceActivity.next('print');
+    this.sD.invoiceActivityData.next(this.userForm.value);
+    }
 
   downloadInvoice() {
-    this.sD.clickDownloadInvoice();
-  }
+    this.sD.invoiceActivity.next('download');
+    this.sD.invoiceActivityData.next(this.userForm.value);
+   }
 
   previewInvoice() {
-    this.sD.clickPreviewInvoice();
+    this.sD.invoiceActivity.next('preview');
+    this.sD.invoiceActivityData.next(this.userForm.value);
   }
-
   addNewRow() {
     this.formarr?.push(this.initItemRows());
   }

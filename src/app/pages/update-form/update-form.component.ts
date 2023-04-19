@@ -34,17 +34,33 @@ export class UpdateFormComponent implements OnInit, OnDestroy, AfterViewInit {
   exclusive: boolean | undefined = true;
   disabled=true;
   id:number | undefined;
+  localFormValue:any={};
 
-  constructor(private fb: FormBuilder, public sD: SharedDataService, public dt: DataTransferService, public router: Router) { }
+  constructor(private fb: FormBuilder, public sD: SharedDataService, public dt: DataTransferService, public router: Router) {
+this.dt.tableInstanceData.subscribe((data)=>{
+// console.log(data);
+this.dataTOBePatched=data;
+localStorage.setItem('formdata', JSON.stringify(this.dataTOBePatched));
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+this.localFormValue=JSON.parse(localStorage.getItem('formdata')||'{}');
+console.log('this is formvalue');
 
-  dataTOBePatched: any |undefined= {};
+console.log(this.localFormValue);
+
+})
+   }
+  dataTOBePatched: any ;
   parsedProductData: any = [];
 
   ngAfterViewInit(): void {
     this.dt.tableInstanceData.subscribe((data) => {
       this.id=data['id'];
-      this.dataTOBePatched = data;
+      // this.dataTOBePatched=data;
       this.parsedProductData = JSON.parse(this.dataTOBePatched.productData);
+      console.log('this is dtp');
+
+      console.log(this.dataTOBePatched);
+
 
       this.parsedProductData.forEach((eachProductData: any, index: number) => {
         index > 0 ? this.addNewRow() : false;
@@ -70,7 +86,7 @@ export class UpdateFormComponent implements OnInit, OnDestroy, AfterViewInit {
 
     this.setupForm();
     this.sD.exclusive.subscribe((res) => {
-      this.exclusive = res;
+      this.exclusive = res  ;
     })
   }
 
@@ -112,15 +128,20 @@ export class UpdateFormComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   printInvoice() {
-    this.sD.clickPrintInvoice();
-  }
+    console.log('hii');
+
+    this.sD.invoiceActivity.next('print');
+    this.sD.invoiceActivityData.next(this.localFormValue);
+    }
 
   downloadInvoice() {
-    this.sD.clickDownloadInvoice();
-  }
+    this.sD.invoiceActivity.next('download');
+    this.sD.invoiceActivityData.next(this.localFormValue);
+   }
 
   previewInvoice() {
-    this.sD.clickPreviewInvoice();
+    this.sD.invoiceActivity.next('preview');
+    this.sD.invoiceActivityData.next(this.localFormValue);
   }
 
   addNewRow() {

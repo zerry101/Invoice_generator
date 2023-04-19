@@ -31,16 +31,32 @@ export class GenerateInvoiceComponent implements OnInit, AfterViewInit {
   @ViewChild('box', { static: false }) box: ElementRef | undefined;
   count = 0;
 
+  tableData: any;
   constructor(public sD: SharedDataService) { }
 
   ngOnInit(): void {
     this.sD.exclusive.next(true);
-    this.sD.getPrintInvoice().subscribe((res) => {
+    this.sD.getInvoiceCommand().subscribe((res) => {
 
-      res === 'download' ? this.makePDF() : false;    //  console.log(res);
+
+      console.log(res);
+
+
+      // this.tableData=res;
+      // console.log(res);
+
+      // console.log(res.productData);
+      // this.tableData=res.productData;
+      // console.log(this.tableData);
+
+      // res === 'download' ? this.makePDF() : false;    //  console.log(res);
       // res === 'print' ? pdfMake.createPdf(this.docDefination).print() : false;
       // res === 'preview' ? pdfMake.createPdf(this.docDefination).open() : false;
 
+    })
+
+    this.sD.getInvoiceData().subscribe((res) => {
+      console.log(res);
     })
 
 
@@ -59,7 +75,7 @@ export class GenerateInvoiceComponent implements OnInit, AfterViewInit {
 
   makePDF() {
 
-    const docDefinitio:any = {
+    const docDefinitio: any = {
       content: [
         {
           table: {
@@ -75,9 +91,9 @@ export class GenerateInvoiceComponent implements OnInit, AfterViewInit {
                 { text: 'Per', style: 'tableHeader' },
                 { text: 'Amount', style: 'tableHeader' },
               ],
-              [ '1', 'Nitro Pouch', '3294', '480 set', '54.00', 'set', '25,920.00' ],
-              [ '1', 'Nitro Pouch', '3294', '480 set', '54.00', 'set', '25,920.00' ],
-              [ '', 'Total', '', '', '', '', '52000' ],
+              ['1', 'Nitro Pouch', '3294', '480 set', '54.00', 'set', '25,920.00'],
+              ['1', 'Nitro Pouch', '3294', '480 set', '54.00', 'set', '25,920.00'],
+              ['', 'Total', '', '', '', '', '52000'],
             ]
           }
         }
@@ -90,8 +106,8 @@ export class GenerateInvoiceComponent implements OnInit, AfterViewInit {
       }
     };
 
-  pdfMake.createPdf(docDefinitio).open();
-    }
+    pdfMake.createPdf(docDefinitio).open();
+  }
 
   // public openPDF(): void {
   //   // const DATA: any = document.getElementById('box');
