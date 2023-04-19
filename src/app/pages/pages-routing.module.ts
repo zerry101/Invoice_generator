@@ -5,6 +5,7 @@ import { CustomerInvoiceComponent } from './customer-invoice/customer-invoice.co
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PagesComponent } from './pages.component';
 import { UpdateFormComponent } from './update-form/update-form.component';
+import { GenerateInvoiceComponent } from './generate-invoice/generate-invoice.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
       {
         path:'update-invoice',
         component: UpdateFormComponent
+      },
+      {
+        path:'generate-invoice',
+        component:GenerateInvoiceComponent
       }
     ]
   }

@@ -4,7 +4,7 @@ import { globalConstants } from '../../shared/constants';
 import { MAT_DATE_FORMATS } from "@angular/material/core";
 // import { Output, EventEmitter } from '@angular/core';
 import { SharedDataService } from 'src/app/shared/services/shared-data.service';
-import { DataTransferService } from 'src/app/shared/services/data-transfer.service';
+import { DataTransferService } from 'src/app/pages/data-transfer.service';
 import { Router } from '@angular/router';
 
 interface employee {

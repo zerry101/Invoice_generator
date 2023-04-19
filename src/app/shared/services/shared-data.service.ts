@@ -20,7 +20,7 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 // }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'any'
 })
 export class SharedDataService {
 

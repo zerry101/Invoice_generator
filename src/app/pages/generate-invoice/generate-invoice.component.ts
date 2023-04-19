@@ -32,32 +32,52 @@ export class GenerateInvoiceComponent implements OnInit, AfterViewInit {
   count = 0;
 
   tableData: any;
+  tabledataarray: any = [];
   constructor(public sD: SharedDataService) { }
 
   ngOnInit(): void {
     this.sD.exclusive.next(true);
-    this.sD.getInvoiceCommand().subscribe((res) => {
+    this.sD.getInvoiceData().subscribe({
+      next: (res) => {
+        console.log('i am generate incoice data');
+        console.log(res);
+        this.tableData = res.productData;
+        console.log('values');
 
 
-      console.log(res);
+        this.tableData.forEach((data: any, index: any) => {
+          console.log(data);
+          // data.push(index);
+          const valuedata = [index, ...Object.values(data)];
+          this.tabledataarray.push(valuedata);
 
 
-      // this.tableData=res;
-      // console.log(res);
+          index++;
 
-      // console.log(res.productData);
-      // this.tableData=res.productData;
-      // console.log(this.tableData);
+          // console.log(Object.values(data));
 
-      // res === 'download' ? this.makePDF() : false;    //  console.log(res);
-      // res === 'print' ? pdfMake.createPdf(this.docDefination).print() : false;
-      // res === 'preview' ? pdfMake.createPdf(this.docDefination).open() : false;
+        })
 
-    })
+        console.log(this.tabledataarray);
+        console.log(...this.tabledataarray);
+        this.makePDF();
 
-    this.sD.getInvoiceData().subscribe((res) => {
-      console.log(res);
-    })
+        // console.log(tablearray);
+
+
+
+      }
+    });
+    this.sD.getInvoiceCommand().subscribe({
+      next: (res) => {
+        console.log('i am generate incoice command');
+
+        // res === 'preview' ? this.makePDF() : false;
+        console.log(res);
+
+      }
+    });
+
 
 
     // throw new Error('Method not implemented.');
@@ -91,8 +111,7 @@ export class GenerateInvoiceComponent implements OnInit, AfterViewInit {
                 { text: 'Per', style: 'tableHeader' },
                 { text: 'Amount', style: 'tableHeader' },
               ],
-              ['1', 'Nitro Pouch', '3294', '480 set', '54.00', 'set', '25,920.00'],
-              ['1', 'Nitro Pouch', '3294', '480 set', '54.00', 'set', '25,920.00'],
+              ...this.tabledataarray,
               ['', 'Total', '', '', '', '', '52000'],
             ]
           }

@@ -3,7 +3,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { globalConstants } from '../../shared/constants';
 import { MAT_DATE_FORMATS } from "@angular/material/core";
 import { SharedDataService } from 'src/app/shared/services/shared-data.service';
-import { DataTransferService } from 'src/app/shared/services/data-transfer.service';
+import { DataTransferService } from 'src/app/pages/data-transfer.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -46,6 +46,25 @@ this.localFormValue=JSON.parse(localStorage.getItem('formdata')||'{}');
 console.log('this is formvalue');
 
 console.log(this.localFormValue);
+
+this.sD.getInvoiceCommand().subscribe({
+  next:(res)=>{
+    console.log('i am update invoice command');
+
+console.log(res);
+  }
+})
+
+this.sD.getInvoiceData().subscribe({
+  next:(res)=>{
+    console.log('i am update invoice data');
+
+console.log(res);
+  }
+})
+
+
+
 
 })
    }
