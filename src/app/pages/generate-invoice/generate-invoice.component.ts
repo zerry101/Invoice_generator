@@ -33,18 +33,21 @@ export class GenerateInvoiceComponent implements OnInit, AfterViewInit {
 
   tableData: any;
   tabledataarray: any = [];
-  totalProductPrice='';
+  totalProductPrice = '';
   constructor(public sD: SharedDataService) { }
 
   ngOnInit(): void {
     this.sD.exclusive.next(true);
     this.sD.getInvoiceData().subscribe({
       next: (res) => {
-        console.log('i am generate incoice data');
-        console.log(res);
+        // console.log('i am generate incoice data');
+        // console.log(res);
+        this.tabledataarray = [];
+        this.totalProductPrice = '';
+        this.tableData = {};
         this.tableData = res.productData;
-        this.totalProductPrice=res.grandtotal.toLocaleString();
-        console.log(this.totalProductPrice,typeof(this.totalProductPrice));
+        this.totalProductPrice = res.grandtotal.toLocaleString();
+        console.log(this.totalProductPrice, typeof (this.totalProductPrice));
         // console.log(this.totalProductPrice.toLocaleString(),typeof());
 
 
@@ -54,7 +57,7 @@ export class GenerateInvoiceComponent implements OnInit, AfterViewInit {
         this.tableData.forEach((data: any, index: any) => {
           console.log(data);
           // data.push(index);
-          const valuedata = [index, ...Object.values(data)];
+          const valuedata = [index + 1, ...Object.values(data)];
           this.tabledataarray.push(valuedata);
 
 
@@ -67,7 +70,6 @@ export class GenerateInvoiceComponent implements OnInit, AfterViewInit {
         console.log(this.tabledataarray);
         console.log(...this.tabledataarray);
         this.makePDF();
-
         // console.log(tablearray);
 
 
@@ -101,9 +103,91 @@ export class GenerateInvoiceComponent implements OnInit, AfterViewInit {
 
   makePDF() {
 
-    const docDefinitio: any = {
+    // const docDefinition: any = {
+    //   content: [
+    //     {
+    //       table: {
+    //         widths: ['10%', '*', '*', '*', '*', '*', '*'],
+    //         headerRows: 1,
+    //         body: [
+    //           [
+    //             { text: 'SI NO.', style: 'tableHeader' },
+    //             { text: 'Description of Goods', style: 'tableHeader' },
+    //             { text: 'HSN/SAC', style: 'tableHeader' },
+    //             { text: 'Quantity', style: 'tableHeader' },
+    //             { text: 'Rate', style: 'tableHeader' },
+    //             { text: 'Per', style: 'tableHeader' },
+    //             { text: 'Amount', style: 'tableHeader' },
+    //           ],
+    //           ...this.tabledataarray,
+    //           ['', 'Total', '', '', '', '', this.totalProductPrice],
+    //         ]
+    //       }
+    //     }
+    //   ],
+    //   styles: {
+    //     tableHeader: {
+    //       bold: true,
+    //       fillColor: '#eeeeee'
+    //     }
+    //   }
+    // };
+
+
+
+    const docDefinition: any = {
       content: [
         {
+          absolutePosition: { x: 50, y: 50 },
+          text: `Date: ${new Date().toLocaleDateString()}`,
+          style: 'dateSection'
+        },
+        {
+          text: 'Company Name',
+          style: 'companyHeader'
+        },
+        {
+          text: '123 Fake Street',
+          style: 'companyAddress'
+        },
+        {
+          text: 'City, State - 123456',
+          style: 'companyAddress'
+        },
+        {
+          margin: [0, 10, 0, 10],
+          table: {
+            widths: ['50%', '50%'],
+            body: [
+              [
+                { text: 'Buyer Address', style: 'addressHeader' },
+                { text: 'Seller Address', style: 'addressHeader' }
+              ],
+              [{ text: 'John Doe', style: 'addressText' }, { text: 'Jane Doe', style: 'addressText' }],
+            ]
+          }
+        },
+        {
+          text: 'Company\'s Bank Details',
+          style: 'bankHeader'
+        },
+
+        {
+          margin: [0, 5, 0, 0],
+          table: {
+            widths: ['50%', '50%'],
+            body: [
+              [
+                { text: 'Bank Name:', style: 'bankText' },
+                { text: 'HDFC Bank Ltd', style: 'bankText' }
+              ],
+              [{ text: 'A/c No.:', style: 'bankText' }, { text: '50200009780751', style: 'bankText' }],
+              [{ text: 'Branch & IFS Code:', style: 'bankText' }, { text: 'Karelibaug & HDFC0000147', style: 'bankText' }]
+            ]
+          }
+        },
+        {
+          margin: [0, 20, 0, 0],
           table: {
             widths: ['10%', '*', '*', '*', '*', '*', '*'],
             headerRows: 1,
@@ -121,17 +205,67 @@ export class GenerateInvoiceComponent implements OnInit, AfterViewInit {
               ['', 'Total', '', '', '', '', this.totalProductPrice],
             ]
           }
-        }
+        },
+
+        {
+          absolutePosition: { x: 480, y: 780 },
+          canvas: [
+            {
+              type: 'rect',
+              x: 0,
+              y: 0,
+              w: 250,
+              h: 60,
+              lineWidth: 1,
+              lineColor: '#000000',
+              color: '#ffffff'
+            },
+            {
+              text: 'Authorized Signatory',
+              fontSize: 12,
+              alignment: 'center',
+              margin: [0, 25, 0, 0]
+            },
+
+          ]
+        },
+        {
+          margin: [40, 40, 40, 40],
+          table: {
+            widths: ['*'],
+            body: [
+              [{ text: 'Declaration:- We declare that this invoice shows the actual price of the goods described and that all particulars are true and correct', style: 'declarationText' }],
+            ]
+          }
+        },
       ],
       styles: {
-        tableHeader: {
+        companyHeader: {
           bold: true,
-          fillColor: '#eeeeee'
-        }
-      }
-    };
+          fontSize: 20,
+          alignment: 'center',
+          margin: [0, 0, 0, 10]
+        },
+        companyAddress: {
+          fontSize: 14,
+          alignment: 'center'
+        },
+        addressHeader: {
+          bold: true,
+          fontSize: 14,
+          fillColor: '#eeeeee',
+          alignment: 'center'
+        },
+        addressText: {
+          fontSize: 12
+        },
 
-    pdfMake.createPdf(docDefinitio).open();
+      }
+    }
+
+    this.tabledataarray = 0;
+    this.totalProductPrice = '';
+    pdfMake.createPdf(docDefinition).open();
   }
 
   // public openPDF(): void {
