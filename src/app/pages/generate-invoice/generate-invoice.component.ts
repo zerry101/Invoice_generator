@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, effect } from '@angular/core';
 import { SharedDataService } from 'src/app/shared/services/shared-data.service';
 import { SharedUpdatedFormDataService } from 'src/app/shared/services/shared-updated-form-data.service';
 import { ViewChild, ElementRef } from '@angular/core';
@@ -31,7 +31,16 @@ export class GenerateInvoiceComponent implements OnInit, AfterViewInit {
   tabledataarray: any = [];
   totalProductPrice = '';
   invoiceCommand='';
-  constructor(public sD: SharedDataService,public sufd:SharedUpdatedFormDataService) { }
+  constructor(public sD: SharedDataService,public sufd:SharedUpdatedFormDataService) {
+
+    effect(()=>{
+      console.log(`thi is firstname:${this.sD.firstname()}`);
+    })
+
+
+   }
+
+
 
   ngOnInit(): void {
     // this.sD.exclusive.next(true);
@@ -83,6 +92,7 @@ export class GenerateInvoiceComponent implements OnInit, AfterViewInit {
     console.log();
 
   }
+
 
 
   makePDF() {
@@ -218,7 +228,7 @@ export class GenerateInvoiceComponent implements OnInit, AfterViewInit {
     this.tabledataarray = 0;
     this.totalProductPrice = '';
 
-    this.invoiceCommand=='preview'?pdfMake.createPdf(docDefinition).open():false;
+    this.sD.firstname()=='preview'?pdfMake.createPdf(docDefinition).open():false;
     this.invoiceCommand=='print'?pdfMake.createPdf(docDefinition).print():false;
     this.invoiceCommand=='download'?pdfMake.createPdf(docDefinition).download():false;
   }

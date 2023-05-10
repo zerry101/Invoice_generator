@@ -50,8 +50,14 @@ export class BillingFormComponent implements OnInit{
 
   }
 
+signalVar='';
 
-
+signalChange(){
+  console.log(this.sD.firstname());
+  this.sD.firstname.set('zishan');
+  console.log(this.sD.firstname());
+this.signalVar=this.sD.firstname();
+}
 
 
 
@@ -95,15 +101,14 @@ export class BillingFormComponent implements OnInit{
   downloadInvoice() {
     this.userForm.controls['grandtotal'].patchValue(this.totalPrice());
     this.sD.invoiceActivity.next('download');
-
     this.sD.invoiceActivityData.next(this.userForm.value);
    }
 
   previewInvoice() {
-    this.sD.invoiceActivity.next('preview');
+    this.sD.firstname.set('preview');
     this.userForm.controls['grandtotal'].patchValue(this.totalPrice());
-
     this.sD.invoiceActivityData.next(this.userForm.value);
+    this.router.navigate(['generate-invoice'],{replaceUrl:false,skipLocationChange:true});
   }
   addNewRow() {
     this.formarr?.push(this.initItemRows());

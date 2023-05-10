@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, effect } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { globalConstants } from '../../shared/constants';
 import { MAT_DATE_FORMATS } from "@angular/material/core";
@@ -41,6 +41,9 @@ export class UpdateFormComponent implements OnInit, OnDestroy, AfterViewInit {
 
   constructor(private fb: FormBuilder,public sufd:SharedUpdatedFormDataService, public sD: SharedDataService, public dt: DataTransferService, public router: Router) {
     this.dt.tableInstanceData.subscribe((data) => {
+      // effect(()=>{
+      //   console.log(`thi is firstname:${this.sD.firstname()}`);
+      // })
 
       this.dataTOBePatched = data;
       localStorage.setItem('formdata', JSON.stringify(this.dataTOBePatched));
@@ -156,7 +159,7 @@ export class UpdateFormComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   previewInvoice() {
-    this.sufd.updateInvoiceActivity.next('preview');
+    this.sD.firstname.set('preview');
     this.sufd.updateInvoiceActivityData.next(this.localFormValue);
   }
 

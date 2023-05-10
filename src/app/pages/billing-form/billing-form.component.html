@@ -166,5 +166,13 @@
     </div>
   </form>
 </div>
+
+<button (click)="signalChange()" type="button" mat-flat-button color="primary">
+  signal change
+</button>
+
+{{signalVar}}
+
 <strong *ngIf="exclusive">exclusive</strong>
-<igx-generate-invoice></igx-generate-invoice>
+
+<!-- <igx-generate-invoice></igx-generate-invoice> -->
