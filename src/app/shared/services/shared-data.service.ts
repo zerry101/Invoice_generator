@@ -17,8 +17,6 @@ export class SharedDataService {
   public invoiceActivity = new BehaviorSubject<any>(undefined);
   public invoiceActivityData = new BehaviorSubject<any>(undefined);
 
-  public updateInvoiceActivity=new BehaviorSubject<any>(undefined);
-  public updateInvoiceActivityData=new BehaviorSubject<any>(undefined);
 
   // eslint-disable-next-line @typescript-eslint/ban-types
 getInvoiceCommand(): Observable < any > {
@@ -28,14 +26,6 @@ getInvoiceData(): Observable < any > {
   return  this.invoiceActivityData.asObservable();
 }
 
-getUpdateInvoiceCommand():Observable <any>{
-  return this.updateInvoiceActivity.asObservable();
-}
-
-
-getUpdateInvoiceData():Observable <any>{
-  return this.updateInvoiceActivityData.asObservable();
-}
 
 
 }
