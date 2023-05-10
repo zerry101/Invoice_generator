@@ -1,18 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { globalConstants } from '../../shared/constants';
 import { MAT_DATE_FORMATS } from "@angular/material/core";
-// import { Output, EventEmitter } from '@angular/core';
 import { SharedDataService } from 'src/app/shared/services/shared-data.service';
 import { DataTransferService } from 'src/app/pages/data-transfer.service';
 import { Router } from '@angular/router';
 
-interface employee {
-  firstname: string,
-  lastname: string,
-  emailid: string
-
-}
 
 @Component({
   selector: 'igx-billing-form',
@@ -37,7 +30,6 @@ interface employee {
 })
 export class BillingFormComponent implements OnInit{
 
-  // @Output() newItemEvent= new EventEmitter<FormGroup>();
 
   userForm: FormGroup = new FormGroup({});
   exclusive: boolean | undefined = true;
@@ -56,8 +48,6 @@ export class BillingFormComponent implements OnInit{
       this.exclusive = res;
     })
 
-    // console.log(this.dateOfSupplycontrol?.value);
-    // console.log(this.todaysDate());
   }
 
 
@@ -70,22 +60,17 @@ export class BillingFormComponent implements OnInit{
       name: [""],
       address: [""],
       contactno: ["",[Validators.required, Validators.pattern(globalConstants.CONTACT_NO)]],
-      // LandlineNo: ["" ,[Validators.required,Validators.pattern(globalConstants.LANDLINE_NO)]],
       GSTNO: ["", [Validators.required, Validators.pattern(globalConstants.GST_PATTERN)]],
       transportationmode: [""],
       vehiclenumber: ["", Validators.pattern(globalConstants.VEHICLENO_PATTERN)],
       dateofsupply: [],
       placeofsupply: [""],
       shippedto: [""],
-      // BanKName:[""],
-      // AccountNo:[""],
-      // BranchandIFSCode:[""],
       productData: this.fb.array([this.initItemRows()]),
       grandtotal: [Number]
     })
   }
 
-  // selectedDate=this.datePipe.transform
 
   initItemRows(): FormGroup {
     return this.fb.group({
@@ -132,14 +117,10 @@ export class BillingFormComponent implements OnInit{
     }
   }
 
-  // deleteAllRows() {
-  //   this.formarr.controls.splice(1, this.formarr.controls.length);
-  // }
 
   onEnter(value: string) {
     const numberOfRowsToInsert = parseInt(value, 10) - 1;
 
-    // console.log();
     for (let i = 0; i < numberOfRowsToInsert; i++) {
       this.formarr?.push(this.initItemRows());
     }
@@ -158,6 +139,7 @@ export class BillingFormComponent implements OnInit{
 
 
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return this.productDatacontrol?.controls.reduce((acc: number, data: any) => {
       return acc + data.get('Amount').value;
     }, 0);
@@ -175,16 +157,9 @@ export class BillingFormComponent implements OnInit{
   }
 
   todaydate = new Date();
-  // this.todaydate=this.todaydate.getDate()+1
 
-  // this.currentDate.setValue
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   Data: any;
-  // Employee:employee={
-  //   firstname: '',
-  //   lastname: '',
-  //   emailid: ''
-  // };
 
   submitForm() {
     this.userForm.controls['grandtotal'].patchValue(this.totalPrice());
@@ -202,7 +177,6 @@ export class BillingFormComponent implements OnInit{
 
 
 
-  // sampleData:  = new FormArray([{ "Description": "first item", "HSN": 3304, "Quantity": "1 doz", "Rate": 34, "Per": "doz", "Amount": 32 }, { "Description": "second item", "HSN": 3209, "Quantity": "2 doz", "Rate": 43, "Per": "56", "Amount": 56 }]);
 
   get dateOfSupplycontrol() {
     return this.userForm.get('dateofsupply');
@@ -257,7 +231,4 @@ export class BillingFormComponent implements OnInit{
 
 
 
-// function data(value: AbstractControl<any, any>, index: number, array: AbstractControl<any, any>[]): void {
-//   throw new Error('Function not implemented.');
-// }
 

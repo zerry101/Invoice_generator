@@ -1,6 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ObserversModule } from '@angular/cdk/observers';
 import { Observable } from 'rxjs';
 
 @Injectable({

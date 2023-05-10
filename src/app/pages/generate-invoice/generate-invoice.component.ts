@@ -1,9 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { SharedDataService } from 'src/app/shared/services/shared-data.service';
 import { ViewChild, ElementRef } from '@angular/core';
-import html2canvas from 'html2canvas';
-
-import * as jsPdf from 'jspdf';
 import 'jspdf-autotable';
 
 import * as pdfMake from "pdfmake/build/pdfmake";
@@ -11,7 +9,6 @@ import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 
 
 declare const require: any;
-const jsPDF = require('jspdf');
 require('jspdf-autotable');
 
 (<any>pdfMake).vfs = pdfFonts.pdfMake.vfs;
@@ -59,7 +56,6 @@ export class GenerateInvoiceComponent implements OnInit, AfterViewInit {
     });
     this.sD.getInvoiceCommand().subscribe({
       next: (res) => {
-        // console.log('i am generate incoice command');x
         console.log(res);
         this.invoiceCommand=res
       }

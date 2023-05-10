@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { globalConstants } from '../../shared/constants';
@@ -32,48 +33,48 @@ export class UpdateFormComponent implements OnInit, OnDestroy, AfterViewInit {
 
   userForm: FormGroup = new FormGroup({});
   exclusive: boolean | undefined = true;
-  disabled=true;
-  id:number | undefined;
-  localFormValue:any={};
+  disabled = true;
+  id: number | undefined;
+  localFormValue: any = {};
 
   constructor(private fb: FormBuilder, public sD: SharedDataService, public dt: DataTransferService, public router: Router) {
-this.dt.tableInstanceData.subscribe((data)=>{
-// console.log(data);
-this.dataTOBePatched=data;
-localStorage.setItem('formdata', JSON.stringify(this.dataTOBePatched));
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-this.localFormValue=JSON.parse(localStorage.getItem('formdata')||'{}');
-console.log('this is formvalue');
+    this.dt.tableInstanceData.subscribe((data) => {
 
-console.log(this.localFormValue);
+      this.dataTOBePatched = data;
+      localStorage.setItem('formdata', JSON.stringify(this.dataTOBePatched));
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      this.localFormValue = JSON.parse(localStorage.getItem('formdata') || '{}');
+      console.log('this is formvalue');
 
-this.sD.getInvoiceCommand().subscribe({
-  next:(res)=>{
-    console.log('i am update invoice command');
+      console.log(this.localFormValue);
 
-console.log(res);
-  } 
-})
+      this.sD.getInvoiceCommand().subscribe({
+        next: (res) => {
+          console.log('i am update invoice command');
 
-this.sD.getInvoiceData().subscribe({
-  next:(res)=>{
-    console.log('i am update invoice data');
+          console.log(res);
+        }
+      })
 
-console.log(res);
+      this.sD.getInvoiceData().subscribe({
+        next: (res) => {
+          console.log('i am update invoice data');
+
+          console.log(res);
+        }
+      })
+
+
+
+
+    })
   }
-})
-
-
-
-
-})
-   }
-  dataTOBePatched: any ;
+  dataTOBePatched: any;
   parsedProductData: any = [];
 
   ngAfterViewInit(): void {
     this.dt.tableInstanceData.subscribe((data) => {
-      this.id=data['id'];
+      this.id = data['id'];
       // this.dataTOBePatched=data;
       this.parsedProductData = JSON.parse(this.dataTOBePatched.productData);
       console.log('this is dtp');
@@ -105,7 +106,7 @@ console.log(res);
 
     this.setupForm();
     this.sD.exclusive.subscribe((res) => {
-      this.exclusive = res  ;
+      this.exclusive = res;
     })
   }
 
@@ -114,7 +115,7 @@ console.log(res);
 
   setupForm() {
     this.userForm = this.fb.group({
-      id:["",{disabled:true},[Validators.required]],
+      id: ["", { disabled: true }, [Validators.required]],
       name: [""],
       address: [""],
       contactno: [Number, [Validators.required, Validators.pattern(globalConstants.CONTACT_NO)]],
@@ -151,12 +152,12 @@ console.log(res);
 
     this.sD.invoiceActivity.next('print');
     this.sD.invoiceActivityData.next(this.localFormValue);
-    }
+  }
 
   downloadInvoice() {
     this.sD.invoiceActivity.next('download');
     this.sD.invoiceActivityData.next(this.localFormValue);
-   }
+  }
 
   previewInvoice() {
     this.sD.invoiceActivity.next('preview');
@@ -229,7 +230,7 @@ console.log(res);
     console.log(this.Data);
 
 
-    this.dt.updateData(this.Data.id,this.Data).subscribe((data)=>{
+    this.dt.updateData(this.Data.id, this.Data).subscribe((data) => {
       console.log(data);
 
     })

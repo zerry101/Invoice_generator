@@ -1,9 +1,5 @@
-import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { DialogData } from 'src/app/pages/customer-invoice/customer-invoice.component';
-import { MatDialogModule } from '@angular/material/dialog';
-import { Observable, of } from 'rxjs';
-import { MatButtonModule } from '@angular/material/button';
+import { Component } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'igx-dialog-overview-example-dialog',
