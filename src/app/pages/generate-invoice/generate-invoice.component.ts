@@ -9,9 +9,7 @@ import 'jspdf-autotable';
 import * as pdfMake from "pdfmake/build/pdfmake";
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 
-// import * from 'html-to-pdfmake';
-// import htmlToPdfmake from 'html-to-pdfmake';
-// import * as html2pdf from 'html2pdf.js';
+
 declare const require: any;
 const jsPDF = require('jspdf');
 require('jspdf-autotable');
@@ -34,73 +32,44 @@ export class GenerateInvoiceComponent implements OnInit, AfterViewInit {
   tableData: any;
   tabledataarray: any = [];
   totalProductPrice = '';
+  invoiceCommand='';
   constructor(public sD: SharedDataService) { }
 
   ngOnInit(): void {
     this.sD.exclusive.next(true);
     this.sD.getInvoiceData().subscribe({
       next: (res) => {
-        // console.log('i am generate incoice data');
-        // console.log(res);
         this.tabledataarray = [];
         this.totalProductPrice = '';
         this.tableData = {};
         this.tableData = res.productData;
         this.totalProductPrice = res.grandtotal;
-        console.log(res.grandtotal);
-
-        // console.log(this.totalProductPrice, typeof (this.totalProductPrice));
-        console.log('dd');
-        // console.log(this.totalProductPrice.toLocaleString(),typeof());
-
-
-        // console.log('values');
-
 
         this.tableData.forEach((data: any, index: any) => {
-          // console.log(data);
-          // data.push(index);
           const valuedata = [index + 1, ...Object.values(data)];
           this.tabledataarray.push(valuedata);
 
 
           index++;
 
-          // console.log(Object.values(data));
-
         })
 
-        // console.log(this.tabledataarray);
-        // console.log(...this.tabledataarray);
         this.makePDF();
-        // console.log(tablearray);
-
-
-
       }
     });
     this.sD.getInvoiceCommand().subscribe({
       next: (res) => {
-        console.log('i am generate incoice command');
-
-        // res === 'preview' ? this.makePDF() : false;
+        // console.log('i am generate incoice command');x
         console.log(res);
-
+        this.invoiceCommand=res
       }
     });
-
-
-
-    // throw new Error('Method not implemented.');
 
   }
 
   ngAfterViewInit(): void {
-    // throw new Error('Method not implemented.');
-    // console.log(this.box);
     console.log();
 
-    // this.box?.nativeElement.style.background='blue';
   }
 
 
@@ -236,47 +205,13 @@ export class GenerateInvoiceComponent implements OnInit, AfterViewInit {
 
     this.tabledataarray = 0;
     this.totalProductPrice = '';
-    pdfMake.createPdf(docDefinition).open();
+
+    // pdfMake.createPdf(docDefinition).download('invoice');
+    this.invoiceCommand=='preview'?pdfMake.createPdf(docDefinition).open():false;
+    this.invoiceCommand=='print'?pdfMake.createPdf(docDefinition).print():false;
+    this.invoiceCommand=='download'?pdfMake.createPdf(docDefinition).download():false;
+    // pdfMake.createPdf(docDefinition).print();
   }
 
-  // public openPDF(): void {
-  //   // const DATA: any = document.getElementById('box');
-  //   html2canvas(this.box?.nativeElement).then((canvas) => {
-  //     const fileWidth = 208;
-  //     const fileHeight = (canvas.height * fileWidth) / canvas.width;
-  //     const FILEURI = canvas.toDataURL('image/png');
-  //     const PDF = new jsPDF('p', 'mm', 'a4');
-  //     const position = 0;
-  //     PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
-  //     PDF.save('angular-demo.pdf');
-  //   });
 
-
-  // }
-
-  // docDefination: any;
-
-  // docDefination: any = {
-  //   header: 'C#Corner PDF Header',
-  //   content: 'Sample PDF generated with Angular and PDFMake for C#Corner Blog'
-  // };
-
-  // html:any=htmlToPdfmakeht
-
-
-
-  // generatePDF() {
-  //   new Promise((resolve, reject) => {
-  //     // var inclusions = document.getElementById('inclusions');
-  //     html2canvas(this.box?.nativeElement.innerHTML).then((canvas) => {
-  //       this.box?.nativeElement.appendChild(canvas);
-  //       const data_1 = canvas.toDataURL();
-  //       resolve(data_1);
-  //       console.log(this.box);
-  //     });
-  //   });
-
-
-
-  // }
 }
