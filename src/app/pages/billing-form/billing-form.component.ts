@@ -44,12 +44,7 @@ export class BillingFormComponent implements OnInit{
 
   constructor(private fb: FormBuilder, public sD: SharedDataService, public dt: DataTransferService, public router: Router) {
     this.todaydate.setDate(this.todaydate.getDate());
-
-
   }
-
-
-
 
 
   ngOnInit(): void {
@@ -115,7 +110,9 @@ export class BillingFormComponent implements OnInit{
     }
 
   downloadInvoice() {
+    this.userForm.controls['grandtotal'].patchValue(this.totalPrice());
     this.sD.invoiceActivity.next('download');
+
     this.sD.invoiceActivityData.next(this.userForm.value);
    }
 

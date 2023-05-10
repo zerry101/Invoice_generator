@@ -52,7 +52,7 @@ this.sD.getInvoiceCommand().subscribe({
     console.log('i am update invoice command');
 
 console.log(res);
-  }
+  } 
 })
 
 this.sD.getInvoiceData().subscribe({

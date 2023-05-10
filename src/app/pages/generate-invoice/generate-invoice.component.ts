@@ -46,16 +46,19 @@ export class GenerateInvoiceComponent implements OnInit, AfterViewInit {
         this.totalProductPrice = '';
         this.tableData = {};
         this.tableData = res.productData;
-        this.totalProductPrice = res.grandtotal.toLocaleString();
-        console.log(this.totalProductPrice, typeof (this.totalProductPrice));
+        this.totalProductPrice = res.grandtotal;
+        console.log(res.grandtotal);
+
+        // console.log(this.totalProductPrice, typeof (this.totalProductPrice));
+        console.log('dd');
         // console.log(this.totalProductPrice.toLocaleString(),typeof());
 
 
-        console.log('values');
+        // console.log('values');
 
 
         this.tableData.forEach((data: any, index: any) => {
-          console.log(data);
+          // console.log(data);
           // data.push(index);
           const valuedata = [index + 1, ...Object.values(data)];
           this.tabledataarray.push(valuedata);
@@ -67,8 +70,8 @@ export class GenerateInvoiceComponent implements OnInit, AfterViewInit {
 
         })
 
-        console.log(this.tabledataarray);
-        console.log(...this.tabledataarray);
+        // console.log(this.tabledataarray);
+        // console.log(...this.tabledataarray);
         this.makePDF();
         // console.log(tablearray);
 
@@ -102,38 +105,6 @@ export class GenerateInvoiceComponent implements OnInit, AfterViewInit {
 
 
   makePDF() {
-
-    // const docDefinition: any = {
-    //   content: [
-    //     {
-    //       table: {
-    //         widths: ['10%', '*', '*', '*', '*', '*', '*'],
-    //         headerRows: 1,
-    //         body: [
-    //           [
-    //             { text: 'SI NO.', style: 'tableHeader' },
-    //             { text: 'Description of Goods', style: 'tableHeader' },
-    //             { text: 'HSN/SAC', style: 'tableHeader' },
-    //             { text: 'Quantity', style: 'tableHeader' },
-    //             { text: 'Rate', style: 'tableHeader' },
-    //             { text: 'Per', style: 'tableHeader' },
-    //             { text: 'Amount', style: 'tableHeader' },
-    //           ],
-    //           ...this.tabledataarray,
-    //           ['', 'Total', '', '', '', '', this.totalProductPrice],
-    //         ]
-    //       }
-    //     }
-    //   ],
-    //   styles: {
-    //     tableHeader: {
-    //       bold: true,
-    //       fillColor: '#eeeeee'
-    //     }
-    //   }
-    // };
-
-
 
     const docDefinition: any = {
       content: [
