@@ -6,7 +6,7 @@ import { MAT_DATE_FORMATS } from "@angular/material/core";
 import { SharedDataService } from 'src/app/shared/services/shared-data.service';
 import { DataTransferService } from 'src/app/pages/data-transfer.service';
 import { Router } from '@angular/router';
-
+import { SharedUpdatedFormDataService } from 'src/app/shared/services/shared-updated-form-data.service';
 @Component({
   selector: 'igx-update-form',
   templateUrl: './update-form.component.html',
@@ -37,32 +37,32 @@ export class UpdateFormComponent implements OnInit, OnDestroy, AfterViewInit {
   id: number | undefined;
   localFormValue: any = {};
 
-  constructor(private fb: FormBuilder, public sD: SharedDataService, public dt: DataTransferService, public router: Router) {
+  constructor(private fb: FormBuilder,public sufd:SharedUpdatedFormDataService, public sD: SharedDataService, public dt: DataTransferService, public router: Router) {
     this.dt.tableInstanceData.subscribe((data) => {
 
       this.dataTOBePatched = data;
       localStorage.setItem('formdata', JSON.stringify(this.dataTOBePatched));
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       this.localFormValue = JSON.parse(localStorage.getItem('formdata') || '{}');
-      console.log('this is formvalue');
+      // console.log('this is formvalue');
 
-      console.log(this.localFormValue);
+      // console.log(this.localFormValue);
 
-      this.sD.getInvoiceCommand().subscribe({
-        next: (res) => {
-          console.log('i am update invoice command');
+      // this.sD.getUpdateInvoiceCommand().subscribe({
+      //   next: (res) => {
+      //     console.log('i am update invoice command');
 
-          console.log(res);
-        }
-      })
+      //     console.log(res);
+      //   }
+      // })
 
-      this.sD.getInvoiceData().subscribe({
-        next: (res) => {
-          console.log('i am update invoice data');
+      // this.sD.getUpdateInvoiceData().subscribe({
+      //   next: (res) => {
+      //     console.log('i am update invoice data');
 
-          console.log(res);
-        }
-      })
+      //     console.log(res);
+      //   }
+      // })
 
 
 
@@ -144,20 +144,18 @@ export class UpdateFormComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   printInvoice() {
-    console.log('hii');
-
-    this.sD.invoiceActivity.next('print');
-    this.sD.invoiceActivityData.next(this.localFormValue);
+    this.sufd.updateInvoiceActivity.next('print');
+    this.sufd.updateInvoiceActivityData.next(this.localFormValue);
   }
 
   downloadInvoice() {
-    this.sD.invoiceActivity.next('download');
-    this.sD.invoiceActivityData.next(this.localFormValue);
+    this.sufd.updateInvoiceActivity.next('download');
+    this.sufd.updateInvoiceActivityData.next(this.localFormValue);
   }
 
   previewInvoice() {
-    this.sD.invoiceActivity.next('preview');
-    this.sD.invoiceActivityData.next(this.localFormValue);
+    this.sufd.updateInvoiceActivity.next('preview');
+    this.sufd.updateInvoiceActivityData.next(this.localFormValue);
   }
 
   addNewRow() {
@@ -223,7 +221,7 @@ export class UpdateFormComponent implements OnInit, OnDestroy, AfterViewInit {
     this.Data = this.userForm.value;
     // this.sD.formData?.push(this.Data);
     this.Data.productData = JSON.stringify(this.Data.productData);
-    console.log(this.Data);
+    // console.log(this.Data);
 
 
     this.dt.updateData(this.Data.id, this.Data).subscribe((data) => {

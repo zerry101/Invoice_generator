@@ -27,13 +27,14 @@ const routes: Routes = [
         component: DashboardComponent
       },
       {
-        path:'customer-invoice',
-        component: CustomerInvoiceComponent
-      },
-      {
         path:'update-invoice',
         component: UpdateFormComponent
       },
+      {
+        path:'customer-invoice',
+        component: CustomerInvoiceComponent
+      },
+
       {
         path:'generate-invoice',
         component:GenerateInvoiceComponent

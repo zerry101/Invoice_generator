@@ -88,8 +88,6 @@ export class BillingFormComponent implements OnInit{
   }
 
   printInvoice() {
-    console.log('hii');
-
     this.sD.invoiceActivity.next('print');
     this.sD.invoiceActivityData.next(this.userForm.value);
     }

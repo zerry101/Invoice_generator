@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { SharedDataService } from 'src/app/shared/services/shared-data.service';
+import { SharedUpdatedFormDataService } from 'src/app/shared/services/shared-updated-form-data.service';
 import { ViewChild, ElementRef } from '@angular/core';
 import 'jspdf-autotable';
 
@@ -30,10 +31,28 @@ export class GenerateInvoiceComponent implements OnInit, AfterViewInit {
   tabledataarray: any = [];
   totalProductPrice = '';
   invoiceCommand='';
-  constructor(public sD: SharedDataService) { }
+  constructor(public sD: SharedDataService,public sufd:SharedUpdatedFormDataService) { }
 
   ngOnInit(): void {
-    this.sD.exclusive.next(true);
+    // this.sD.exclusive.next(true);
+
+    this.sufd.getUpdateInvoiceData().subscribe({
+      next: (res) => {
+
+
+        console.log(res);
+        console.log('this is sufd');
+
+      }
+    });
+
+    this.sufd.getUpdateInvoiceCommand().subscribe({
+      next: (res) => {
+        console.log(res);
+        // this.invoiceCommand=res
+      }
+    });
+
     this.sD.getInvoiceData().subscribe({
       next: (res) => {
         this.tabledataarray = [];
@@ -45,10 +64,7 @@ export class GenerateInvoiceComponent implements OnInit, AfterViewInit {
         this.tableData.forEach((data: any, index: any) => {
           const valuedata = [index + 1, ...Object.values(data)];
           this.tabledataarray.push(valuedata);
-
-
           index++;
-
         })
 
         this.makePDF();
