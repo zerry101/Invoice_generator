@@ -202,11 +202,9 @@ export class GenerateInvoiceComponent implements OnInit, AfterViewInit {
     this.tabledataarray = 0;
     this.totalProductPrice = '';
 
-    // pdfMake.createPdf(docDefinition).download('invoice');
     this.invoiceCommand=='preview'?pdfMake.createPdf(docDefinition).open():false;
     this.invoiceCommand=='print'?pdfMake.createPdf(docDefinition).print():false;
     this.invoiceCommand=='download'?pdfMake.createPdf(docDefinition).download():false;
-    // pdfMake.createPdf(docDefinition).print();
   }
 
 

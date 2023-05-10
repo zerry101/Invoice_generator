@@ -1,4 +1,3 @@
-<!-- <div class="container"> -->
 
 <div class="mat-elevation-z8 w-100">
 
@@ -9,26 +8,22 @@
   </mat-form-field>
   <mat-table mat-table [dataSource]="dataSource">
 
-    <!-- Position Column -->
     <ng-container class="column-border" matColumnDef="Name">
       <th mat-header-cell *matHeaderCellDef> Name </th>
       <td mat-cell *matCellDef="let element"> {{element.name}} </td>
     </ng-container>
 
-    <!-- Name Column -->
     <ng-container matColumnDef="Address">
       <th mat-header-cell *matHeaderCellDef>Address</th>
 
       <td mat-cell *matCellDef="let element"> {{element.address}} </td>
     </ng-container>
 
-    <!-- Weight Column -->
     <ng-container matColumnDef="ContactNo">
       <th mat-header-cell *matHeaderCellDef> ContactNo </th>
       <td mat-cell *matCellDef="let element"> {{element.contactno}} </td>
     </ng-container>
 
-    <!-- Symbol Column -->
     <ng-container matColumnDef="Date_of_supply">
       <th mat-header-cell *matHeaderCellDef> Date of supply </th>
       <td mat-cell *matCellDef="let element"> {{element.date}} </td>
@@ -54,7 +49,6 @@
       <td mat-cell class="button"    *matCellDef="let element">
         <button mat-flat-button   style=" margin: 7px!important;" (click)="edit(element)"><mat-icon color="primary" fontIcon="edit"></mat-icon></button>
         <button mat-flat-button style=" margin: 7px!important;" (click)="openDialog('0ms', '0ms',$event,element)"><mat-icon color="warn" fontIcon="delete"></mat-icon></button>
-        <!-- <button (click)="edit(element)">Delete</button> -->
       </td>
     </ng-container>
 
@@ -72,4 +66,3 @@
 	<button mat-raised-button color="primary"  (click)="exportTable()">Export Material Table</button>
 </div>
 
-<!-- </div> -->

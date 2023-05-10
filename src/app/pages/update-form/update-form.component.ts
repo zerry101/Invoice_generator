@@ -75,7 +75,6 @@ export class UpdateFormComponent implements OnInit, OnDestroy, AfterViewInit {
   ngAfterViewInit(): void {
     this.dt.tableInstanceData.subscribe((data) => {
       this.id = data['id'];
-      // this.dataTOBePatched=data;
       this.parsedProductData = JSON.parse(this.dataTOBePatched.productData);
       console.log('this is dtp');
 
@@ -88,15 +87,12 @@ export class UpdateFormComponent implements OnInit, OnDestroy, AfterViewInit {
       })
 
       Object.keys(this.userForm.controls).forEach((control) => {
-        // console.log(data[control]);
 
         this.userForm.controls[control].patchValue(data[control]);
       })
     })
 
     this.userForm.get('dateofsupply')?.patchValue(this.dataTOBePatched.dateofsupply);
-    // console.log("THIS IS DATA TO BE PATCHED");
-    // console.log(this.dataTOBePatched.dateOfSupply);
   }
   ngOnDestroy(): void {
     this.userForm.reset();
